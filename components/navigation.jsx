@@ -17,17 +17,32 @@ const Navigation = React.createClass({
             }else {
               menuClass = 'item sec-nav-ch'
             }
-            return (
-              <a key={k} href={v.link} >
-                <div className={menuClass}>
-                  <div className="ch">
-                    <span>{v.cn}</span>
-                    <div className="en">{v.en}</div>
-                    <div className="arrow-5-js triangle"></div>
+
+            if (v.target) {
+              return (
+                <a key={k} href={v.link} target="_blank">
+                  <div className={menuClass}>
+                    <div className="ch">
+                      <span>{v.cn}</span>
+                      <div className="en">{v.en}</div>
+                      <div className="arrow-5-js triangle"></div>
+                    </div>
                   </div>
-                </div>
-              </a>
-            )
+                </a>
+              )
+            } else {
+              return (
+                <a key={k} href={v.link}>
+                  <div className={menuClass}>
+                    <div className="ch">
+                      <span>{v.cn}</span>
+                      <div className="en">{v.en}</div>
+                      <div className="arrow-5-js triangle"></div>
+                    </div>
+                  </div>
+                </a>
+              )
+            }
           })
         }
       </div>

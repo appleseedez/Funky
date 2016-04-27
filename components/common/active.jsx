@@ -10,12 +10,13 @@ const Active = React.createClass({
           _.map(this.state.picUrls, (v,k) => {
 
             let content = null;
+            let url = v.url + '@95q';
             if(v.href) {
               content = (
-                <a href={v.hrefUrl} target="_blank"> <img src={v.url} /></a>
+                <a href={v.hrefUrl} target="_blank"> <img src={url} /></a>
               )
             } else {
-              content = (<img src={v.url} />)
+              content = (<img src={url} />)
             }
 
             return(

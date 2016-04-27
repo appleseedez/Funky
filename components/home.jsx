@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
-import { MediaSlider } from './common/media-slider.jsx'
 import _ from 'lodash'
+
+import { MediaSlider } from './common/media-slider.jsx'
+import { MediaItem } from './common/media-item.jsx'
 import { Group5 } from './common/group5.jsx'
 import { Group4 } from './common/group4.jsx'
 import { Group3 } from './common/group3.jsx'
@@ -57,7 +59,7 @@ const Board = React.createClass({
         {
           _.map(this.props.list||[],(value,key)=>{
             return (
-              <a href={value} data-uk-lightbox="{'group':'comment-robot'}" data-lightbox-type='image' title='' key={key}>
+              <a href={value+'@95q'} data-uk-lightbox="{'group':'comment-robot'}" data-lightbox-type='image' title='' key={key}>
                   <span  />
               </a>
             )
@@ -73,7 +75,7 @@ const BotComment = React.createClass({
   render () {
     return (
       <div className='bannar'>
-        <img src={this.props.bg} />
+        <img src={this.props.bg+'@95q'} />
         <ul className="comment">
           {
             _.map(this.props.list,(value,key)=>{

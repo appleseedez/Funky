@@ -24,7 +24,7 @@ const PhotoGallery = React.createClass({
       <div className='photo-box'>
       {
         _.map(this.props.gallery,(v,k)=>{
-          return <img src={v.imageUrl} key={k} />
+          return <img src={v.imageUrl+'@95q'} key={k} />
         })
       }
       </div>

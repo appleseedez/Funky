@@ -4,7 +4,7 @@ const Banner = React.createClass({
   render () {
     return (
       <div className='bannar-box'>
-        <img src={this.props.imageUrl} />
+        <img src={this.props.imageUrl+'@90q'} />
       </div>
     )
   },
@@ -13,7 +13,7 @@ const Banner = React.createClass({
   },
   getDefaultProps(){
     return {
-      imageUrl:'http://placehold.it/1920x690'
+      imageUrl:''
     }
   }
 })

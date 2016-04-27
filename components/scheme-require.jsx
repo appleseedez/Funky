@@ -6,15 +6,15 @@ const SchemeRequire = React.createClass({
       <div className="hq-tjxq-view">
           <div className="layout-center-box">
               <div className="content-box">
-                  <div className="top"><img src="/img/eavlee/hqdz/top.jpg" /></div>
+                  <div className="top"><img src="/img/eavlee/hqdz/top.jpg@95q" /></div>
               </div>
               <div className="content-box">
-                  <div className="mid"><img src="/img/eavlee/hqdz/mid.jpg" /></div>
+                  <div className="mid"><img src="/img/eavlee/hqdz/mid.jpg@95q" /></div>
               </div>
               <div className="content-box">
-                  <a href="//jsform.com/f/e7w5oq" className="bot-01"><img src="/img/eavlee/hqdz/tjxq.png" /></a>
-                  <a className="bot-02"><img src="/img/eavlee/hqdz/xchs.png" /></a>
-                  <a href="/f4" className="bot-03"><img src="/img/eavlee/hqdz/xhlr.png" /></a>
+                  <a href="//jsform.com/f/e7w5oq" className="bot-01"><img src="/img/eavlee/hqdz/tjxq.png@95q" /></a>
+                  <a className="bot-02"><img src="/img/eavlee/hqdz/xchs.png@95q" /></a>
+                  <a href="/f4" className="bot-03"><img src="/img/eavlee/hqdz/xhlr.png@95q" /></a>
               </div>
           </div>
       </div>

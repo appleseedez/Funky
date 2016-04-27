@@ -175,7 +175,7 @@ const ImageItem = React.createClass({
     if (this.props.height !== '100%') {
       imageOption = imageOption + this.props.height+'h_';
     }
-    imageOption = imageOption + '90Q';
+    imageOption = imageOption + '95q';
     imageOption =  this.props.water? (imageOption+'|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'):imageOption
     let mediaUrl = ''
     if (this.props.mediaUrl && this.props.mediaUrl !== '') {

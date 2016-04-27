@@ -38,7 +38,7 @@ const MultiBanner = React.createClass({
   render () {
     return (
       <div className="nav-box mgt30">
-        <img src={this.props.bgImageUrl} onerror={this.src='http://placehold.it/1200x600'}/>
+        <img src={this.props.bgImageUrl+'@95q'} onerror={this.src='http://placehold.it/1200x600'}/>
         {
           _.map(this.props.blocks,(v,k)=>{
             return <a key={k}  href={v.link} className={v.klass}></a>

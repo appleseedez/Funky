@@ -126,7 +126,7 @@ const AdvSide = React.createClass({
         {
           _.map(this.props.adList,(v,k)=>{
             return (
-              <img key={k} src={v.imageUrl} className={(listLength > k+1)?'mgb30':''} />
+              <img key={k} src={v.imageUrl+'@95q'} className={(listLength > k+1)?'mgb30':''} />
             )
           })
         }

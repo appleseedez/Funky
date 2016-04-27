@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
+import { MediaItem } from './common/media-item.jsx'
 import { Banner } from './common/banner.jsx'
 import { DressConfig } from './config/dress-config'
 
@@ -22,8 +24,8 @@ const DressHolder = React.createClass({
       <div className="show-box">
         <div className="layer-box" />
         <h2>{this.props.data.description}</h2>
-        <a href={hf} target="">
-          <img src={this.props.data.coverUrlWeb} />
+        <a href={hf} target="_blank">
+          <MediaItem aspectRatio='3:2' height={600} mediaUrl={this.props.data.coverUrlWeb} water={false} />
         </a>
       </div>
     )
@@ -46,7 +48,7 @@ const DressType  = React.createClass({
                   var boundClick = this.handleClick.bind(this, k);
                   return (
                     <li key={k} onClick={boundClick} className={(k === this.state.index)? 'item item-sel':'item'} >
-                      <img src={v.logoUrl} />
+                      <MediaItem aspectRatio='200:85' height={85} mediaUrl={v.logoUrl} water={false} />
                     </li>
                   );
                 })

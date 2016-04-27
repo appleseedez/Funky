@@ -3,263 +3,312 @@ const MenuConfig = {
     {
       cn:'婚纱摄影',
       en:'PHOTO',
-      link:'/shot'
+      link:'/shot',
+      target:false
     },
     {
       cn:'婚宴预订',
       en:'BANQUET',
-      link:'/hotel'
+      link:'/hotel',
+      target:false
     },
     {
       cn:'婚庆定制',
       en:'WEDDING',
-      link:'/scheme'
+      link:'/scheme',
+      target:false
     },
     {
       cn:'婚纱礼服',
       en:'DRESS',
-      link:'/dress'
+      link:'/dress',
+      target:false
     },
     {
       cn:'微电影',
       en:'MOVIE',
-      link:'/movie'
+      link:'/movie',
+      target:false
     },
     {
       cn:'婚戒钻石',
       en:'DIAMOND',
-      link:'http://www.chinad9.com'
+      link:'http://www.chinad9.com',
+      target:true
     },
     {
       cn:'婚礼用品',
       en:'SUPPLIES',
-      link:'/supply'
+      link:'/supply',
+      target:false
     },
     {
       cn:'婚车租赁',
       en:'CAR',
-      link:'/car'
+      link:'/car',
+      target:false
     }
   ],
   '/home':[
     {
       cn:'婚纱摄影',
       en:'PHOTO',
-      link:'/shot'
+      link:'/shot',
+      target:false
     },
     {
       cn:'婚宴预订',
       en:'BANQUET',
-      link:'/hotel'
+      link:'/hotel',
+      target:false
     },
     {
       cn:'婚庆定制',
       en:'WEDDING',
-      link:'/scheme'
+      link:'/scheme',
+      target:false
     },
     {
       cn:'婚纱礼服',
       en:'DRESS',
-      link:'/dress'
+      link:'/dress',
+      target:false
     },
     {
       cn:'微电影',
       en:'MOVIE',
-      link:'/movie'
+      link:'/movie',
+      target:false
     },
     {
       cn:'婚戒钻石',
       en:'DIAMOND',
-      link:'http://www.chinad9.com'
+      link:'http://www.chinad9.com',
+      target:true
     },
     {
       cn:'婚礼用品',
       en:'SUPPLIES',
-      link:'/supply'
+      link:'/supply',
+      target:false
     },
     {
       cn:'婚车租赁',
       en:'CAR',
-      link:'/car'
+      link:'/car',
+      target:false
     }
   ],
   '/shot':[
     {
       cn:'全站首页',
       en:'HOME',
-      link:'/'
+      link:'/',
+      target:false
     },
     {
       cn:'婚纱摄影首页',
       en:'PHOTO',
-      link:'/shot'
+      link:'/shot',
+      target:false
     },
     {
       cn:'作品欣赏',
       en:'WORKS',
-      link:'/sample'
+      link:'/sample',
+      target:false
     },
     {
       cn:'客片欣赏',
       en:'PRINGLES',
-      link:'/pringles'
+      link:'/pringles',
+      target:false
     },
     {
       cn:'套系报价',
       en:'SUITE',
-      link:'/suite'
+      link:'/suite',
+      target:false
     },
     {
       cn:'旅拍',
       en:'TRIP',
-      link:'http://trip.jsbn.com'
+      link:'http://trip.jsbn.com',
+      target:true
     },
     {
       cn:'婚纱纪实',
       en:'MV',
-      link:'/weddingmv'
+      link:'/weddingmv',
+      target:false
     },
     {
       cn:'婚照技巧',
       en:'TIPS',
-      link:'/weddingclass/1'
+      link:'/weddingclass/1',
+      target:false
     }
   ],
   '/hotel':[
     {
       cn:'全站首页',
       en:'HOME',
-      link:'/'
+      link:'/',
+      target:false
     },
     {
       cn:'婚宴预订首页',
       en:'BANQUET',
-      link:'/hotel'
+      link:'/hotel',
+      target:false
     },
     {
       cn:'提交需求',
       en:'REQUIRE',
-      link:'/hotel-require'
+      link:'/hotel-require',
+      target:false
     },
     {
       cn:'大礼包',
       en:'GIFT',
-      link:'/active/libao'
+      link:'/active/libao',
+      target:false
     },
     {
       cn:'婚宴知识',
       en:'CLASS',
-      link:'/weddingclass/2'
+      link:'/weddingclass/2',
+      target:false
     }
   ],
   '/scheme':[
     {
       cn:'全站首页',
       en:'HOME',
-      link:'/'
+      link:'/',
+      target:false
     },
     {
       cn:'婚庆首页',
       en:'WEDDING',
-      link:'/scheme'
+      link:'/scheme',
+      target:false
     },
     {
       cn:'实景案例',
       en:'CASES',
-      link:'/cases'
+      link:'/cases',
+      target:false
     },
     {
       cn:'婚礼跟拍',
       en:'FOLLOW',
-      link:'/weddingpat'
+      link:'/weddingpat',
+      target:false
     },
     {
       cn:'婚礼视频',
       en:'VIDEO',
-      link:'/weddingvideo'
+      link:'/weddingvideo',
+      target:false
     },
     {
       cn:'提交需求',
       en:'REQUIRE',
-      link:'/scheme-require'
+      link:'/scheme-require',
+      target:false
     },
     {
       cn:'选婚礼人',
       en:'F4',
-      link:'/f4'
+      link:'/f4',
+      target:false
     },
     {
       cn:'婚礼学堂',
       en:'CLASS',
-      link:'/weddingclass/3'
+      link:'/weddingclass/3',
+      target:false
     }
   ],
   '/dress':[
     {
       cn:'全站首页',
       en:'HOME',
-      link:'/'
+      link:'/',
+      target:false
     },
     {
       cn:'婚纱礼服',
       en:'DRESS',
-      link:'/dress'
+      link:'/dress',
+      target:false
     },
     {
       cn:'礼服知识',
       en:'CLASS',
-      link:'/weddingclass/4'
+      link:'/weddingclass/4',
+      target:false
     }
   ],
   '/movie':[
     {
       cn:'全站首页',
       en:'HOME',
-      link:'/'
+      link:'/',
+      target:false
     },
     {
       cn:'微电影首页',
       en:'MOVIE',
-      link:'/movie'
+      link:'/movie',
+      target:false
     },
     {
       cn:'表演技巧',
       en:'CLASS',
-      link:'/weddingclass/5'
+      link:'/weddingclass/5',
+      target:false
     }
   ],
   '/supply':[
     {
       cn:'全站首页',
       en:'HOME',
-      link:'/'
+      link:'/',
+      target:false
     },
     {
       cn:'婚礼用品首页',
       en:'SUPPLIES',
-      link:'/supply'
+      link:'/supply',
+      target:false
     },
     {
       cn:'用品贴士',
       en:'TIPS',
-      link:'/weddingclass/7'
+      link:'/weddingclass/7',
+      target:false
     }
   ],
   '/car':[
     {
       cn:'全站首页',
       en:'HOME',
-      link:'/'
+      link:'/',
+      target:false
     },
     {
       cn:'婚车租赁首页',
       en:'CAR',
-      link:'/car'
+      link:'/car',
+      target:false
     },
     {
       cn:'租车经验',
       en:'TIPS',
-      link:'/weddingclass/8'
+      link:'/weddingclass/8',
+      target:false
     }
   ]
 }

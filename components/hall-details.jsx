@@ -238,7 +238,7 @@ const HallDetails = React.createClass({
             <div className="hotel-detail-info banquet-detail-info clearfix">
               <h2 className="mgb10">本厅平面图</h2>
               <div className="banquet-img-box mgb30">
-                  <img src={this.state.details.graphicDesignUrl}/>
+                <MediaItem aspectRatio='95:54' height={540} mediaUrl={this.state.details.graphicDesignUrl} water={false} />
               </div>
               <CasesShow {..._.merge(this.state.details,HallDetailsConfig['CasesShow'])} caseId={this.state.details.caseId}/>
             </div>

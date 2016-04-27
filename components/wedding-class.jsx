@@ -14,7 +14,7 @@ const ClassList = React.createClass({
             _.map(this.state.contents[this.state.type].data, (v,k) => {
               return (
                 <li key={k} className="item-box">
-                  <img className="img-box" src={v.coverUrlWeb} />
+                  <img className="img-box" src={v.coverUrlWeb+'@95q'} />
                   <div className="inroduce">
                     <h2>
                       <a href={'/weddingclass-details/'+type+'/'+v.id}>{v.title}</a>
