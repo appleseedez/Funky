@@ -437,7 +437,7 @@ const ActiveConfig = {
       {
         'url':'//img2.jsbn.com/static/activities/5ysg/05.jpg',
         'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'hrefUrl':'https://static.meiqia.com/dist/standalone.html?eid=12020'
       },
       {
         'url':'//img2.jsbn.com/static/activities/5ysg/06.jpg',
@@ -512,7 +512,7 @@ const ActiveConfig = {
       {
         'url':'//img2.jsbn.com/static/activities/5ysg/20.jpg',
         'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'hrefUrl':'https://static.meiqia.com/dist/standalone.html?eid=12020'
       },
       {
         'url':'//img2.jsbn.com/static/activities/5ysg/21.jpg',
@@ -547,7 +547,7 @@ const ActiveConfig = {
       {
         'url':'//img2.jsbn.com/static/activities/5yyh/05.jpg',
         'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'hrefUrl':'https://static.meiqia.com/dist/standalone.html?eid=12020'
       },
       {
         'url':'//img2.jsbn.com/static/activities/5yyh/06.jpg',
@@ -597,7 +597,7 @@ const ActiveConfig = {
       {
         'url':'//img2.jsbn.com/static/activities/5yyh/15.jpg',
         'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'hrefUrl':'https://static.meiqia.com/dist/standalone.html?eid=12020'
       },
       {
         'url':'//img2.jsbn.com/static/activities/5yyh/16.jpg',
@@ -632,7 +632,7 @@ const ActiveConfig = {
       {
         'url':'//img2.jsbn.com/static/activities/triphd/05.jpg',
         'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'hrefUrl':'https://static.meiqia.com/dist/standalone.html?eid=12020'
       },
       {
         'url':'//img2.jsbn.com/static/activities/triphd/06.jpg',
@@ -692,7 +692,7 @@ const ActiveConfig = {
       {
         'url':'//img2.jsbn.com/static/activities/triphd/17.jpg',
         'href':true,
-        'hrefUrl':'//chat16.live800.com/live800/chatClient/chatbox.jsp?companyID=533854&configID=75804&jid=6937519900&skillId=4927'
+        'hrefUrl':'https://static.meiqia.com/dist/standalone.html?eid=12020'
       },
       {
         'url':'//img2.jsbn.com/static/activities/triphd/18.jpg',
