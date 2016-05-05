@@ -13,10 +13,11 @@ const MapLocation = React.createClass({
     var longitude =parseFloat( this.props.dataParams.longitude);
     var latitude = parseFloat(this.props.dataParams.latitude);
     var point = new BMap.Point(longitude, latitude);
-    map.centerAndZoom(point, 15);
-
     var marker = new BMap.Marker(point);        // 创建标注
     map.addOverlay(marker);
+    map.centerAndZoom(point, 15);
+    map.enableScrollWheelZoom();// 启用滚轮放大缩小
+    marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
   }
 })
 

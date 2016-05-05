@@ -8,6 +8,7 @@ let paramsString = $('#J_Matrix').attr('data-params') || '{}' //从J_Matrix标�
 let params = JSON.parse(paramsString)
 let parentMenuKey = $('#J_Matrix').attr('data-parent-menu-key') || '/'
 let currentKey = $('#J_Matrix').attr('data-current-menu-key') || '/weddingclass'
+
 /*渲染本模块的菜单*/
 ReactDOM.render(<Navigation menuKey={parentMenuKey} currentKey={currentKey} />,document.getElementById('J_Nav'))
 ReactDOM.render(<WeddingClassDetails dataParams={params}/>,document.getElementById('J_Main'))

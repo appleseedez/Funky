@@ -7,27 +7,15 @@ const MenuConfig = {
       target:false
     },
     {
-      cn:'婚宴预订',
-      en:'BANQUET',
-      link:'/hotel',
-      target:false
-    },
-    {
       cn:'婚庆定制',
       en:'WEDDING',
       link:'/scheme',
       target:false
     },
     {
-      cn:'婚纱礼服',
-      en:'DRESS',
-      link:'/dress',
-      target:false
-    },
-    {
-      cn:'微电影',
-      en:'MOVIE',
-      link:'/movie',
+      cn:'婚宴预订',
+      en:'BANQUET',
+      link:'/hotel',
       target:false
     },
     {
@@ -35,18 +23,6 @@ const MenuConfig = {
       en:'DIAMOND',
       link:'http://www.chinad9.com',
       target:true
-    },
-    {
-      cn:'婚礼用品',
-      en:'SUPPLIES',
-      link:'/supply',
-      target:false
-    },
-    {
-      cn:'婚车租赁',
-      en:'CAR',
-      link:'/car',
-      target:false
     }
   ],
   '/home':[
@@ -57,27 +33,15 @@ const MenuConfig = {
       target:false
     },
     {
-      cn:'婚宴预订',
-      en:'BANQUET',
-      link:'/hotel',
-      target:false
-    },
-    {
       cn:'婚庆定制',
       en:'WEDDING',
       link:'/scheme',
       target:false
     },
     {
-      cn:'婚纱礼服',
-      en:'DRESS',
-      link:'/dress',
-      target:false
-    },
-    {
-      cn:'微电影',
-      en:'MOVIE',
-      link:'/movie',
+      cn:'婚宴预订',
+      en:'BANQUET',
+      link:'/hotel',
       target:false
     },
     {
@@ -85,18 +49,6 @@ const MenuConfig = {
       en:'DIAMOND',
       link:'http://www.chinad9.com',
       target:true
-    },
-    {
-      cn:'婚礼用品',
-      en:'SUPPLIES',
-      link:'/supply',
-      target:false
-    },
-    {
-      cn:'婚车租赁',
-      en:'CAR',
-      link:'/car',
-      target:false
     }
   ],
   '/shot':[
@@ -111,6 +63,12 @@ const MenuConfig = {
       en:'PHOTO',
       link:'/shot',
       target:false
+    },
+    {
+      cn:'旅拍',
+      en:'TRIP',
+      link:'http://trip.jsbn.com',
+      target:true
     },
     {
       cn:'作品欣赏',
@@ -131,21 +89,15 @@ const MenuConfig = {
       target:false
     },
     {
-      cn:'旅拍',
-      en:'TRIP',
-      link:'http://trip.jsbn.com',
-      target:true
-    },
-    {
       cn:'婚纱纪实',
       en:'MV',
       link:'/weddingmv',
       target:false
     },
     {
-      cn:'婚照技巧',
-      en:'TIPS',
-      link:'/weddingclass/1',
+      cn:'微电影',
+      en:'MOVIE',
+      link:'/movie',
       target:false
     }
   ],
@@ -172,12 +124,6 @@ const MenuConfig = {
       cn:'大礼包',
       en:'GIFT',
       link:'/active/libao',
-      target:false
-    },
-    {
-      cn:'婚宴知识',
-      en:'CLASS',
-      link:'/weddingclass/2',
       target:false
     }
   ],
@@ -213,29 +159,9 @@ const MenuConfig = {
       target:false
     },
     {
-      cn:'提交需求',
-      en:'REQUIRE',
-      link:'/scheme-require',
-      target:false
-    },
-    {
       cn:'选婚礼人',
       en:'F4',
       link:'/f4',
-      target:false
-    },
-    {
-      cn:'婚礼学堂',
-      en:'CLASS',
-      link:'/weddingclass/3',
-      target:false
-    }
-  ],
-  '/dress':[
-    {
-      cn:'全站首页',
-      en:'HOME',
-      link:'/',
       target:false
     },
     {
@@ -245,69 +171,15 @@ const MenuConfig = {
       target:false
     },
     {
-      cn:'礼服知识',
-      en:'CLASS',
-      link:'/weddingclass/4',
-      target:false
-    }
-  ],
-  '/movie':[
-    {
-      cn:'全站首页',
-      en:'HOME',
-      link:'/',
-      target:false
-    },
-    {
-      cn:'微电影首页',
-      en:'MOVIE',
-      link:'/movie',
-      target:false
-    },
-    {
-      cn:'表演技巧',
-      en:'CLASS',
-      link:'/weddingclass/5',
-      target:false
-    }
-  ],
-  '/supply':[
-    {
-      cn:'全站首页',
-      en:'HOME',
-      link:'/',
-      target:false
-    },
-    {
-      cn:'婚礼用品首页',
+      cn:'婚礼用品',
       en:'SUPPLIES',
       link:'/supply',
       target:false
     },
     {
-      cn:'用品贴士',
-      en:'TIPS',
-      link:'/weddingclass/7',
-      target:false
-    }
-  ],
-  '/car':[
-    {
-      cn:'全站首页',
-      en:'HOME',
-      link:'/',
-      target:false
-    },
-    {
-      cn:'婚车租赁首页',
+      cn:'婚车租赁',
       en:'CAR',
       link:'/car',
-      target:false
-    },
-    {
-      cn:'租车经验',
-      en:'TIPS',
-      link:'/weddingclass/8',
       target:false
     }
   ]
