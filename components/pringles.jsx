@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
 import { PringlesConfig } from './config/pringles-config'
 import { MediaItem } from './common/media-item.jsx'
-import _ from 'lodash'
+
 /**
 <Pringles>
   <MediaSlider />
@@ -13,8 +15,6 @@ import _ from 'lodash'
   <Episode />
 </Pringles>
 **/
-
-
 const Episode = React.createClass({
   render () {
     return (
@@ -45,7 +45,9 @@ const Episode = React.createClass({
           <div className='arrow-lef btn-prev'></div>
           <div className='arrow-rig btn-next'></div>
         </div>
-        <div className='title-fj'><h2>{this.state.quarterly_name?'《'+this.state.quarterly_name+'》':''}</h2></div>
+        <div className='title-fj'>
+          <h2>{this.state.quarterly_name?'《'+this.state.quarterly_name+'》':''}</h2>
+        </div>
         <ShotListItem {...PringlesConfig['EpisodeListItem']} dataUrl={this.state.dataUrl} params={this.state.params}  />
       </div>
     )

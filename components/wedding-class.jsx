@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { WeddingClassConfig } from './config/wedding-class-config.js'
 import { MediaItem } from './common/media-item.jsx'

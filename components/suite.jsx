@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { MediaItem } from './common/media-item.jsx'
 import { SuiteConfig } from './config/suite-config'
 /**
   组件结构
-
   <Suite>
     <MediaSlider />
     <SuiteList>
@@ -13,9 +13,7 @@ import { SuiteConfig } from './config/suite-config'
     </SuiteList>
     <AdSide />
   </Suite>
-
 **/
-
 const SuiteInfo = React.createClass({
   render () {
     //info信息用|符号做分割
@@ -117,7 +115,6 @@ const SuiteList = React.createClass({
   }
 })
 
-
 const AdvSide = React.createClass({
   render () {
     let listLength=this.props.adList.length
@@ -135,7 +132,6 @@ const AdvSide = React.createClass({
   }
 })
 
-/* main */
 const Suite = React.createClass({
   render () {
     let adList = SuiteConfig['AdvSide']

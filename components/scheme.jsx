@@ -1,14 +1,14 @@
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { SchemeConfig } from './config/scheme-config'
 import { Banner } from './common/banner.jsx'
 import { Group5 } from './common/group5.jsx'
 import { SchemeListItem } from './common/scheme-list-item.jsx'
-import _ from 'lodash'
 
 /**
  组件结构
-
 <Scheme>
   <MediaSlider />
   <Banner />
@@ -17,7 +17,6 @@ import _ from 'lodash'
   <NavGallery />
 </Scheme>
  **/
-
 const PhotoGallery = React.createClass({
   render () {
     return (

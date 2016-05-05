@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaItem } from './common/media-item.jsx'
 import { HallDetailsConfig } from './config/hall-details-config'
-
 
 const HallThumb = React.createClass({
   render () {
@@ -128,7 +128,6 @@ const HotelRecommend = React.createClass({
     })
   }
 })
-
 
 const CasesShow = React.createClass({
   render () {
@@ -262,7 +261,6 @@ const HallDetails = React.createClass({
     }
   },
   componentDidMount() {
-
     let cfg = HallDetailsConfig['HallDetails']
     let fetchUrl = cfg['buildUrl'](this.props.dataParams,cfg['dataUrl'])
     if(fetchUrl){

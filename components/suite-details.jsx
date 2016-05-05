@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaItem } from './common/media-item.jsx'
 import { SuiteDetailsConfig} from './config/suite-details-config'
+
 const SuiteDetails = React.createClass({
   render () {
     return (

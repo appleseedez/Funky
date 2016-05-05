@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { MediaItem } from './common/media-item.jsx'
 import { Banner } from './common/banner.jsx'
@@ -18,7 +19,7 @@ const ItemType = React.createClass({
                 var boundClick = this.handleClick.bind(this, k, v);
                 return (
                   <li key={k} onClick={boundClick} className={(k === this.state.index)? 'hover-item sel':'hover-item'}>
-                    <span /><i />
+                    <span/><i/>
                   </li>
                 );
               })

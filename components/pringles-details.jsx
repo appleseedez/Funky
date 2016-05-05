@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaItem } from './common/media-item.jsx'
 import { PringlesDetailsConfig } from './config/pringles-details-config'
 /**
@@ -10,7 +11,6 @@ import { PringlesDetailsConfig } from './config/pringles-details-config'
  <PringlesDetails> <= styles,scenes,list
  </PringlesDetails>
  **/
-
 const PringlesDetails = React.createClass({
   render() {
     return(

@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { ListFilter } from './common/list-filter.jsx'
 import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
@@ -45,7 +46,6 @@ let SupplyItemList = React.createClass({
           }
         </ul>
       </div>
-
     )
 	},
   propTypes: {
@@ -81,7 +81,6 @@ let SupplyItemList = React.createClass({
     SupplyConfig['SupplyItemList']['fetchFunc'](this,null)(this)
   }
 })
-
 
 const Supply = React.createClass({
   render () {

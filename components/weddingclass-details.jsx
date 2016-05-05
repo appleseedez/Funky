@@ -1,13 +1,15 @@
 import React, { PropTypes } from 'react'
+
 import { WeddingClassDetailsConfig } from './config/weddingclass-details-config'
+
 const WeddingClassDetails = React.createClass({
   render () {
     return (
       <div className="ktmain-detail-view layout-center-box">
         <div className='ketang-view'>
           <div className="ktmain-info">
-              <div className="content" id='kt_content' dangerouslySetInnerHTML={{__html:this.state.content}}>
-              </div>
+            <div className="content" id='kt_content' dangerouslySetInnerHTML={{__html:this.state.content}}>
+            </div>
           </div>
         </div>
       </div>

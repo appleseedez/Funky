@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
-import { MediaItem } from './common/media-item.jsx'
 import _ from 'lodash'
+
+import { MediaItem } from './common/media-item.jsx'
 import { CaseDetailsConfig } from './config/case-details-config'
 
 const BasicInfo = React.createClass({
@@ -32,7 +33,6 @@ const BasicInfo = React.createClass({
     )
   }
 })
-
 
 const Concept = React.createClass({
   render () {
@@ -108,8 +108,6 @@ const Price = React.createClass({
 
   }
 })
-
-
 
 const CaseDetails = React.createClass({
   render () {

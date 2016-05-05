@@ -1,20 +1,23 @@
 import React, { PropTypes } from 'react'
-import { MenuConfig } from './config/menu-config.js'
 import _ from 'lodash'
+
+import { MenuConfig } from './config/menu-config.js'
+
 const Navigation = React.createClass({
   render () {
     let currentKey = this.props.currentKey
+    let menuKey = this.props.menuKey;
     return (
       <div>
         {
-          _.map(MenuConfig[this.props.menuKey],(v,k)=>{
-            //确定menu 的 class类型
+          _.map(MenuConfig[menuKey],(v,k)=>{
+            // 确定menu 的 class类型
             let menuClass = 'item'
             if (v.link === '/' || v.link === '/home') {
               menuClass = 'item'
-            }else if(v.link === currentKey){
+            } else if(v.link === currentKey){
               menuClass = 'item sec-nav-ch item-current'
-            }else {
+            } else {
               menuClass = 'item sec-nav-ch'
             }
 
@@ -48,18 +51,19 @@ const Navigation = React.createClass({
       </div>
     )
   },
+
   propTypes: {
     menuKey: React.PropTypes.string,
     currentKey:React.PropTypes.string
   },
+
   getDefaultProps(){
     return {
       menuKey:'/',
       currentKey:'/'
     }
-  },
-  componentWillReceiveProps(nextProps) {
   }
+
 })
 
 export { Navigation }

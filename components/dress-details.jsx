@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { Banner } from './common/banner.jsx'
 import { MediaItem } from './common/media-item.jsx'
 import { DressDetailsConfig } from './config/dress-details-config.js'

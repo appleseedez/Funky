@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { ListFilter } from './common/list-filter.jsx'
 import { Banner } from './common/banner.jsx'

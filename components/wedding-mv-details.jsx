@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react'
+
 import { MediaItem } from './common/media-item.jsx'
 import { VideoDetailsConfig } from './config/video-details-config'
+
 const WeddingMVDetails = React.createClass({
   render () {
     let name =this.state.data.name
     let description = this.state.data.description
-    let date = '2016-01-01'
-    let address = '重庆'
-    let poster = this.state.data.coverUrlWeb || '//placehold.it/1200x800'
+    let poster = this.state.data.coverUrlWeb
     let videoUrl = this.state.data.videoUrl
     return (
       <div className="wdy-view">
@@ -15,8 +15,6 @@ const WeddingMVDetails = React.createClass({
           <h1 className="title-vid">{name}</h1>
             <MediaItem aspectRatio='3:2' width={1200} mediaUrl={poster} videoUrl={videoUrl} water={false} />
             <p className="info-vid">{description}</p>
-            <p className="info-vid">{date}</p>
-            <p className="info-vid">{address}</p>
         </div>
       </div>
     )

@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
+
 import { ShotConfig } from './config/shot-config'
 import { Banner } from './common/banner.jsx'
 import { MediaSlider } from './common/media-slider.jsx'
 import { ShotListItem } from './common/shot-list-item.jsx'
-import _ from 'lodash'
-/**
 
+/**
   组件结构
   <Shot>
     <MediaSlider />
@@ -16,11 +17,7 @@ import _ from 'lodash'
     <Banner />
     <Banner />
   </Shot>
-
 **/
-
-
-
 /*  *
 MultiBanner
 
@@ -32,7 +29,6 @@ MultiBanner
            |-------|--------|
            |  4.   |   5    |
            |       |        |
-
 **/
 const MultiBanner = React.createClass({
   render () {
@@ -59,9 +55,6 @@ const MultiBanner = React.createClass({
   }
 })
 
-
-
-/*Main: */
 const Shot = React.createClass({
   render () {
     return (

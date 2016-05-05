@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
+
 import { ListFilter } from './common/list-filter.jsx'
 import { CarConfig } from './config/car-config.js'
 import { MediaSlider } from './common/media-slider.jsx'
 import { MediaItem } from './common/media-item.jsx'
-import _ from 'lodash'
 import { DetailModal } from './common/detail-modal.jsx'
 
  /**
@@ -14,10 +15,7 @@ import { DetailModal } from './common/detail-modal.jsx'
     <MediaItem />
   </CarItemList>
  </Car>
-
-
  **/
-
 const CarItemList = React.createClass({
   render () {
     return (

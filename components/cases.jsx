@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react'
+import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { Banner } from './common/banner.jsx'
 import { CasesConfig } from './config/cases-config'
 import { ListFilter } from './common/list-filter.jsx'
-import _ from 'lodash'
 import { SchemeListItem } from './common/scheme-list-item.jsx'
+
 const CasesCategory  = React.createClass({
   render () {
     return (
@@ -23,31 +25,14 @@ const CasesCategory  = React.createClass({
   propTypes: {
     config: React.PropTypes.object
   },
-  getDefaultProps(){
-    return {
-      resourceUrl: ''
-    }
-  },
   getInitialState() {
     return {
       categories:[
         {'name':'实景案例','schemeType':1}
       ]
     }
-  },
-  componentDidMount() {
-    if (this.props.resourceUrl === '') {
-        console.log('read state from local');
-    }else {
-        console.log('start a fetch from remote');
-    }
   }
 })
-
-
-
-
-
 
 const Cases = React.createClass({
   render () {
@@ -80,8 +65,6 @@ const Cases = React.createClass({
   componentDidMount() {
     CasesConfig['StyleFilter']['setupFilterClick']('multi',this)
   }
-
-
 })
 
 export { Cases }

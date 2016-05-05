@@ -31,8 +31,6 @@ import { WeddingVideo } from '../wedding-video.jsx'
 import { WeddingMV } from '../wedding-mv.jsx'
 import { WeddingMVDetails } from '../wedding-mv-details.jsx'
 import { SchemeRequire } from '../scheme-require.jsx'
-
-import { Adv } from '../adv.jsx'
 import { Dress } from '../dress.jsx'
 import { DressDetails } from '../dress-details.jsx'
 import { Movie } from '../movie.jsx'
@@ -67,7 +65,6 @@ const ComponentsIndex = {
   'wedding-video': <WeddingVideo />,// 婚礼视频
   'f4': <F4 />,
   'scheme-require': <SchemeRequire />,
-  'adv': <Adv />,
   'dress': <Dress />,
   'dress-details': <DressDetails />,
   'movie': <Movie />,

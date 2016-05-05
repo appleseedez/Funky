@@ -14,9 +14,7 @@ import { DressConfig } from './config/dress-config'
  <Banner /> <-SampleConfig.Banner
  <DressType />
  </Dress>
-
  **/
-
 const DressHolder = React.createClass({
   render () {
     let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type;

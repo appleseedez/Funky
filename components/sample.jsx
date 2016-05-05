@@ -1,11 +1,12 @@
 import React, { PropTypes } from 'react'
-import { Adv } from './adv.jsx'
+import _ from 'lodash'
+
 import { MediaSlider } from './common/media-slider.jsx'
 import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
 import { ListFilter } from './common/list-filter.jsx'
 import { SampleConfig } from './config/sample-config'
-import _ from 'lodash'
+
 /**
 组件结构
 <Sample> <= styles,scenes,list
@@ -14,19 +15,19 @@ import _ from 'lodash'
   <ListFilter />
   <ShotListItem />
 </Sample>
-
 **/
-
-
-/** main **/
 const Sample = React.createClass({
   render () {
-    const FilterComponent = (this.state.showFilter)?(
-      <div>
-        <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['shootStyleId']} {...SampleConfig['StyleFilter']} />
-        <ListFilter title={'场景'} name={'name'} klass={'ico-1-js ico-1-3-js'} valueKey={['id']} sorterKey={['exteriorId']} {...SampleConfig['ExteriorFilter']}/>
-      </div>
-    ):null
+
+    let FilterComponent = null;
+    if (this.state.showFilter) {
+      FilterComponent = (
+        <div>
+          <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['shootStyleId']} {...SampleConfig['StyleFilter']} />
+          <ListFilter title={'场景'} name={'name'} klass={'ico-1-js ico-1-3-js'} valueKey={['id']} sorterKey={['exteriorId']} {...SampleConfig['ExteriorFilter']}/>
+        </div>
+      )
+    }
 
     return (
       <div className='samples-view ypxs-view'>
@@ -43,7 +44,9 @@ const Sample = React.createClass({
             <span className="sel J_Family sec nnn">全家福</span>
           </div>
           <div className='J_FilterCtrl'>
-            { FilterComponent }
+          {
+            FilterComponent
+          }
           </div>
           <ShotListItem {...SampleConfig['ShotListItem']} params={_.merge(this.state.params,SampleConfig['ShotListItem'].params)} />
           <div id="J_MoreButton">
@@ -66,4 +69,5 @@ const Sample = React.createClass({
     SampleConfig['StyleFilter']['setupFilterClick']('multi',this)
   }
 })
+
 export { Sample }

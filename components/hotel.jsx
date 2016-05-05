@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { ListFilter } from './common/list-filter.jsx'
 import { HotelConfig } from './config/hotel-config.js'
 import { MediaSlider } from './common/media-slider.jsx'
 import { MediaItem } from './common/media-item.jsx'
+
 /**
 组件结构
 <Hotel>
@@ -18,7 +20,6 @@ import { MediaItem } from './common/media-item.jsx'
   </HotelList>
 </Hotel>
 **/
-
 /*每个酒店的特殊标签 */
 const ListItemFeatureLabel  = React.createClass({
   render () {
@@ -169,38 +170,12 @@ const HotelList = React.createClass({
   },
   componentDidMount() {
     HotelConfig['HotelList']['fetchFunc'](this,null)(this)
-     //数据请求地址配置在config文件
-    // if (this.props.dataUrl !== undefined) {
-    //   let p = ''
-    //   if (_.size(this.props.params)>0) {
-    //     p = '?'+$.param(this.props.params)
-    //   }
-    //   fetch(this.props.baseUrl + this.props.dataUrl+p)
-    //   .then(res => {return res.json()})
-    //   .then(j=>{
-    //     $('#J_TotalCount').html(j.data.length)
-    //     this.setState({ data:j.data })
-    //   })
-    // }
   },
   componentWillReceiveProps(nextProps) {
     HotelConfig['HotelList']['fetchFunc'](this,nextProps)(this,nextProps)
-    // if (nextProps.dataUrl !== undefined) {
-    //   let p = ''
-    //   if (_.size(nextProps.params)>0) {
-    //     p = '?'+$.param(nextProps.params)
-    //   }
-    //   fetch(this.props.baseUrl + nextProps.dataUrl + p)
-    //   .then(res => {return res.json()})
-    //   .then(j=>{
-    //     let temp = []
-    //     temp[0] = j.data
-    //     $('#J_TotalCount').html(temp[0].length)
-    //     this.setState({ data:j.data,dataStore:temp})
-    //   })
-    // }
   }
 })
+
 /* 去掉酒店星标
  <div className="score-box clearfix">
    <div className="star-box">
@@ -240,12 +215,12 @@ const HotelListItem = React.createClass({
                 <span className="big">{this.props.highestConsumption}</span>
               </div>
               <div className="score-box clearfix">
-                  <span className="hotel-type">
-                    <b>{this.props.typeName}</b>
-                    <b>|</b>
-                    <b>{this.props.address.length>26?this.props.address.slice(0,24)+'...':this.props.address}</b>
-                  </span>
-                  <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
+                <span className="hotel-type">
+                  <b>{this.props.typeName}</b>
+                  <b>|</b>
+                  <b>{this.props.address.length>26?this.props.address.slice(0,24)+'...':this.props.address}</b>
+                </span>
+                <span className="desk-num">可容纳<b>{this.props.maxTableNum}</b>桌</span>
               </div>
               <ListItemHallList banquetHallList={this.props.banquetHall} />
               {
@@ -258,9 +233,9 @@ const HotelListItem = React.createClass({
           </div>
         </div>
         <div className="reply-box">
-            <div className="content-box">
-                <ListItemFeatureLabel features={this.props.featureLabel.split(',')||[]} />
-            </div>
+          <div className="content-box">
+            <ListItemFeatureLabel features={this.props.featureLabel.split(',')||[]} />
+          </div>
         </div>
       </li>
     )
@@ -285,9 +260,7 @@ const HotelListItem = React.createClass({
       isGift:0
     }
   }
-
 })
-
 
 /*Main:酒店列表组件*/
 const Hotel = React.createClass({
@@ -305,7 +278,6 @@ const Hotel = React.createClass({
           <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['hotelType']} {...HotelConfig['TypeConditions']} />
           <ListFilter title={'桌数'} name={'name'} klass={'ico-18-js ico-18-2-js'} valueKey={['minTable','maxTable']}  sorterKey={['minTable','maxTable']} {...HotelConfig['SeatsCountConditions']}/>
           <ListFilter title={'价格'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']} {...HotelConfig['PricesConditions']}  sorterKey={['minPrice','maxPrice']}/>
-
 
           <HotelList {...HotelConfig['HotelList']} params={_.merge(this.state.params,HotelConfig['HotelList'].params) } />
           <div>
@@ -338,6 +310,5 @@ const Hotel = React.createClass({
     HotelConfig['SorterAndSearch'](this)
   }
 })
-
 
 export { Hotel }

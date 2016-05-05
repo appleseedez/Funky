@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaItem } from './common/media-item.jsx'
 import { MovieConfig } from './config/movie-config'
 import { BaseConfig } from './config/base'

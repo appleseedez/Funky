@@ -28,7 +28,6 @@ import { HomeConfig } from './config/home-config'
     </BotComment>
   </Home>
 **/
-
 const BottomNav = React.createClass({
   render () {
     return (
@@ -51,7 +50,6 @@ const BottomNav = React.createClass({
   }
 })
 
-
 const Board = React.createClass({
   render () {
     return (
@@ -70,7 +68,6 @@ const Board = React.createClass({
   }
 })
 
-
 const BotComment = React.createClass({
   render () {
     return (
@@ -87,9 +84,6 @@ const BotComment = React.createClass({
     )
   }
 })
-
-
-
 
 const Home = React.createClass({
   render () {

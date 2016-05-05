@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
+
 import { MediaItem } from './common/media-item.jsx'
 import { SampleDetailsConfig } from './config/sample-details-config'
 
@@ -11,7 +12,6 @@ import { SampleDetailsConfig } from './config/sample-details-config'
  <SampleDetails> <= styles,scenes,list
  </SampleDetails>
  **/
-
 const SampleDetails = React.createClass({
   render() {
     return(
