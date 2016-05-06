@@ -47,9 +47,26 @@ const SuiteDetails = React.createClass({
       fetch(fetchUrl)
         .then(res => {return res.json()})
         .then(j=>{
+          let images = []
           if(j.success && j.data.length > 0) {
-            // 因为后天返回的pcDetailImages是一个字符串,所以要转换成json
-            this.setState({details:JSON.parse(j.data[0].pcDetailImages)});
+
+            let origin = JSON.parse(j.data[0]['pcDetailImages'])
+            let keys = [
+              'pc_detailImages',
+              'pc_serviceImages',
+              'pc_cosmeticImages',
+              'pc_clothShootImages',
+              'pc_baseSampleImages',
+              'pc_processImages'
+            ]
+
+            _.each(keys, function(v) {
+              _.each(origin[v] || [], function(v1) {
+                images.push(v1)
+              })
+            })
+
+            this.setState({details:images});
           }
         })
     }
