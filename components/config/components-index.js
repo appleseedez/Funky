@@ -38,7 +38,7 @@ import { MovieDetails } from '../movie-details.jsx'
 import { Supply } from '../supply.jsx'
 import { Car } from '../car.jsx'
 
-import { Active } from '../common/active.jsx'
+import { Active } from '../active.jsx'
 import { WeddingClass } from '../wedding-class.jsx'
 import { WeddingClassDetails } from '../weddingclass-details.jsx'
 

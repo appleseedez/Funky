@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react'
-import { ActiveConfig } from '../config/active-config.js'
 import _ from 'lodash'
 
 const Active = React.createClass({
   render() {
     return(
-      <div className={this.state.kClass}>
+      <div className="global-center-box">
         {
           _.map(this.state.picUrls, (v,k) => {
 
@@ -40,10 +39,10 @@ const Active = React.createClass({
   },
 
   componentDidMount() {
-    let template = this.props.dataParams;
-    if(ActiveConfig[template.name]) {
-      this.setState({picUrls:ActiveConfig[template.name].pic, kClass:ActiveConfig[template.name].kClass});
-    }
+    let params = this.props.dataParams;
+    //if(ActiveConfig[template.name]) {
+    //  this.setState({picUrls:ActiveConfig[template.name].pic, kClass:ActiveConfig[template.name].kClass});
+    //}
   }
 })
 

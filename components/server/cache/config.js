@@ -9,6 +9,8 @@ const DBConfig = {
     host:'127.0.0.1',
     port:'28015'
   },
+  // 活动
+  ActivePath:"/api/active/all",
   // 酒店数据
   HotelPath:"/api/hotel/all",
   // 酒店类型
