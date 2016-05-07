@@ -42,11 +42,11 @@ const photoApi = {
                     pageSize = 1
                 }
             } else if(k.indexOf('exteriorId') !== -1) {// 外景ID
-                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
-                this.model = this.model.filter(r.row("exterior").match(".*?"+this.request.query['exteriorId']+","+".*?"));
+                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%,id,%"的方式匹配
+                this.model = this.model.filter(r.row("exterior").match(".*?,"+this.request.query['exteriorId']+",.*?"));
             } else if(k.indexOf('shootStyleId') !== -1) {// 风格ID
-                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%id,%"的方式匹配
-                this.model = this.model.filter(r.row("shootingStyle").match(".*?"+this.request.query['shootStyleId']+","+".*?"));
+                // 风格 TODO:服务器返回的是字符串如"123,275,468,",这里采用"%,id,%"的方式匹配
+                this.model = this.model.filter(r.row("shootingStyle").match(".*?,"+this.request.query['shootStyleId']+",.*?"));
             } else if(k.indexOf('sampleType') !== -1) {
                 // 样片类型 0:婚纱摄影 1:艺术照 2:全家福
                 this.model = this.model.filter({sampleType:parseInt(this.request.query['sampleType'])})
