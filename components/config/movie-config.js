@@ -29,6 +29,7 @@ const MovieConfig = {
   'LoveMovieMV':_.merge({
     'dataUrl':'video/movie_love_mv'
   },BaseConfig)
+  // 婚纱纪实MV
 }
 
 export { MovieConfig }

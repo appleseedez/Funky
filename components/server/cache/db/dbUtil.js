@@ -42,14 +42,14 @@ var Supplies = require("./module/supplies.js");
 var Dress = require("./module/dress.js");
 var WeddingClass = require("./module/weddingClass.js");
 
-var Active = require("./module/active.js");
+var Activity = require("./module/activity.js");
 
 var qs = require('querystring');
 var _ = require('lodash')
 
 
 var models = {
-  "Active": Active,
+  "Activity": Activity,
   "Adv": Adv,
   "Hotel": Hotel,
   "BanquetHall": BanquetHall,
@@ -92,7 +92,7 @@ var models = {
 
 var dbTool = null;
 var mSyncFlg = {
-  "Active": false,
+  "Activity": false,
   "Adv": false,
   "Hotel": false,
   "FilterConditionHotelType": false,
@@ -338,7 +338,7 @@ exports.Instance = function() {
   // 分三级数据拉取级别
   // 一级资源,更新比较频繁的资源
   var tasks1 = [
-    'Active', 'Adv', 'Sample', 'Pringles', 'RecordVideo', 'FollowPhoto', 'FollowVideo',
+    'Activity', 'Adv', 'Sample', 'Pringles', 'RecordVideo', 'FollowPhoto', 'FollowVideo',
     'PringlesSeason', 'RecordVideoSeason', 'FollowPhotoSeason', 'FollowVideoSeason',
     'Cases3D', 'Suite', 'WeddingClass', 'Dress', 'Movie'
   ];

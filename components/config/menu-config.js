@@ -88,12 +88,12 @@ const MenuConfig = {
       link:'/suite',
       target:false
     },
-    {
-      cn:'婚纱纪实',
-      en:'MV',
-      link:'/weddingmv',
-      target:false
-    },
+    //{
+    //  cn:'婚纱纪实',
+    //  en:'MV',
+    //  link:'/weddingmv',
+    //  target:false
+    //},
     {
       cn:'微电影',
       en:'MOVIE',

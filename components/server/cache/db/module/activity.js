@@ -5,7 +5,7 @@ var env=require("../../config");
 var type=env.Thinky.type;
 
 // 活动模型
-const Active = env.Thinky.createModel('active', {
+const Activity = env.Thinky.createModel('activity', {
   // Id
   id: type.number(),
   // 活动名称
@@ -16,4 +16,4 @@ const Active = env.Thinky.createModel('active', {
   info: type.array(),
 })
 
-module.exports=Active;
+module.exports=Activity;
