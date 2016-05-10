@@ -325,8 +325,8 @@ siteRouter.get('/hotel-require', function* index(next) {
 //})
 
 /** 活动详情页 **/
-siteRouter.get('/active/:name', function* index(next) {
-  yield this.render('modules/default', renderOption('active', '/active', '/', this.params))
+siteRouter.get('/activity/detail/:name', function* index(next) {
+  yield this.render('modules/default', renderOption('activity', '/activity', '/', this.params))
 })
 
 export { siteRouter }

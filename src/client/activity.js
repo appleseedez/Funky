@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/3/16.
  */
-import { Active } from '../../components/active.jsx'
+import { Activity } from '../../components/activity.jsx'
 import { Navigation } from '../../components/navigation.jsx'
 import 'es6-promise'
 import 'fetch-detector'
@@ -14,4 +14,4 @@ let currentKey = $('#J_Matrix').attr('data-current-menu-key')
 
 /*渲染本模块的菜单*/
 ReactDOM.render(<Navigation menuKey={parentMenuKey} currentKey={currentKey} />,document.getElementById('J_Nav'))
-ReactDOM.render(<Active dataParams={params} />,document.getElementById('J_Main'))
+ReactDOM.render(<Activity dataParams={params} />,document.getElementById('J_Main'))

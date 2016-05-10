@@ -10,7 +10,7 @@ const DBConfig = {
     port:'28015'
   },
   // 活动
-  ActivityPath:"/api/activity/all",
+  ActivityPath:"/api/activity/list",
   // 酒店数据
   HotelPath:"/api/hotel/all",
   // 酒店类型

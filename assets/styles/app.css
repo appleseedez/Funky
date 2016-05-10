@@ -1,6 +1,5 @@
-@import "resources.css";
-@import "nav-all.css";
-@import "title-img.css";
+@import "../styles/resources.css";
+@import "../styles/title-img.css";
 * {
   outline: none;
   font-family: "微软雅黑";
@@ -887,6 +886,10 @@ a:hover {
   margin: 0 auto;
   width: 1200px;
 }
+.adaptation-1200 .global-center-box {
+  margin: 0 auto;
+  text-align: center;
+}
 .adaptation-1200 .footer-view {
   margin: 0 auto;
   width: 1200px;
@@ -935,6 +938,104 @@ a:hover {
 .adaptation-1200 .footer-view .nav-map-1 a {
   color: #ccc;
 }
+.adaptation-1200 .header-mian-eav .top-block {
+  width: 100%;
+  height: 5px;
+  background: url("../img/nav-top-block.png") center center no-repeat;
+}
+.adaptation-1200 .header-mian-eav .title-block {
+  height: 30px;
+  width: 100%;
+  background: #000;
+}
+.adaptation-1200 .header-mian-eav .title-block .word {
+  color: #fff;
+  line-height: 30px;
+}
+.adaptation-1200 .header-mian-eav .title-block .num {
+  color: #fff;
+  line-height: 30px;
+  float: right;
+  font-size: 18px;
+}
+.adaptation-1200 .nav-main-box-eav {
+  height: 120px;
+  background-color: #f32755;
+  text-align: center;
+}
+.adaptation-1200 .nav-main-box-eav .arrow-5-js {
+  display: none;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  border-style: solid;
+}
+.adaptation-1200 .nav-main-box-eav .logo {
+  float: left;
+  margin-top: 24px;
+  height: 45px;
+  margin-left: 5px;
+}
+.adaptation-1200 .nav-main-box-eav .item-box {
+  float: left;
+  margin-left: 10px;
+}
+.adaptation-1200 .nav-main-box-eav .primary {
+  height: 30px;
+  float: left;
+  text-align: center;
+  margin-top: 45px;
+  margin-left: 40px;
+}
+.adaptation-1200 .nav-main-box-eav .primary span {
+  font-size: 16px;
+  color: #ffffff;
+  display: inline;
+  position: relative;
+  line-height: 30px;
+}
+.adaptation-1200 .nav-main-box-eav .primary .en {
+  line-height: 30px;
+  display: inline;
+  font: bold 10px Arial,Helvetica;
+  margin-top: 4px;
+  color: #ffffff;
+}
+.adaptation-1200 .nav-main-box-eav .secondary {
+  height: 30px;
+  width: 140px;
+  float: left;
+  text-align: center;
+  margin-top: 45px;
+  margin-left: 10px;
+  border: 1px solid #fff;
+}
+.adaptation-1200 .nav-main-box-eav .secondary span {
+  font-size: 16px;
+  color: #ffffff;
+  display: inline;
+  position: relative;
+  line-height: 30px;
+}
+.adaptation-1200 .nav-main-box-eav .secondary .en {
+  line-height: 30px;
+  display: inline;
+  font: bold 10px Arial,Helvetica;
+  margin-top: 4px;
+  color: #ffffff;
+}
+.adaptation-1200 .nav-main-box-eav .secondary:hover,
+.adaptation-1200 .nav-main-box-eav .secondary.item-current {
+  background-color: #fff;
+}
+.adaptation-1200 .nav-main-box-eav .secondary:hover .ch,
+.adaptation-1200 .nav-main-box-eav .secondary.item-current .ch,
+.adaptation-1200 .nav-main-box-eav .secondary:hover span,
+.adaptation-1200 .nav-main-box-eav .secondary.item-current span,
+.adaptation-1200 .nav-main-box-eav .secondary:hover .en,
+.adaptation-1200 .nav-main-box-eav .secondary.item-current .en {
+  color: #f32755;
+}
 .adaptation-1200 .bannar-box {
   width: 100%;
 }
@@ -943,6 +1044,34 @@ a:hover {
 }
 .adaptation-1200 .bannar-box img {
   width: 100%;
+}
+.adaptation-1200 .global-title-box {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.adaptation-1200 .global-title-box .english-title {
+  margin-bottom: 10px;
+}
+.adaptation-1200 .global-title-box .english-title .primary-title {
+  font-size: 35px;
+  color: #ffca28;
+  margin-right: 5px;
+}
+.adaptation-1200 .global-title-box .english-title .secondary-title {
+  color: #000;
+  font-size: 35px;
+}
+.adaptation-1200 .global-title-box .chinese-title {
+  margin-bottom: 10px;
+}
+.adaptation-1200 .global-title-box .chinese-title .primary-title {
+  color: #000;
+  font-size: 35px;
+}
+.adaptation-1200 .global-title-box .chinese-title .secondary-title {
+  color: #ff201e;
+  font-size: 35px;
 }
 .adaptation-1200 .adaptation-box {
   position: fixed;
@@ -1760,7 +1889,7 @@ a:hover {
 .adaptation-1200 .home-view .cut-line {
   display: block;
   height: 1px;
-  background-color: #dddddd;
+  background-color: #ddd;
   margin-bottom: 30px;
 }
 .adaptation-1200 .home-view .list-adv {
@@ -2699,7 +2828,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent #eeeeee transparent transparent;
+  border-color: transparent #eee transparent transparent;
   border-width: 30px 30px 30px 0;
 }
 .adaptation-1200 .kpxs-view .tab-box-fj .arrow-rig {
@@ -2716,7 +2845,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent transparent transparent #eeeeee;
+  border-color: transparent transparent transparent #eee;
   border-width: 30px 0 30px 30px;
 }
 .adaptation-1200 .kpxs-view .tab-box-fj:hover .arrow-lef {
@@ -2845,7 +2974,7 @@ a:hover {
   position: absolute;
 }
 .adaptation-1200 .txbj-view .title-box {
-  border-left: 5px solid #000000;
+  border-left: 5px solid #000;
   height: 30px;
   line-height: 30px;
   padding-left: 20px;
@@ -3068,7 +3197,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent #eeeeee transparent transparent;
+  border-color: transparent #eee transparent transparent;
   border-width: 30px 30px 30px 0;
 }
 .adaptation-1200 .hsjs-view .tab-box .arrow-rig {
@@ -3085,7 +3214,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent transparent transparent #eeeeee;
+  border-color: transparent transparent transparent #eee;
   border-width: 30px 0 30px 30px;
 }
 .adaptation-1200 .hsjs-view .tab-box:hover .arrow-lef {
@@ -3445,12 +3574,12 @@ a:hover {
 .adaptation-1200 .xsys-view .line-box span {
   display: block;
   height: 1px;
-  background-color: #333333;
+  background-color: #333;
 }
 .adaptation-1200 .xsys-view .line-box em {
   display: block;
   height: 1px;
-  background-color: #333333;
+  background-color: #333;
   width: 170px;
   height: 4px;
 }
@@ -4047,7 +4176,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent transparent #666666;
+  border-color: transparent transparent #666;
   border-width: 0 4px 4px;
 }
 .adaptation-1200 .hyyd-view .arrow-down {
@@ -4055,7 +4184,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: #666666 transparent transparent;
+  border-color: #666 transparent transparent;
   border-width: 4px 4px 0;
   margin-top: 2px;
 }
@@ -4064,7 +4193,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent transparent #fc5682;
+  border-color: transparent transparent #FC5682;
   border-width: 0 4px 4px;
 }
 .adaptation-1200 .hyyd-view .descending .arrow-down {
@@ -4072,7 +4201,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: #fc5682 transparent transparent;
+  border-color: #FC5682 transparent transparent;
   border-width: 4px 4px 0;
   margin-top: 2px;
 }
@@ -4444,7 +4573,7 @@ a:hover {
   height: auto;
 }
 .adaptation-1200 .hyyd-detail-view .hotel-detail-box {
-  padding: 40px 0px 40px 540px;
+  padding: 20px 0px 80px 630px;
   height: 436px;
   position: relative;
   border-top: 1px solid #ddd;
@@ -4471,6 +4600,80 @@ a:hover {
 }
 .adaptation-1200 .hyyd-detail-view .hotel-detail-box .img-info .slider-hover-box {
   display: block;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery {
+  width: 600px;
+  position: absolute;
+  left: 0;
+  top: 40px;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_bimg {
+  width: 100%;
+  margin-bottom: 10px;
+  height: 400px;
+  overflow: hidden;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_bimg img {
+  height: 100%;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list {
+  width: 100%;
+  height: 75px;
+  overflow: hidden;
+  position: relative;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .picul {
+  position: relative;
+  margin: 0 auto;
+  width: 540px;
+  height: 75px;
+  overflow: hidden;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .picul .spic {
+  position: absolute;
+  *zoom: 1;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .picul .spic li {
+  overflow: hidden;
+  cursor: pointer;
+  float: left;
+  width: 120px;
+  height: 80px;
+  margin-right: 20px;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .picul .spic li img {
+  max-height: 100%;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .picul .spic:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .left {
+  left: 0px;
+  background: url(../img/left.png) no-repeat left top;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .right {
+  right: 0;
+  background: url(../img/right.png) no-repeat left top;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .left,
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .right {
+  position: absolute;
+  top: 26px;
+  width: 12px;
+  height: 25px;
+  cursor: pointer;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .left:hover,
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .right:hover {
+  background-position: left -33px;
+}
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .left.disabled,
+.adaptation-1200 .hyyd-detail-view .hotel-detail-box .gallery .wrap_img_list .right.disabled {
+  background-position: left -67px;
 }
 .adaptation-1200 .hyyd-detail-view .hotel-detail-box .base-info {
   padding: 0px 0px 0px 0px;
@@ -4499,7 +4702,6 @@ a:hover {
 }
 .adaptation-1200 .hyyd-detail-view .hotel-detail-box .base-info .p p {
   margin-right: 30px;
-  float: left;
 }
 .adaptation-1200 .hyyd-detail-view .hotel-detail-box .base-info .ico-8-js {
   display: inline-block;
@@ -4833,7 +5035,7 @@ a:hover {
 .adaptation-1200 .hqdz-home-view .nav-box .big-box {
   width: 620px;
   height: 375px;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 .adaptation-1200 .hqdz-home-view .nav-box .big-box img,
 .adaptation-1200 .hqdz-home-view .nav-box .big-box video {
@@ -4843,8 +5045,8 @@ a:hover {
 .adaptation-1200 .hqdz-home-view .nav-box .small-box {
   width: 270px;
   height: 180px;
-  margin-left: 15px;
-  margin-bottom: 15px;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
 .adaptation-1200 .hqdz-home-view .nav-box .small-box img {
   width: 100%;
@@ -5265,7 +5467,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent #eeeeee transparent transparent;
+  border-color: transparent #eee transparent transparent;
   border-width: 30px 30px 30px 0;
 }
 .adaptation-1200 .hlsp-view .tab-box .arrow-rig {
@@ -5282,7 +5484,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent transparent transparent #eeeeee;
+  border-color: transparent transparent transparent #eee;
   border-width: 30px 0 30px 30px;
 }
 .adaptation-1200 .hlsp-view .tab-box:hover .arrow-lef {
@@ -6345,7 +6547,7 @@ a:hover {
   visibility: hidden;
 }
 .adaptation-1200 .alxq-view .photo-show-box .item {
-  border: 3px solid #ffffff;
+  border: 3px solid #fff;
   text-align: center;
   float: left;
   overflow: hidden;
@@ -6358,7 +6560,7 @@ a:hover {
   height: 100%;
 }
 .adaptation-1200 .alxq-view .photo-show-box .item-current {
-  border: 3px solid #fc5682;
+  border: 3px solid #FC5682;
 }
 .adaptation-1200 .alxq-view .photo-show-box .kpxq-img-box {
   height: 100%;
@@ -6370,7 +6572,7 @@ a:hover {
   border-bottom: 1px solid #999;
 }
 .adaptation-1200 .alxq-view .tilte-box {
-  border-left: 6px solid #000000;
+  border-left: 6px solid #000;
   height: 40px;
   line-height: 40px;
   padding-left: 15px;
@@ -6408,7 +6610,7 @@ a:hover {
   width: 904px;
 }
 .adaptation-1200 .alxq-view .info-title {
-  border-left: 5px solid #000000;
+  border-left: 5px solid #000;
   height: 30px;
   line-height: 30px;
   padding-left: 45px;
@@ -6903,7 +7105,7 @@ a:hover {
   bottom: 0;
 }
 .adaptation-1200 .hslf-xq-view .title-hslf-xq {
-  border-left: 8px solid #000000;
+  border-left: 8px solid #000;
   height: 30px;
   line-height: 30px;
   padding-left: 10px;
@@ -8047,7 +8249,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent #eeeeee transparent transparent;
+  border-color: transparent #eee transparent transparent;
   border-width: 30px 30px 30px 0;
 }
 .adaptation-1200 .hlgp-view .tab-box .arrow-rig {
@@ -8064,7 +8266,7 @@ a:hover {
   height: 0;
   border-style: solid;
   display: block;
-  border-color: transparent transparent transparent #eeeeee;
+  border-color: transparent transparent transparent #eee;
   border-width: 30px 0 30px 30px;
 }
 .adaptation-1200 .hlgp-view .tab-box:hover .arrow-lef {

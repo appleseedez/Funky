@@ -105,6 +105,7 @@ let dataFetchMiddleWare = function*(next) {
             resData.count = this.count || resData.data.length
           }
         } catch (err) {
+          console.log(err)
           //缓存数据不可用。 去做代理数据请求
           resData  = yield* proxyFetcher(this.request.url,this.request.url)
         }

@@ -11,16 +11,10 @@ const Navigation = React.createClass({
       <div>
         {
           _.map(MenuConfig[menuKey],(v,k)=>{
-            // 确定menu 的 class类型
-            let menuClass = 'item'
-            if (v.link === '/' || v.link === '/home') {
-              menuClass = 'item'
-            } else if(v.link === currentKey){
-              menuClass = 'item sec-nav-ch item-current'
-            } else {
-              menuClass = 'item sec-nav-ch'
+            let menuClass = v.kClass
+            if (v.link === currentKey) {
+              menuClass += 'item-current'
             }
-
             if (v.target) {
               return (
                 <a key={k} href={v.link} target="_blank">

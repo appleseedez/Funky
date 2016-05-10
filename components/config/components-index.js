@@ -38,7 +38,7 @@ import { MovieDetails } from '../movie-details.jsx'
 import { Supply } from '../supply.jsx'
 import { Car } from '../car.jsx'
 
-import { Active } from '../active.jsx'
+import { Activity} from '../activity.jsx'
 import { WeddingClass } from '../wedding-class.jsx'
 import { WeddingClassDetails } from '../weddingclass-details.jsx'
 
@@ -71,7 +71,7 @@ const ComponentsIndex = {
   'movie-details': <MovieDetails />,
   'supply': <Supply />,
   'car': <Car />,
-  'active': <Active />,
+  'activity': <Activity />,
   'wedding-class': <WeddingClass />,
   'weddingclass-details':<WeddingClassDetails />
 }
@@ -221,7 +221,7 @@ const ComponentsSeo= {
     'seoKeywords':'重庆婚车租车|婚车装饰图片|婚车价目表|婚车网婚庆租车',
     'seoDescription':'金色百年婚礼租车为新人提供五星服务保障体系。让新人在婚礼过程中能享受到“省心订车、用心安排、贴心服务、愉悦体验、安全用车”五大服务保障，让婚礼成为新人一生中最浪漫的回忆。'
   },
-  'active': {
+  'activity': {
     'seoTitle':'',
     'seoKeywords':'',
     'seoDescription':''

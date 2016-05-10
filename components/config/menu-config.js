@@ -4,25 +4,36 @@ const MenuConfig = {
       cn:'婚纱摄影',
       en:'PHOTO',
       link:'/shot',
-      target:false
+      target:false,
+      kClass:'item primary'
     },
     {
       cn:'婚庆定制',
       en:'WEDDING',
       link:'/scheme',
-      target:false
+      target:false,
+      kClass:'item primary'
+    },
+    {
+      cn:'旅拍',
+      en:'TRIP',
+      link:'http://trip.jsbn.com',
+      target:true,
+      kClass:'item primary'
     },
     {
       cn:'婚宴预订',
       en:'BANQUET',
       link:'/hotel',
-      target:false
+      target:false,
+      kClass:'item secondary'
     },
     {
       cn:'婚戒钻石',
       en:'DIAMOND',
       link:'http://www.chinad9.com',
-      target:true
+      target:true,
+      kClass:'item secondary'
     }
   ],
   '/home':[
@@ -30,25 +41,36 @@ const MenuConfig = {
       cn:'婚纱摄影',
       en:'PHOTO',
       link:'/shot',
-      target:false
+      target:false,
+      kClass:'item primary'
     },
     {
       cn:'婚庆定制',
       en:'WEDDING',
       link:'/scheme',
-      target:false
+      target:false,
+      kClass:'item primary'
+    },
+    {
+      cn:'旅拍',
+      en:'TRIP',
+      link:'http://trip.jsbn.com',
+      target:true,
+      kClass:'item primary'
     },
     {
       cn:'婚宴预订',
       en:'BANQUET',
       link:'/hotel',
-      target:false
+      target:false,
+      kClass:'item secondary'
     },
     {
       cn:'婚戒钻石',
       en:'DIAMOND',
       link:'http://www.chinad9.com',
-      target:true
+      target:true,
+      kClass:'item secondary'
     }
   ],
   '/shot':[
@@ -63,12 +85,6 @@ const MenuConfig = {
       en:'PHOTO',
       link:'/shot',
       target:false
-    },
-    {
-      cn:'旅拍',
-      en:'TRIP',
-      link:'http://trip.jsbn.com',
-      target:true
     },
     {
       cn:'作品欣赏',
@@ -123,7 +139,7 @@ const MenuConfig = {
     {
       cn:'大礼包',
       en:'GIFT',
-      link:'/active/libao',
+      link:'/activity/detail/libao',
       target:false
     }
   ],

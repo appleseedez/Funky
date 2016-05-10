@@ -4,7 +4,7 @@ import _ from 'lodash'
 const HotelDetailsConfig  = {
   'HotelThumbMediaItem':_.merge({
     'aspectRatio':'3:2',
-    'height':340
+    'height':400
   },BaseConfig),
   'CoverMediaItem':_.merge({
     'aspectRatio':'3:2',
