@@ -9,43 +9,21 @@ const Group5 = React.createClass({
         {  // 因为是一组资源 一共5个 如果超出5个忽略 目前必须要求达到5个
           _.map(this.state.data.slice(0,5),(v,k)=>{
             if (k===0) {
-              if (v.linkUrl&&v.linkUrl !=='') {
-                return (
-                  <li key={k} className='big-box'>
-                    <a href={v.linkUrl} className='l-item img-box' >
-                      <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} videoUrl={v.videoUrl} water={false}/>
-                    </a>
-                  </li>
-                )
-              }else {
-                return (
-                  <li key={k} className='big-box'>
-                    <div className='l-item img-box' >
-                      <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb||'//placehold.it/620x375'} videoUrl={v.videoUrl} water={false}/>
-                    </div>
-                  </li>
-                )
-              }
-
+              return (
+                <li key={k} className='big-box'>
+                  <div className='l-item img-box' >
+                    <MediaItem {...dimension[0]} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} outerLink={v.linkUrl} water={false} />
+                  </div>
+                </li>
+              )
             }else {
-              if (v.linkUrl && v.linkUrl !=='') {
-                return (
-                  <li key={k} className='small-box'>
-                    <a href={v.linkUrl} className='img-box'>
-                      <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} videoUrl={v.videoUrl}/>
-                    </a>
-                  </li>
-                )
-              }else {
-                return (
-                  <li key={k} className='small-box'>
-                    <div className='img-box'>
-                      <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb||'//placehold.it/270x180'} videoUrl={v.videoUrl}/>
-                    </div>
-                  </li>
-                )
-              }
-
+              return (
+                <li key={k} className='small-box'>
+                  <div className='img-box'>
+                    <MediaItem {...dimension[1]} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} outerLink={v.linkUrl} />
+                  </div>
+                </li>
+              )
             }
           })
         }

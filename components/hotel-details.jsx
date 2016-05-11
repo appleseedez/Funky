@@ -195,8 +195,8 @@ const HotelBaseInfo = React.createClass({
         <div className="p mgb30 clearfix">
           <p>酒店类型:<span><b>{this.props.typeName}</b></span></p>
           <p>消费价格:<span><b>{'¥'+this.props.lowestConsumption}</b>-<b>{this.props.highestConsumption}</b>/桌</span></p>
-          <p>宴会厅数量:<span><b>{(this.props.banquetHall && this.props.banquetHall.length) || 0}</b>个专用宴会厅</span></p>
-          <p>最大容客数:<span><b>{this.props.maxTableNum}</b>桌</span></p>
+          <p>宴厅数量:<span><b>{(this.props.banquetHall && this.props.banquetHall.length) || 0}</b>个专用宴会厅</span></p>
+          <p>容纳桌数:<span><b>{this.props.maxTableNum}</b>桌</span></p>
           <p>联系方式:<span><b>400-015-9999</b></span></p>
           <p id="J_AddressButton" >酒店地址:<span>
             <a href={'/map/'+this.props.longitude+'/'+this.props.latitude} target='_blank'>
@@ -208,29 +208,29 @@ const HotelBaseInfo = React.createClass({
         </div>
         <div id='J_InfoContainer' className="score-info mgb40 clearfix">
           {
-            <div className="star-box">
-              <div className="star">
-                <span>服务质量</span>
-                <div>
-                  <i className="ico-star-3-js ico-star-3-gray-js" />
-                  <i className="ico-star-3-js ico-star-3-pink-js" style={{width:45}} />
-                </div>
-              </div>
-              <div className="star">
-                <span>菜品质量</span>
-                <div>
-                  <i className="ico-star-3-js ico-star-3-gray-js" />
-                  <i className="ico-star-3-js ico-star-3-pink-js" />
-                </div>
-              </div>
-              <div className="star">
-                <span>装修档次</span>
-                <div>
-                  <i className="ico-star-3-js ico-star-3-gray-js" />
-                  <i className="ico-star-3-js ico-star-3-pink-js" />
-                </div>
-              </div>
-            </div>
+            //<div className="star-box">
+            //  <div className="star">
+            //    <span>服务质量</span>
+            //    <div>
+            //      <i className="ico-star-3-js ico-star-3-gray-js" />
+            //      <i className="ico-star-3-js ico-star-3-pink-js" style={{width:45}} />
+            //    </div>
+            //  </div>
+            //  <div className="star">
+            //    <span>菜品质量</span>
+            //    <div>
+            //      <i className="ico-star-3-js ico-star-3-gray-js" />
+            //      <i className="ico-star-3-js ico-star-3-pink-js" />
+            //    </div>
+            //  </div>
+            //  <div className="star">
+            //    <span>装修档次</span>
+            //    <div>
+            //      <i className="ico-star-3-js ico-star-3-gray-js" />
+            //      <i className="ico-star-3-js ico-star-3-pink-js" />
+            //    </div>
+            //  </div>
+            //</div>
           }
           <div className="etc">
             <div className="item">

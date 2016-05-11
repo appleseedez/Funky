@@ -7,65 +7,55 @@ const HomeConfig = {
     'aspectRatio': '192:68',
     'height': 680
   }, BaseConfig), // 广告轮播
+
   'Banner': [{
-    'imageUrl': '//img2.jsbn.com/static/home-01.jpg'
-  },{
     'imageUrl':'//img2.jsbn.com/static/home-03.jpg'
   }], //静态banner广告
+
   'Group5': _.merge({
     'dataUrl': 'vda/index_hot_top', // 数据请求地址
     'dimension': [ //4+1 4和1的尺寸配置
       {
-        'aspectRatio': '124:75',
-        'width': 620
+        'aspectRatio': '3:2',
+        'width': 598
       }, {
         'aspectRatio': '3:2',
-        'width': 270
+        'width': 299
       }
     ]
   }, BaseConfig), //顶部4+1
-  'Group4': [
-    /**
-      首页的分栏目聚合
-    */
-    _.merge({
-      'dataUrl': 'vda/index_mid_01',
-      'titleClassName': 'photography-img-home',
-      'hrefs': [
-        '/shot',
-        '/movie'
-      ]
-    }, BaseConfig),
-    _.merge({
-      'dataUrl': 'vda/index_mid_02',
-      'titleClassName': 'banquet-img-home',
-      'hrefs': [
-        '/hotel',
-        '/scheme'
-      ]
-    }, BaseConfig),
-    _.merge({
-      'dataUrl': 'vda/index_mid_03',
-      'titleClassName': 'dress-img-home',
-      'hrefs': [
-        '/dress',
-        'http://www.chinad9.com'
-      ]
-    }, BaseConfig),
-    _.merge({
-      'dataUrl': 'vda/index_mid_04',
-      'titleClassName': 'supplies-img-home',
-      'hrefs': [
-        '/supply',
-        '/car'
-      ]
-    }, BaseConfig)
-  ],
-  'Group3':[ // 底部三个推荐栏目
-    _.merge({
-      'dataUrl':'vda/index_publicity'
-    },BaseConfig)
-  ],
+
+  // 公司形象热区
+  'CompanyImageHot': _.merge({
+    'dataUrl': 'vda/index_hot_top?pageIndex=1&pageSize=5', // 数据请求地址
+  },BaseConfig),
+
+  // 婚纱摄影热区
+  'ShotHot': _.merge({
+    'dataUrl': 'vda/index_weddingshot?pageIndex=1&pageSize=5', // 数据请求地址
+  },BaseConfig),
+
+  'WeddingHot': _.merge({
+    'dataUrl': 'vda/index_weddingCustom?pageIndex=1&pageSize=3', // 数据请求地址
+  },BaseConfig),
+
+  'TripHot': _.merge({
+    'dataUrl': 'vda/index_trip?pageIndex=1&pageSize=3', // 数据请求地址
+  },BaseConfig),
+
+  'HotelDiamondHot': _.merge({
+    'dataUrl': 'vda/index_hotel_diamond?pageIndex=1&pageSize=4', // 数据请求地址
+  },BaseConfig),
+
+  'PublicityHot': _.merge({
+    'dataUrl':'vda/index_publicity?pageIndex=1&pageSize=3', // 数据请求地址
+  },BaseConfig),
+
+  'ActivityHot': _.merge({
+    'dataUrl':'vda/index_discount_activity?pageIndex=1&pageSize=4', // 数据请求地址
+  },BaseConfig),
+
+
   'BottomNav':[ // 底部导航圆形按钮
     { 'klassName':'item-01', 'link':'/shot' },
     { 'klassName':'item-02', 'link':'/hotel' },

@@ -13,16 +13,16 @@ const Navigation = React.createClass({
           _.map(MenuConfig[menuKey],(v,k)=>{
             let menuClass = v.kClass
             if (v.link === currentKey) {
-              menuClass += 'item-current'
+              menuClass += ' item-current'
             }
             if (v.target) {
               return (
                 <a key={k} href={v.link} target="_blank">
                   <div className={menuClass}>
-                    <div className="ch">
+                    <div className="ch gold">
                       <span>{v.cn}</span>
-                      <div className="en">{v.en}</div>
-                      <div className="arrow-5-js triangle"></div>
+                      <div className="en gold">{v.en}</div>
+                      <div className="arrow-5-js">{v.remark}</div>
                     </div>
                   </div>
                 </a>
@@ -31,10 +31,10 @@ const Navigation = React.createClass({
               return (
                 <a key={k} href={v.link}>
                   <div className={menuClass}>
-                    <div className="ch">
+                    <div className="ch gold">
                       <span>{v.cn}</span>
-                      <div className="en">{v.en}</div>
-                      <div className="arrow-5-js triangle"></div>
+                      <div className="en gold">{v.en}</div>
+                      <div className="arrow-5-js">{v.remark}</div>
                     </div>
                   </div>
                 </a>
@@ -57,7 +57,6 @@ const Navigation = React.createClass({
       currentKey:'/'
     }
   }
-
 })
 
 export { Navigation }
