@@ -70,8 +70,6 @@ const CompanyImageHot = React.createClass({
                   }
                 })
               }
-              {/*列表为空，默认输出*/}
-              {(this.state.data.length === 0 )&& <h1>加载中...</h1>}
             </div>
           </div>
         </div>
@@ -111,24 +109,42 @@ const ShotHot = React.createClass({
             <span className="primary-title">金色百年婚纱摄影</span>
             <span className="secondary-title">最新动态</span>
           </div>
-          <ul className="label-list">
-            <li><a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 限时活动</a></li>
-            <li><a href="/pringles"> 每日客片更新</a></li>
-            <li><a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 进店有礼</a></li>
-            <li><a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 询问档期及拍摄相关</a></li>
-          </ul>
-        </div>
-        <div className="nav-label-box">
-          <ul className="label-list">
-            <li><a href="/sample"> 样片欣赏</a></li>
-            <li><a href="/pringles"> 最新客片</a></li>
-            <li><a href="/suite"> 套系报价</a></li>
-            <li><a href="/movie"> 微电影</a></li>
-          </ul>
-          <div className="moreBtn">
-            <a href="/shot">查看更多></a>
+          <div className="nav-label-box">
+            <ul className="label-list">
+              <li className="item">
+                <a href="/sample">
+                  <span>样片欣赏</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item">
+                <a href="/pringles">
+                  <span>最新客片</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item">
+                <a href="/suite">
+                  <span>套系报价</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item index-last">
+                <a href="/movie">
+                  <span>微电影</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+            </ul>
+            <div className="moreBtn">
+              <a href="/shot">
+                <i className="more-array"></i>
+                <span>查看更多</span>
+              </a>
+            </div>
           </div>
         </div>
+
         <div className="adv-recommend-box count-5">
           <ul className="adv-recommend-list">
             {
@@ -137,25 +153,28 @@ const ShotHot = React.createClass({
                 if (k==0 || k==2) {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'2:3'} height={521} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'2:3'} height={521} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 } else if (k==1) {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'2:3'} height={754} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'2:3'} height={754} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 } else {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'3:2'} height={231} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'3:2'} height={231} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 }
@@ -199,23 +218,45 @@ const WeddingHot = React.createClass({
             <span className="primary-title">金色百年婚庆定制</span>
             <span className="secondary-title">最新动态</span>
           </div>
-          <ul className="label-list">
-            <li> <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 最新婚庆活动</a> </li>
-            <li> <a href="/cases"> 最新实景案例</a> </li>
-            <li> <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 订单大礼包</a> </li>
-            <li> <a href="/f4"> 选婚礼人</a> </li>
-          </ul>
-        </div>
-        <div className="nav-label-box">
-          <ul className="label-list">
-            <li><a href="/cases"> 最新热门案例</a></li>
-            <li><a href="/f4"> 选婚礼人</a></li>
-            <li><a href="/dress"> 礼服租赁</a></li>
-            <li><a href="/supply"> 婚礼用品</a></li>
-            <li><a href="/car"> 婚车租赁</a></li>
-          </ul>
-          <div className="moreBtn">
-            <a href="/scheme">查看更多></a>
+          <div className="nav-label-box">
+            <ul className="label-list">
+              <li className="item">
+                <a href="/cases">
+                  <span>最新热门案例</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item">
+                <a href="/f4">
+                  <span>选婚礼人</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item">
+                <a href="/dress">
+                  <span>婚纱礼服</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item">
+                <a href="/supply">
+                  <span>婚礼用品</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item index-last">
+                <a href="/car">
+                  <span>婚车租赁</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+            </ul>
+            <div className="moreBtn">
+              <a href="/scheme">
+                <i className="more-array"></i>
+                <span>查看更多</span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="adv-recommend-box count-3">
@@ -226,17 +267,19 @@ const WeddingHot = React.createClass({
                 if (k==1) {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'8:9'} height={539} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'8:9'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 } else {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'2:3'} height={539} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'2:3'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 }
@@ -280,18 +323,27 @@ const TripHot = React.createClass({
             <span className="primary-title">金色旅拍</span>
             <span className="secondary-title">最新动态</span>
           </div>
-          <ul className="label-list">
-            <li> <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 旅拍活动</a> </li>
-            <li><a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 进店有礼</a></li>
-            <li><a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 询问档期及拍摄相关</a></li>
-          </ul>
-        </div>
-        <div className="nav-label-box">
-          <ul className="label-list">
-            <li><a href="//trip.jsbn.com"> 热门旅拍城市:三亚 丽江 九寨沟 普吉岛</a></li>
-          </ul>
-          <div className="moreBtn">
-            <a href="//trip.jsbn.com">查看更多></a>
+          <div className="nav-label-box">
+            <ul className="label-list">
+              <li className="item">
+                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020">
+                  <span>旅拍活动</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item index-last">
+                <a href="//trip.jsbn.com" target='_blank'>
+                  <span>热门旅拍城市</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+            </ul>
+            <div className="moreBtn">
+              <a href="//trip.jsbn.com" target='_blank'>
+                <i className="more-array"></i>
+                <span>查看更多</span>
+              </a>
+            </div>
           </div>
         </div>
         <div className="adv-recommend-box count-3">
@@ -302,17 +354,19 @@ const TripHot = React.createClass({
                 if (k==1) {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'8:9'} height={539} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'8:9'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 } else {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'2:3'} height={539} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'2:3'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 }
@@ -352,22 +406,33 @@ const HotelDiamondHot = React.createClass({
             <span className="secondary-title">PHOTOGRAPHY NEW</span>
           </div>
           <div className="chinese-title">
-            <span className="primary-title">婚宴预订&婚戒砖石</span>
+            <span className="primary-title">婚宴预订&婚戒钻石</span>
             <span className="secondary-title">最新动态</span>
           </div>
-          <ul className="label-list">
-            <li> <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 最新酒店优惠活动</a> </li>
-            <li><a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 新人预订送好</a></li>
-            <li><a href="http://www.chinad9.com" target='_blank'> 婚戒砖石款式详情</a></li>
-          </ul>
+          <div className="nav-label-box">
+            <ul className="label-list">
+              <li className="item">
+                <a href="/hotel">
+                  <span>婚宴预订</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item">
+                <a href="http://www.chinad9.com" target='_blank'>
+                  <span>婚戒砖石</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item index-last">
+                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
+                  <span>最新酒店优惠活动</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="nav-label-box">
-          <ul className="label-list">
-            <li><a href="/hotel"> 热门酒店</a></li>
-            <li><a href="http://www.chinad9.com"> 婚戒砖石</a></li>
-          </ul>
-        </div>
-        <div className="adv-recommend-box count-3">
+        <div className="adv-recommend-box count-4">
           <ul className="adv-recommend-list">
             {
               _.map(this.state.data, (v,k)=>{
@@ -375,17 +440,19 @@ const HotelDiamondHot = React.createClass({
                 if (k==0 || k==1) {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'2:3'} height={397} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'3:2'} height={397} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 } else {
                   return (
                     <li key={k} className={kClass}>
-                      <MediaItem aspectRatio={'2:1'} height={297} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} videoUrl={v.videoUrl} autoplay={true} water={false} />
-                      <div className="info-box"><span>{v.name}</span></div>
-                      <div className="shade-box"></div>
+                      <a href={v.linkUrl} className='img-box'>
+                        <MediaItem aspectRatio={'2:1'} height={297} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <div className="shade-box"></div>
+                      </a>
                     </li>
                   )
                 }
@@ -427,11 +494,28 @@ const PublicityHot = React.createClass({
           <div className="chinese-title">
             <span className="primary-title">魅力金色</span>
           </div>
-          <ul className="label-list">
-            <li> <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'> 在线咨询</a> </li>
-            <li><a href="/activity/detail/aboutUs" target='_blank'> 关于我们</a></li>
-            <li><a href="/activity/detail/aboutUs" target='_blank'> 联系我们</a></li>
-          </ul>
+          <div className="nav-label-box">
+            <ul className="label-list">
+              <li className="item">
+                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
+                  <span>在线咨询</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item">
+                <a href="/activity/detail/aboutUs" target='_blank'>
+                  <span>关于我们</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+              <li className="item index-last">
+                <a href="/activity/detail/aboutUs" target='_blank'>
+                  <span>联系我们</span>
+                  <div className="tab-black"></div>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="nav-label-box">
         </div>
@@ -442,9 +526,10 @@ const PublicityHot = React.createClass({
               return (
                 <li key={k} className='item-box'>
                   <div className='img-box'>
-                    <MediaItem aspectRatio={'38:25'} height={250} mediaUrl={v.coverUrlWeb} water={false} />
-                    <div className="info-box"><span>{v.name}</span></div>
-                    <div className="shade-box"></div>
+                    <a href={v.linkUrl} className='img-box'>
+                      <MediaItem aspectRatio={'38:25'} height={250} mediaUrl={v.coverUrlWeb} water={false} />
+                      <div className="shade-box"></div>
+                    </a>
                   </div>
                   <div className='title-box'>
                     <span>{names[0] || '金色百年'}</span>
@@ -488,9 +573,10 @@ const ActivityHot = React.createClass({
                 let kClass='adv-box'
                 return (
                   <li key={k} className={kClass}>
-                    <MediaItem aspectRatio={'297:362'} height={362} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} water={false} />
-                    <div className="info-box"><span>{v.name}</span></div>
-                    <div className="shade-box"></div>
+                    <a href={v.linkUrl} className='img-box'>
+                      <MediaItem aspectRatio={'297:362'} height={362} mediaUrl={v.coverUrlWeb} water={false} />
+                      <div className="shade-box"></div>
+                    </a>
                   </li>
                 )
               })

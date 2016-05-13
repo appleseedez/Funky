@@ -10,8 +10,7 @@ let r = env.Thinky.r
 // 微电影
 
 const wdyVideoApi = {
-
-    // 获取案例
+    // 获取微电影
     'get+/video/:position': function*(next) {
         this.APIKey = 'Movie'
         if (this.params.position === 'all') {
@@ -36,14 +35,10 @@ const wdyVideoApi = {
                     pageSize = 1
                 }
             }  else if(k.indexOf('videoType') !== -1) {
-                this.model = wdyVideo.filter({
-                    type: Number(this.request.query['videoType'])
-                })
+                this.model = this.model.filter({type: Number(this.request.query['videoType'])})
             } else if (k.indexOf('sort') !== -1) {
                 if (this.request.query["sort"] == "date") {
-                    this.model = this.model.orderBy(r.desc('createTime'));
-                } else if (this.request.query["sort"] == "hits") {
-                    this.model = this.model.orderBy(r.desc('hitNum'));
+                    this.model = this.model.orderBy(r.desc('updateTime'));
                 }
             }
         })
@@ -70,6 +65,5 @@ const wdyVideoApi = {
         this.APIKey = 'Movie'
         yield next
     }
-
 }
 export default wdyVideoApi

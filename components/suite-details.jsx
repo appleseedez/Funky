@@ -7,7 +7,7 @@ import { SuiteDetailsConfig} from './config/suite-details-config'
 const SuiteDetails = React.createClass({
   render () {
     return (
-      <div className='layout-center-box'>
+      <div className='layout-center-box margin-top-box'>
         <div className='container wedding-detail clearfix'>
           <div className='detail-box container mgt30 clearfix'>
             <div className='photo-box mgb30 clearfix'>

@@ -115,7 +115,7 @@ const CaseDetails = React.createClass({
     imageListData = JSON.parse(this.state.data.pcDetailImages || '[]')
     return (
       <div className='alxq-view'>
-        <div className='layout-center-box mgb30' id='slider_case_detail'>
+        <div className='layout-center-box margin-top-box' id='slider_case_detail'>
           <div className='photo-show-box'>
             <div className='big-img-box'>
               <div className='kpxq-img-box'>

@@ -62,7 +62,7 @@ const CarItemList = React.createClass({
               return (
                 <li key={k} className='item-box' data-id={v.id} style={{cursor:'pointer'}}>
                   <div className='img-box'>
-                    <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false}/>
+                    <MediaItem aspectRatio={'3:2'} width={380} mediaUrl={v.coverUrlWeb} water={false}/>
                   </div>
                   <div className='brd'>
                     <div className="htile">

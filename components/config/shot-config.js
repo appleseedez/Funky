@@ -2,48 +2,40 @@ import { BaseConfig } from './base'
 import _ from 'lodash'
 
 const ShotConfig = {
-  //静态banner
+  // 顶部广告
+  'MediaSlider':_.merge({
+    'dataUrl':'vda/shot_top',
+    'aspectRatio':'192:68',
+    'height':680
+  },BaseConfig),
+
+  // 静态banner
   'Banner': [{
-    'imageUrl': '//img2.jsbn.com/static/hssy.jpg'
+    'imageUrl': '//img2.jsbn.com/static/hssy-adv-img.jpg'
   }, {
     'imageUrl': '//img2.jsbn.com/static/photographer.jpg'
   }, {
     'imageUrl': '//img2.jsbn.com/static/satisfashion.jpg'
   }],
-  'MultiBanner': [{
-    'bgImageUrl': '//img2.jsbn.com/static/hssy-home02.jpg',
-    'blocks': [{
-      'klass': 'suite-link',
-      'link': '//trip.jsbn.com'
-    }, {
-      'klass': 'samples-link',
-      'link': '/sample'
-    }, {
-      'klass': 'pringles-link',
-      'link': '/pringles'
-    }, {
-      'klass': 'suite-home-link',
-      'link': '/suite'
-    }, {
-      'klass': 'weddingmv-link',
-      'link': '/weddingmv'
-    }]
-  }],
-  //列表数据
-  'ShotListItem': _.merge({
-    'type':'sample',
-    'link':'/sample',
-    'dataUrl': 'sample/shot_new_mid',// 最新动态->最新美照版块
-    'params':{ //因为是聚合页面，样片的个数固定
-      'pageSize':6,
-      'pageIndex':1
-    }
+
+  // 婚纱摄影最细动态
+  'ShotImageHot': _.merge({
+    'dataUrl': 'vda/weddingshot_index_news?pageIndex=1&pageSize=5', // 数据请求地址
   },BaseConfig),
-  //顶部广告
-  'MediaSlider':_.merge({
-    'dataUrl':'vda/shot_top',
-    'aspectRatio':'192:68',
-    'height':680
+
+  // 最佳样片热区
+  BestSampleHot: _.merge({
+    'dataUrl': 'sample/weddingshot_index_best_sample?pageIndex=1&pageSize=6', // 数据请求地址
+  },BaseConfig),
+
+  // 最佳客片热区
+  BestPringlesHot: _.merge({
+    'dataUrl': 'pringles/pringles_list?pageIndex=1&pageSize=8', // 数据请求地址
+  },BaseConfig),
+
+  // 最新活动
+  NewActivityHot: _.merge({
+    'dataUrl': 'vda/weddingshot_index_activity?pageIndex=1&pageSize=4', // 数据请求地址
   },BaseConfig)
 }
 

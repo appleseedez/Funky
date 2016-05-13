@@ -12,7 +12,7 @@ const MovieDetails = React.createClass({
   render() {
     return (
       <div className="wdy-view">
-        <div className="layout-center-box">
+        <div className="layout-center-box margin-top-box">
           <div className="video-box">
             <MediaItem aspectRatio='80:45' height={450}
                        mediaUrl={this.state.moveInfo.coverUrlWeb}

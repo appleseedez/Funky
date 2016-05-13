@@ -19,6 +19,10 @@ const Navigation = React.createClass({
               return (
                 <a key={k} href={v.link} target="_blank">
                   <div className={menuClass}>
+                    <div className="shade-box">
+                      <div className="left-border"></div>
+                      <div className="right-border"></div>
+                    </div>
                     <div className="ch gold">
                       <span>{v.cn}</span>
                       <div className="en gold">{v.en}</div>
@@ -31,6 +35,10 @@ const Navigation = React.createClass({
               return (
                 <a key={k} href={v.link}>
                   <div className={menuClass}>
+                    <div className="shade-box">
+                      <div className="left-border"></div>
+                      <div className="right-border"></div>
+                    </div>
                     <div className="ch gold">
                       <span>{v.cn}</span>
                       <div className="en gold">{v.en}</div>

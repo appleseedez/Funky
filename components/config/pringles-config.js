@@ -14,7 +14,7 @@ const PringlesConfig  = {
     'displayTextPrefix':'找到最佳客片',
     'displayTextSuffix':'套',
     'params':{
-      'pageSize':9,
+      'pageSize':8,
       'pageIndex':1
     }
 

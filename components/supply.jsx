@@ -23,7 +23,7 @@ let SupplyItemList = React.createClass({
               return (
                 <li key={k} className='item-box' data-id={v.id} style={{cursor:'pointer'}}>
                   <div className='img-box'>
-                    <MediaItem aspectRatio={'1:1'} width={275}  {...this.props} mediaUrl={v.coverUrlWeb || '//placehold.it/380x253'} water={false} />
+                    <MediaItem aspectRatio={'1:1'} width={275}  {...this.props} mediaUrl={v.coverUrlWeb} water={false} />
                   </div>
                   <div className='content-box'>
                     <div className='title'>

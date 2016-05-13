@@ -12,16 +12,67 @@ const ItemType = React.createClass({
     return (
       <div className='layout-center-box'>
         <div className="nav-box">
-          <img src="http://img2.jsbn.com/static/wdy-nav.png" />
           <ul className="hover-box">
             {
               _.map(this.props.type, (v,k) => {
                 var boundClick = this.handleClick.bind(this, k, v);
-                return (
-                  <li key={k} onClick={boundClick} className={(k === this.state.index)? 'hover-item sel':'hover-item'}>
-                    <span/><i/>
-                  </li>
-                );
+                if (k == 0) {
+                  // 最新微电影
+                  return (
+                    <li key={k} onClick={boundClick} className={(k === this.state.index)? 'hover-item sel':'hover-item'}>
+                      <div className="english-title">
+                        <span className="primary-title">MICRO</span>
+                        <span className="secondary-title">MOVIE</span>
+                      </div>
+                      <div className="chinese-title">
+                        <span className="title">最新微电影</span>
+                      </div>
+                      <div className="tab-black"></div>
+                    </li>
+                  );
+                } else if (k == 1) {
+                  // 纪实MV
+                  return (
+                    <li key={k} onClick={boundClick} className={(k === this.state.index)? 'hover-item sel':'hover-item'}>
+                      <div className="english-title">
+                        <span className="primary-title">DOCUMENTARY</span>
+                        <span className="secondary-title">MV</span>
+                      </div>
+                      <div className="chinese-title">
+                        <span className="title">纪实MV</span>
+                      </div>
+                      <div className="tab-black"></div>
+                    </li>
+                  );
+                } else if (k == 2) {
+                  // 爱情MV
+                  return (
+                    <li key={k} onClick={boundClick} className={(k === this.state.index)? 'hover-item sel':'hover-item'}>
+                      <div className="english-title">
+                        <span className="primary-title">LOVE</span>
+                        <span className="secondary-title">MV</span>
+                      </div>
+                      <div className="chinese-title">
+                        <span className="title">爱情MV</span>
+                      </div>
+                      <div className="tab-black"></div>
+                    </li>
+                  );
+                } else if (k == 3) {
+                  // 爱情微电影
+                  return (
+                    <li key={k} onClick={boundClick} className={(k === this.state.index)? 'hover-item sel':'hover-item'}>
+                      <div className="english-title">
+                        <span className="primary-title">LOVE</span>
+                        <span className="secondary-title">MOVIE</span>
+                      </div>
+                      <div className="chinese-title">
+                        <span className="title">爱情微电影</span>
+                      </div>
+                      <div className="tab-black"></div>
+                    </li>
+                  );
+                }
               })
             }
           </ul>
@@ -31,6 +82,7 @@ const ItemType = React.createClass({
             _.map(this.state.data[this.state.index], (v,k) => {
               let key = ''+this.state.index+k;
               let hf = '/movie-details?id='+v.id;
+              console.log(hf)
               return (
                 <li key={key} className="item-box">
                   <div className="animat-1-hive" />
@@ -92,7 +144,7 @@ const ItemType = React.createClass({
           if(j.success) {
             // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
             temp[i] = _.map(j.data || [], (v,k)=>{
-              return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl'])
+              return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl', 'id'])
             });
             this.setState({data:temp, index:i});
           }
@@ -123,7 +175,7 @@ const Movie = React.createClass({
   getInitialState: function() {
     return {
       types: [MovieConfig['NewMovie'].baseUrl+MovieConfig['NewMovie'].dataUrl,
-        MovieConfig['HotMovie'].baseUrl+MovieConfig['HotMovie'].dataUrl,
+        MovieConfig['MVMovie'].baseUrl+MovieConfig['MVMovie'].dataUrl,
         MovieConfig['LoveMovie'].baseUrl+MovieConfig['LoveMovie'].dataUrl,
         MovieConfig['LoveMovieMV'].baseUrl+MovieConfig['LoveMovieMV'].dataUrl]
     };

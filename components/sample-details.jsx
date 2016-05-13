@@ -15,7 +15,7 @@ import { SampleDetailsConfig } from './config/sample-details-config'
 const SampleDetails = React.createClass({
   render() {
     return(
-      <div className="layout-center-box">
+      <div className="layout-center-box margin-top-box">
         <div className="box-img">
           {
             /*传入aspectRatio='1:-1' -1表示以100%作为值 见代码*/

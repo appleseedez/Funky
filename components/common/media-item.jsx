@@ -163,23 +163,32 @@ const ImageItem = React.createClass({
     let width = this.props.width
     let height = this.props.height
     let found = this.props.mediaUrl.match(RegForDimension)
-    /**
-     图片压缩参数: 如果是在development环境下就不要加压缩参数。
-     水印: 如果配置了要显示水印才显示。
-     如果是100%这样的,就不带
-     **/
-    let imageOption = '@';
-    if (this.props.width !== '100%') {
-      imageOption = imageOption + this.props.width+'w_';
+
+    let fileExtend=''
+    if (this.props.mediaUrl) {
+      fileExtend = this.props.mediaUrl.substring(this.props.mediaUrl.lastIndexOf('.')).toLowerCase();
     }
-    if (this.props.height !== '100%') {
-      imageOption = imageOption + this.props.height+'h_';
+
+    let imageOption='';
+    if (fileExtend == '.jpg' || fileExtend == '.jpeg') {
+      /**
+       水印: 如果配置了要显示水印才显示。
+       如果是100%这样的,就不带
+       **/
+      imageOption='@';
+      if (this.props.width !== '100%') {
+        imageOption = imageOption + this.props.width+'w_';
+      }
+      if (this.props.height !== '100%') {
+        imageOption = imageOption + this.props.height+'h_';
+      }
+      imageOption = imageOption + '95q';
+      imageOption =  this.props.water? (imageOption+'|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'):imageOption
     }
-    imageOption = imageOption + '95q';
-    imageOption =  this.props.water? (imageOption+'|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'):imageOption
+
     let mediaUrl = ''
     if (this.props.mediaUrl && this.props.mediaUrl !== '') {
-      mediaUrl = this.props.mediaUrl + imageOption;//( BaseConfig.mode === 'production')? (this.props.mediaUrl + imageOption): this.props.mediaUrl
+      mediaUrl = this.props.mediaUrl + imageOption;
     }
 
     if (found && 3 === found.length) {

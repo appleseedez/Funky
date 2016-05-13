@@ -2,39 +2,35 @@ import _ from 'lodash'
 import { BaseConfig } from './base'
 
 const SchemeConfig = {
-  'Banner':[
-    {
-      'imageUrl':'//img2.jsbn.com/static/hqdz.jpg'
-    }
-  ],
+  // 顶部广告
   'MediaSlider':_.merge({
     'dataUrl':'vda/scheme_top',
     'aspectRatio':'192:68',
     'height':680
   },BaseConfig),
-  //列表数据
-  'SchemeListItem': _.merge({
-    'type':'cases',
-    'link':'cases',
-    'dataUrl': 'cases/scheme_recommend_list',
-    'params':{ //因为是聚合页面，样片的个数固定
-      'pageSize':9,
-      'pageIndex':1
+
+  // 静态banner
+  'Banner':[
+    {
+      'imageUrl':'//img2.jsbn.com/static/hqdz.jpg'
     }
+  ],
+
+  // 婚庆定制最新动态
+  'SchemeImageHot': _.merge({
+    'dataUrl': 'vda/scheme_hot?pageIndex=1&pageSize=5', // 数据请求地址
   },BaseConfig),
-  'Group5':_.merge({
-    'dataUrl':'vda/scheme_hot',// 数据请求地址
-    'dimension':[  //4+1 4和1的尺寸配置
-      {
-        'aspectRatio':'124:75',
-        'width':620
-      },
-      {
-        'aspectRatio':'3:2',
-        'width':270
-      }
-    ]
+
+  // 最佳案例热区
+  BestCasesHot: _.merge({
+    'dataUrl': 'cases/scheme_recommend_list?pageIndex=1&pageSize=9', // 数据请求地址
   },BaseConfig),
+
+  // 婚礼用品&婚车租赁热区
+  SupplyCarHot: _.merge({
+    'dataUrl': 'vda/scheme_car_and_supplies?pageIndex=1&pageSize=4', // 数据请求地址
+  },BaseConfig),
+
   'PhotoGallery':[
     { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_01.jpg' },
     { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_02.jpg' },
@@ -43,6 +39,7 @@ const SchemeConfig = {
     { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_05.jpg' },
     { 'imageUrl':'//img2.jsbn.com/static/team/team-hqdz_06.jpg' }
   ],
+
   'NavGallery':[
     { 'link':'/f4?tab=dresser','klass':'hzs'},
     { 'link':'/f4?tab=host','klass':'zcr'},

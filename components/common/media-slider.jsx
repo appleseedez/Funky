@@ -39,7 +39,7 @@ const MediaSlider = React.createClass({
   getInitialState() {
     return {
       data: [
-        {'coverUrlWeb':'//placehold.it/1920x450'}
+        {'coverUrlWeb':''}
       ]
     }
   },
