@@ -28,8 +28,6 @@ import { CaseDetails } from '../case-details.jsx'
 import { F4 } from '../f4.jsx'
 import { WeddingPat } from '../wedding-pat.jsx'
 import { WeddingVideo } from '../wedding-video.jsx'
-import { WeddingMV } from '../wedding-mv.jsx'
-import { WeddingMVDetails } from '../wedding-mv-details.jsx'
 import { SchemeRequire } from '../scheme-require.jsx'
 import { Dress } from '../dress.jsx'
 import { DressDetails } from '../dress-details.jsx'
@@ -51,8 +49,6 @@ const ComponentsIndex = {
   'pringles-details': <PringlesDetails />,
   'suite': <Suite />,
   'suite-details': <SuiteDetails />,
-  'wedding-mv': <WeddingMV />,// 纪实MV
-  'wedding-mv-details': <WeddingMVDetails />,// 纪实MV
   'hotel': <Hotel />,
   'hotel-details': <HotelDetails />,
   'hall-details': <HallDetails />,
@@ -112,16 +108,6 @@ const ComponentsSeo= {
     'seoDescription':'重庆金色百年婚纱摄影工作室是重庆最大、最具影响力的婚纱摄影、拍婚纱照、摄影工作室。金色百年致力于打造高端私人摄影影楼，投资逾千万打造全息数字摄影场创就奢华神话，引领时尚婚纱摄影的另行风向标。'
   },
   'suite-details': {
-    'seoTitle':'',
-    'seoKeywords':'',
-    'seoDescription':''
-  },
-  'wedding-mv': {
-    'seoTitle':'婚纱照微电影_婚纱摄影微电影_结婚跟拍_婚纱摄影MV_婚礼即时MV_金色百年婚纱摄影',
-    'seoKeywords':'结婚微电影|结婚MV|婚纱摄影微电影|婚纱照微电影|婚纱照MV|婚纱摄影MV',
-    'seoDescription':'金色百年婚礼微电影，专为新人提供优质的婚礼影像服务。服务内容包括婚礼跟拍、现场快剪、微电影、MV等，全方位满足新人不同层次的婚礼影像需求。金色百年婚礼微电影服务团队把时尚气质和人文理念融入到婚礼影像的制作中，把婚礼最真实、最感人的一面呈现给新人。'
-  },// 纪实MV
-  'wedding-mv-details': {
     'seoTitle':'',
     'seoKeywords':'',
     'seoDescription':''
@@ -202,7 +188,7 @@ const ComponentsSeo= {
     'seoDescription':''
   },
   'movie': {
-    'seoTitle':'重庆微电影_婚纱摄影微电影_婚礼视频_婚礼微电影_婚宴微电影_结婚跟拍_婚纱摄影MV_婚礼即时MV_金色百年婚纱摄影',
+    'seoTitle':'重庆微电影_婚纱摄影微电影_婚礼视频_婚礼微电影_婚宴微电影_结婚跟拍_婚纱摄影MV_婚礼纪实MV_金色百年婚纱摄影',
     'seoKeywords':'结婚微电影|结婚MV|婚纱摄影微电影|婚纱照微电影|婚纱照MV|婚纱摄影MV',
     'seoDescription':'金色百年婚礼微电影，专为新人提供优质的婚礼影像服务。服务内容包括婚礼跟拍、现场快剪、微电影、MV等，全方位满足新人不同层次的婚礼影像需求。金色百年婚礼微电影服务团队把时尚气质和人文理念融入到婚礼影像的制作中，把婚礼最真实、最感人的一面呈现给新人。'
   },

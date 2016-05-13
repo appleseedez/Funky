@@ -211,15 +211,6 @@ siteRouter.get('/suite/:id', function* index(next) {
   yield this.render('modules/default', renderOption('suite-details', '/suite', '/shot',this.params))
 })
 
-//// 纪实MV
-//siteRouter.get('/weddingmv', function* index(next) {
-//  yield this.render('modules/default', renderOption('wedding-mv', '/weddingmv', '/shot'))
-//})
-//// 纪实MV详情
-//siteRouter.get('/weddingmv/:id', function* index(next) {
-//  yield this.render('modules/default', renderOption('wedding-mv-details', '/weddingmv', '/shot',this.params))
-//})
-
 // 微电影
 siteRouter.get('/movie', function* index(next) {
   yield this.render('modules/default', renderOption('movie', '/movie', '/shot'))
