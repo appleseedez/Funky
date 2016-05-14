@@ -112,6 +112,11 @@ const ComponentsSeo= {
     'seoKeywords':'',
     'seoDescription':''
   },
+  'wedding-mv-details': {
+    'seoTitle':'',
+    'seoKeywords':'',
+    'seoDescription':''
+  },
   'hotel': {
     'seoTitle':'重庆婚宴酒店预订_重庆喜宴大饭店_重庆酒楼_重庆婚宴酒店推荐_重庆婚庆酒店_金色百年婚宴网站',
     'seoKeywords':'重庆酒店|酒宴|大饭店|婚宴|婚宴布置|重庆喜宴酒店|婚宴策划|重庆婚宴酒楼|重庆婚宴酒店推荐|婚庆酒店',
