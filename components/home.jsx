@@ -103,10 +103,12 @@ const ShotHot = React.createClass({
         <div className="global-title-box">
           <div className="english-title">
             <span className="primary-title">WEDDING</span>
-            <span className="secondary-title">PHOTOGRAPHY NEW</span>
+            <span className="secondary-title">PHOTOGRAPHY</span>
+            <span className="primary-title">LATEST</span>
+            <span className="secondary-title">NEWS</span>
           </div>
           <div className="chinese-title">
-            <span className="primary-title">金色百年婚纱摄影</span>
+            <span className="primary-title">婚纱摄影</span>
             <span className="secondary-title">最新动态</span>
           </div>
           <div className="nav-label-box">
@@ -154,7 +156,7 @@ const ShotHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'2:3'} height={521} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'2:3'} width={347} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -163,7 +165,7 @@ const ShotHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'2:3'} height={754} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'2:3'} width={502} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -172,7 +174,7 @@ const ShotHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'3:2'} height={231} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'3:2'} width={347} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -211,11 +213,13 @@ const WeddingHot = React.createClass({
       <div className='layout-center-box'>
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">WEDDING</span>
-            <span className="secondary-title">PHOTOGRAPHY NEW</span>
+            <span className="primary-title">CUSTOM</span>
+            <span className="secondary-title">WEDDING</span>
+            <span className="primary-title">LATEST</span>
+            <span className="secondary-title">NEWS</span>
           </div>
           <div className="chinese-title">
-            <span className="primary-title">金色百年婚庆定制</span>
+            <span className="primary-title">婚庆定制</span>
             <span className="secondary-title">最新动态</span>
           </div>
           <div className="nav-label-box">
@@ -268,7 +272,7 @@ const WeddingHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'8:9'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'8:9'} width={479} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -277,7 +281,7 @@ const WeddingHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'2:3'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'2:3'} width={358} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -316,8 +320,10 @@ const TripHot = React.createClass({
       <div className='layout-center-box'>
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">WEDDING</span>
-            <span className="secondary-title">PHOTOGRAPHY NEW</span>
+            <span className="primary-title">GOLDEN</span>
+            <span className="secondary-title">TRIP</span>
+            <span className="primary-title">LATEST</span>
+            <span className="secondary-title">NEWS</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title">金色旅拍</span>
@@ -355,7 +361,7 @@ const TripHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'8:9'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'8:9'} width={479} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -364,7 +370,7 @@ const TripHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'2:3'} height={539} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'2:3'} width={358} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -402,8 +408,9 @@ const HotelDiamondHot = React.createClass({
       <div className='layout-center-box'>
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">WEDDING</span>
-            <span className="secondary-title">PHOTOGRAPHY NEW</span>
+            <span className="primary-title">HOTEL&DIAMOND</span>
+            <span className="secondary-title">LATEST</span>
+            <span className="primary-title">NEWS</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title">婚宴预订&婚戒钻石</span>
@@ -441,7 +448,7 @@ const HotelDiamondHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'3:2'} height={397} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'3:2'} width={595} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -450,7 +457,7 @@ const HotelDiamondHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'2:1'} height={297} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
+                        <MediaItem aspectRatio={'2:1'} width={595} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} autoplay={true} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -488,8 +495,8 @@ const PublicityHot = React.createClass({
       <div className='layout-center-box'>
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">WEDDING</span>
-            <span className="secondary-title">PHOTOGRAPHY NEW</span>
+            <span className="primary-title">GOLD</span>
+            <span className="secondary-title">CHARM</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title">魅力金色</span>
@@ -527,7 +534,7 @@ const PublicityHot = React.createClass({
                 <li key={k} className='item-box'>
                   <div className='img-box'>
                     <a href={v.linkUrl} className='img-box'>
-                      <MediaItem aspectRatio={'38:25'} height={250} mediaUrl={v.coverUrlWeb} water={false} />
+                      <MediaItem aspectRatio={'38:25'} width={380} mediaUrl={v.coverUrlWeb} water={false} />
                       <div className="shade-box"></div>
                     </a>
                   </div>
@@ -574,7 +581,7 @@ const ActivityHot = React.createClass({
                 return (
                   <li key={k} className={kClass}>
                     <a href={v.linkUrl} className='img-box'>
-                      <MediaItem aspectRatio={'297:362'} height={362} mediaUrl={v.coverUrlWeb} water={false} />
+                      <MediaItem aspectRatio={'297:362'} width={297} mediaUrl={v.coverUrlWeb} water={false} />
                       <div className="shade-box"></div>
                     </a>
                   </li>
@@ -621,12 +628,14 @@ const Home = React.createClass({
         <TripHot />
         <HotelDiamondHot />
         <PublicityHot />
-        <div className='bannar-all-box'>
-          <Banner {...HomeConfig['Banner'][0]} />
-        </div>
-        <div className='bannar-all-box'>
-          <BotComment {...HomeConfig['BotComment']}/>
-        </div>
+        {
+          //<div className='bannar-all-box'>
+          //  <Banner {...HomeConfig['Banner'][0]} />
+          //</div>
+          //<div className='bannar-all-box'>
+          //<BotComment {...HomeConfig['BotComment']}/>
+          //</div>
+        }
         <ActivityHot />
       </div>
     )

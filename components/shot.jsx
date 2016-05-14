@@ -13,10 +13,12 @@ const ShotImageHot = React.createClass({
         <div className="global-title-box">
           <div className="english-title">
             <span className="primary-title">WEDDING</span>
-            <span className="secondary-title">PHOTOGRAPHY NEW</span>
+            <span className="secondary-title">PHOTOGRAPHY</span>
+            <span className="primary-title">LATEST</span>
+            <span className="secondary-title">NEWS</span>
           </div>
           <div className="chinese-title">
-            <span className="primary-title">金色百年婚纱摄影</span>
+            <span className="primary-title">婚纱摄影</span>
             <span className="secondary-title">最新动态</span>
           </div>
           <div className="nav-label-box">
@@ -71,7 +73,7 @@ const ShotImageHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'3:2'} height={400} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} water={false} />
+                        <MediaItem aspectRatio={'3:2'} width={600} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -80,7 +82,7 @@ const ShotImageHot = React.createClass({
                   return (
                     <li key={k} className={kClass}>
                       <a href={v.linkUrl} className='img-box'>
-                        <MediaItem aspectRatio={'3:2'} height={200} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} water={false} />
+                        <MediaItem aspectRatio={'3:2'} width={300} mediaUrl={v.coverUrlWeb} videoUrl={v.videoUrl} water={false} />
                         <div className="shade-box"></div>
                       </a>
                     </li>
@@ -118,8 +120,11 @@ const BestSampleHot = React.createClass({
       <div className="layout-center-box">
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">POPULAR SET</span>
-            <span className="secondary-title">OF RECOMMENDED</span>
+            <span className="primary-title">SHARE</span>
+            <span className="secondary-title">WITH</span>
+            <span className="primary-title">YOU</span>
+            <span className="secondary-title">LATEST</span>
+            <span className="primary-title">PHOTOS</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title">与你分享</span>
@@ -203,8 +208,8 @@ const BestPringlesHot = React.createClass({
       <div className="layout-center-box">
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">POPULAR SET</span>
-            <span className="secondary-title">OF RECOMMENDED</span>
+            <span className="primary-title">BEST</span>
+            <span className="secondary-title">OFF-CHIP</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title"></span>
@@ -253,9 +258,9 @@ const BestPringlesHot = React.createClass({
                       <div className="hover-title">
                         <i className='ico-love'></i>
                         <h3>
-                          <b>{v.actorMaleName || '小金'}</b>
-                          <em>{String.fromCharCode(0x00b7)}</em>
-                          <b>{v.actorFemaleName || '小白'}</b>
+                          <b>{v.actorMaleName}</b>
+                          <em> ❤ </em>
+                          <b>{v.actorFemaleName}</b>
                         </h3>
                       </div>
                     </a>
@@ -293,8 +298,8 @@ const NewActivityHot = React.createClass({
       <div className="layout-center-box">
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">POPULAR SET</span>
-            <span className="secondary-title">OF RECOMMENDED</span>
+            <span className="primary-title">LATEST</span>
+            <span className="secondary-title">EVENTS</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title"></span>
@@ -331,13 +336,15 @@ const NewActivityHot = React.createClass({
                 return (
                   <li className="suit-box" key={k}>
                     <div className="photo-box">
-                      <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={v.coverUrlWeb} outerLink={v.linkUrl} water={false} />
+                      <a href={v.linkUrl} className='img-box' target='_blank'>
+                        <MediaItem  aspectRatio={'2:3'} width={380} mediaUrl={v.coverUrlWeb} water={false} />
+                      </a>
                     </div>
                     <div className="info-box">
                       <i className="img-title"></i>
                       <span className="text-title">{v.name}</span>
                       <span className="text-content">{v.description}</span>
-                      <a className="entry-btn" href={v.linkUrl}>
+                      <a className="entry-btn" href={v.linkUrl} target='_blank'>
                         <span className="text-english">SEE MORE DETAILS</span>
                         <span className="text-chinese">查看更多</span>
                       </a>
@@ -393,7 +400,7 @@ const Shot = React.createClass({
         <div className="layout-center-box">
           <div className="title-box">
             <div className="title">
-              <span className="text-english">THE PHOTOGRAHPER</span>
+              <span className="text-english">PHOTOGRAPHER TEAM</span>
               <span className="text-chinese">摄影师团队</span>
             </div>
           </div>
@@ -402,8 +409,8 @@ const Shot = React.createClass({
           </div>
           <div className="title-box">
             <div className="title">
-              <span className="text-english">THE PHOTOGRAHPER</span>
-              <span className="text-chinese">策划师团队</span>
+              <span className="text-english">STYLIST TEAM</span>
+              <span className="text-chinese">造型师团队</span>
             </div>
           </div>
           <div className="bannar-box">

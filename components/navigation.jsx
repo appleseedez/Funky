@@ -17,8 +17,8 @@ const Navigation = React.createClass({
             }
             if (v.target) {
               return (
-                <a key={k} href={v.link} target="_blank">
-                  <div className={menuClass}>
+                <div key={k} className={menuClass}>
+                  <a href={v.link} target="_blank">
                     <div className="shade-box">
                       <div className="left-border"></div>
                       <div className="right-border"></div>
@@ -28,13 +28,13 @@ const Navigation = React.createClass({
                       <div className="en gold">{v.en}</div>
                       <div className="arrow-5-js">{v.remark}</div>
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
               )
             } else {
               return (
-                <a key={k} href={v.link}>
-                  <div className={menuClass}>
+                <div key={k} className={menuClass}>
+                  <a href={v.link}>
                     <div className="shade-box">
                       <div className="left-border"></div>
                       <div className="right-border"></div>
@@ -44,8 +44,8 @@ const Navigation = React.createClass({
                       <div className="en gold">{v.en}</div>
                       <div className="arrow-5-js">{v.remark}</div>
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
               )
             }
           })

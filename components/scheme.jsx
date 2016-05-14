@@ -63,8 +63,9 @@ const NavGallery = React.createClass({
       <div className="layout-center-box">
         <div className="global-title-box">
           <div className="english-title">
-            <span className="primary-title">SERVER</span>
-            <span className="secondary-title">TEAM</span>
+            <span className="primary-title">PROFESSIONAL</span>
+            <span className="secondary-title">WEDDING</span>
+            <span className="primary-title">PEOPLE</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title"></span>
@@ -129,8 +130,10 @@ const SchemeImageHot = React.createClass({
         <div className='layout-center-box'>
           <div className="global-title-box">
             <div className="english-title">
-              <span className="primary-title">WEDDING</span>
-              <span className="secondary-title">PHOTOGRAPHY NEW</span>
+              <span className="primary-title">CUSTOM</span>
+              <span className="secondary-title">WEDDING</span>
+              <span className="primary-title">LATEST</span>
+              <span className="secondary-title">NEWS</span>
             </div>
             <div className="chinese-title">
               <span className="primary-title">婚庆定制</span>
@@ -280,11 +283,15 @@ const SupplyCarHot = React.createClass({
         <div className="global-title-box">
           <div className="english-title">
             <span className="primary-title">WEDDING</span>
-            <span className="secondary-title">PEOPLE</span>
+            <span className="secondary-title">SUPPLY</span>
+            <span className="primary-title">&</span>
+            <span className="secondary-title">WEDDING</span>
+            <span className="primary-title">CAR</span>
+            <span className="secondary-title">RENTAL</span>
           </div>
           <div className="chinese-title">
             <span className="primary-title"></span>
-            <span className="secondary-title">婚礼用品&婚礼租车</span>
+            <span className="secondary-title">婚礼用品&婚车租赁</span>
           </div>
           <div className="nav-label-box">
             <ul className="label-list">
@@ -324,7 +331,7 @@ const SupplyCarHot = React.createClass({
                 return (
                   <li key={k} className={kClass}>
                     <a href={v.linkUrl} className='img-box'>
-                      <MediaItem aspectRatio={'297:362'} height={362} mediaUrl={v.coverUrlWeb} water={false} />
+                      <MediaItem aspectRatio={'297:362'} width={297} mediaUrl={v.coverUrlWeb} water={false} />
                       <div className="shade-box"></div>
                     </a>
                   </li>

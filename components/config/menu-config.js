@@ -148,7 +148,7 @@ const MenuConfig = {
       remark:''
     },
     {
-      cn:'婚宴预订首页',
+      cn:'婚宴首页',
       en:'BANQUET',
       link:'/hotel',
       target:false,
