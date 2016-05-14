@@ -28,6 +28,7 @@ import { CaseDetails } from '../case-details.jsx'
 import { F4 } from '../f4.jsx'
 import { WeddingPat } from '../wedding-pat.jsx'
 import { WeddingVideo } from '../wedding-video.jsx'
+import { WeddingMVDetails } from '../wedding-mv-details.jsx'
 import { SchemeRequire } from '../scheme-require.jsx'
 import { Dress } from '../dress.jsx'
 import { DressDetails } from '../dress-details.jsx'
@@ -59,6 +60,7 @@ const ComponentsIndex = {
   'case-details': <CaseDetails />, // 实景案例详情
   'wedding-pat': <WeddingPat />,// 婚礼跟拍
   'wedding-video': <WeddingVideo />,// 婚礼视频
+  'wedding-video-details': <WeddingMVDetails />,
   'f4': <F4 />,
   'scheme-require': <SchemeRequire />,
   'dress': <Dress />,
@@ -112,7 +114,7 @@ const ComponentsSeo= {
     'seoKeywords':'',
     'seoDescription':''
   },
-  'wedding-mv-details': {
+  'wedding-video-details': {
     'seoTitle':'',
     'seoKeywords':'',
     'seoDescription':''

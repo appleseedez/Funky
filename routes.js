@@ -251,7 +251,7 @@ siteRouter.get('/weddingvideo', function* index(next) {
 })
 // 婚礼视频详情
 siteRouter.get('/followVideo/:id', function* index(next) {
-  yield this.render('modules/default', renderOption('wedding-details', '/weddingvideo', '/scheme',this.params))
+  yield this.render('modules/default', renderOption('wedding-video-details', '/weddingvideo', '/scheme',this.params))
 })
 ///** 提交婚庆需求 **/
 //siteRouter.get('/scheme-require', function* index(next) {

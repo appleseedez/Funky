@@ -8,8 +8,8 @@ import 'fetch-detector'
 import 'fetch-ie8'
 let paramsString = $('#J_Matrix').attr('data-params') || '{}' //从J_Matrix标签获取传入的参数
 let params = JSON.parse(paramsString)
-let parentMenuKey = $('#J_Matrix').attr('data-parent-menu-key') || '/shot'
-let currentKey = $('#J_Matrix').attr('data-current-menu-key') || '/weddingmv'
+let parentMenuKey = $('#J_Matrix').attr('data-parent-menu-key') || '/scheme'
+let currentKey = $('#J_Matrix').attr('data-current-menu-key') || '/weddingvideo'
 /*渲染本模块的菜单*/
 ReactDOM.render(<Navigation menuKey={parentMenuKey} currentKey={currentKey} />,document.getElementById('J_Nav'))
 ReactDOM.render(<WeddingMVDetails dataParams={params} dataCurrentKey={currentKey}/>,document.getElementById('J_Main'))
