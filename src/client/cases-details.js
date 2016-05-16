@@ -1,4 +1,7 @@
-import { WeddingVideo } from '../../components/wedding-video.jsx'
+/**
+ * Created by chenjianjun on 16/3/15.
+ */
+import { CasesDetails } from '../../components/cases-details.jsx'
 import { Navigation } from '../../components/navigation.jsx'
 import 'es6-promise'
 import 'fetch-detector'
@@ -11,4 +14,4 @@ let currentKey = $('#J_Matrix').attr('data-current-menu-key')
 
 /*渲染本模块的菜单*/
 ReactDOM.render(<Navigation menuKey={parentMenuKey} currentKey={currentKey} />,document.getElementById('J_Nav'))
-ReactDOM.render(<WeddingVideo dataParams={params} />,document.getElementById('J_Main'))
+ReactDOM.render(<CasesDetails dataParams={params}/>,document.getElementById('J_Main'))

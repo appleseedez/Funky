@@ -24,11 +24,12 @@ import { HotelRequire } from '../hotel-require.jsx'
 import { MapLocation } from '../map-location.jsx'
 import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
-import { CaseDetails } from '../case-details.jsx'
+import { CasesDetails } from '../cases-details.jsx'
 import { F4 } from '../f4.jsx'
-import { WeddingPat } from '../wedding-pat.jsx'
-import { WeddingVideo } from '../wedding-video.jsx'
-import { WeddingMVDetails } from '../wedding-mv-details.jsx'
+import { FollowPhoto } from '../follow-photo.jsx'
+import { FollowPhotoDetails } from '../follow-photo-details.jsx'
+import { FollowVideo } from '../follow-video.jsx'
+import { FollowVideoDetails } from '../follow-video-details.jsx'
 import { SchemeRequire } from '../scheme-require.jsx'
 import { Dress } from '../dress.jsx'
 import { DressDetails } from '../dress-details.jsx'
@@ -57,10 +58,11 @@ const ComponentsIndex = {
   'hotel-require': <HotelRequire />,
   'scheme': <Scheme />,
   'cases': <Cases />,
-  'case-details': <CaseDetails />, // 实景案例详情
-  'wedding-pat': <WeddingPat />,// 婚礼跟拍
-  'wedding-video': <WeddingVideo />,// 婚礼视频
-  'wedding-video-details': <WeddingMVDetails />,
+  'cases-details': <CasesDetails />, // 实景案例详情
+  'follow-photo': <FollowPhoto />,// 婚礼跟拍
+  'follow-photo-details': <FollowPhotoDetails />, // 婚礼跟拍详情
+  'follow-video': <FollowVideo />,// 婚礼视频
+  'follow-video-details': <FollowVideoDetails />,// 婚礼视频详情
   'f4': <F4 />,
   'scheme-require': <SchemeRequire />,
   'dress': <Dress />,
@@ -114,11 +116,6 @@ const ComponentsSeo= {
     'seoKeywords':'',
     'seoDescription':''
   },
-  'wedding-video-details': {
-    'seoTitle':'',
-    'seoKeywords':'',
-    'seoDescription':''
-  },
   'hotel': {
     'seoTitle':'重庆婚宴酒店预订_重庆喜宴大饭店_重庆酒楼_重庆婚宴酒店推荐_重庆婚庆酒店_金色百年婚宴网站',
     'seoKeywords':'重庆酒店|酒宴|大饭店|婚宴|婚宴布置|重庆喜宴酒店|婚宴策划|重庆婚宴酒楼|重庆婚宴酒店推荐|婚庆酒店',
@@ -154,20 +151,30 @@ const ComponentsSeo= {
     'seoKeywords':'重庆婚庆案例婚宴|婚礼会馆|主题婚礼|婚礼现场|婚礼私人定制|婚礼定制方案',
     'seoDescription':'金色百年婚礼策化是西南地区著名婚庆品牌，以优质服务，致力于为新人提供惬意，个性的专属婚礼，一流性价比婚礼体验。我们专业的贴心服务，只为您的优雅转身。'
   },
-  'case-details': {
+  'cases-details': {
     'seoTitle':'',
     'seoKeywords':'',
     'seoDescription':''
   },
-  'wedding-pat': {
+  'follow-photo': {
     'seoTitle':'重庆婚庆跟拍_重庆婚礼跟拍_婚礼现场摄影_重庆婚嫁_婚礼跟拍全程攻略_婚礼跟拍价格_婚礼跟拍流程',
     'seoKeywords':'重庆婚庆跟拍价格|重庆婚礼跟拍多少钱|重庆婚庆跟拍哪家好|主题婚礼跟拍',
     'seoDescription':'金色百年是专业婚礼跟拍,纪实婚礼摄影的婚礼拍摄团队.专业的纪实风格为新人保留最珍贵的婚礼瞬间！'
   },
-  'wedding-video': {
+  'follow-photo-details': {
+    'seoTitle':'重庆婚庆案例_婚礼场景布置_重庆婚礼布置_重庆婚庆方案_重庆婚礼网',
+    'seoKeywords':'重庆婚庆案例婚宴|婚礼会馆|主题婚礼|婚礼现场|婚礼私人定制|婚礼定制方案',
+    'seoDescription':'金色百年婚礼策化是西南地区著名婚庆品牌，以优质服务，致力于为新人提供惬意，个性的专属婚礼，一流性价比婚礼体验。我们专业的贴心服务，只为您的优雅转身。'
+  },
+  'follow-video': {
     'seoTitle':'重庆婚庆视频_重庆婚礼视频_婚庆背景图片_金色百年婚礼图片',
     'seoKeywords':'重庆婚庆视频|重庆婚礼视频|婚庆公司推荐|重庆婚嫁网',
     'seoDescription':'金色百年婚礼视频为新人婚礼当天提供视频跟拍服务，以“温馨、浪漫、感动”为内容，记录新人美好婚礼瞬间，全程定制属于新人的爱情光影。该板块着重婚礼流程记录，纪实性强，有针对性性。'
+  },
+  'follow-video-details': {
+    'seoTitle':'',
+    'seoKeywords':'',
+    'seoDescription':''
   },
   'f4': {
     'seoTitle':'重庆婚庆主持人_重庆婚礼司仪_重庆婚礼主持人_重庆司仪_重庆婚庆礼仪',

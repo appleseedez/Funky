@@ -1,4 +1,7 @@
-import { WeddingPat } from '../../components/wedding-pat.jsx'
+/**
+ * Created by chenjianjun on 16/3/15.
+ */
+import { FollowVideoDetails } from '../../components/follow-video-details.jsx'
 import { Navigation } from '../../components/navigation.jsx'
 import 'es6-promise'
 import 'fetch-detector'
@@ -11,4 +14,4 @@ let currentKey = $('#J_Matrix').attr('data-current-menu-key')
 
 /*渲染本模块的菜单*/
 ReactDOM.render(<Navigation menuKey={parentMenuKey} currentKey={currentKey} />,document.getElementById('J_Nav'))
-ReactDOM.render(<WeddingPat dataParams={params} />,document.getElementById('J_Main'))
+ReactDOM.render(<FollowVideoDetails dataParams={params}/>,document.getElementById('J_Main'))

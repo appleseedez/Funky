@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react'
 import { MediaItem } from './common/media-item.jsx'
-import { VideoDetailsConfig } from './config/video-details-config'
-const WeddingMVDetails = React.createClass({
+import { FollowVideoDetailsConfig } from './config/folloe-video-details-config'
+
+const FollowVideoDetails = React.createClass({
   render () {
     let name =this.state.data.name
     let description = this.state.data.description
@@ -15,8 +16,10 @@ const WeddingMVDetails = React.createClass({
           <h1 className="title-vid">{name}</h1>
             <MediaItem aspectRatio='3:2' width={1200} mediaUrl={poster} videoUrl={videoUrl} water={false} />
             <p className="info-vid">{description}</p>
-            <p className="info-vid">{date}</p>
-            <p className="info-vid">{address}</p>
+          {
+            //<p className="info-vid">{date}</p>
+            //<p className="info-vid">{address}</p>
+          }
         </div>
       </div>
     )
@@ -27,8 +30,7 @@ const WeddingMVDetails = React.createClass({
     }
   },
   componentDidMount() {
-    let detailsKey = this.props.dataCurrentKey || '/weddingpat'
-    let cfg = VideoDetailsConfig[detailsKey]
+    let cfg = FollowVideoDetailsConfig['FollowVideoDetails']
     let fetchUrl = cfg['buildUrl'](this.props.dataParams,cfg['dataUrl'])
     if(fetchUrl){
       fetch(fetchUrl)
@@ -43,4 +45,4 @@ const WeddingMVDetails = React.createClass({
   }
 })
 
-export { WeddingMVDetails }
+export { FollowVideoDetails }

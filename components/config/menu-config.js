@@ -200,7 +200,7 @@ const MenuConfig = {
     {
       cn:'婚礼跟拍',
       en:'FOLLOW',
-      link:'/weddingpat',
+      link:'/followPhoto',
       target:false,
       kClass:'item second-menu',
       remark:''
@@ -208,7 +208,7 @@ const MenuConfig = {
     {
       cn:'婚礼视频',
       en:'VIDEO',
-      link:'/weddingvideo',
+      link:'/followVideo',
       target:false,
       kClass:'item second-menu',
       remark:''

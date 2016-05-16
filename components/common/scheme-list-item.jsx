@@ -66,17 +66,6 @@ const SchemeListItem = React.createClass({
   },
   componentDidMount() {
     BaseConfig['fetchFunc'](this,null)(this)
-    // const updateCount = ()=>{
-    //   $('.J_Count').html(count)
-    // }
-    // if (this.props.dataUrl !== undefined) {
-    //   fetch(this.props.baseUrl + this.props.dataUrl)
-    //   .then(res => {return res.json()},err=>{console.log('network is down:',err) })
-    //   .then(j=>{
-    //     this.setState({ data:j.data })
-    //     $('.J_Count').html(_.size(j.data))
-    //   })
-    // }
   }
 })
 

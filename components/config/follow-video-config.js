@@ -1,7 +1,7 @@
 import { BaseConfig } from './base'
 import _ from 'lodash'
 
-const WeddingVideoConfig = {
+const FollowVideoConfig = {
   'Banner':[
     {'imageUrl':'//img2.jsbn.com/static/hlsp.jpg'}
   ],
@@ -23,4 +23,4 @@ const WeddingVideoConfig = {
 
 }
 
-export { WeddingVideoConfig }
+export { FollowVideoConfig }

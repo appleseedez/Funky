@@ -233,26 +233,31 @@ siteRouter.get('/cases', function* index(next) {
 })
 // 实景案例详情
 siteRouter.get('/cases/:id', function* index(next) {
-  yield this.render('modules/default', renderOption('case-details', '/cases', '/scheme',this.params))
+  yield this.render('modules/default', renderOption('cases-details', '/cases', '/scheme',this.params))
 })
 
+
 // 婚礼跟拍
-siteRouter.get('/weddingpat', function* index(next) {
-  yield this.render('modules/default', renderOption('wedding-pat', '/weddingpat', '/scheme'))
+siteRouter.get('/followPhoto', function* index(next) {
+  yield this.render('modules/default', renderOption('follow-photo', '/followPhoto', '/scheme'))
 })
 // 婚礼跟拍详情
 siteRouter.get('/followPhoto/:id', function* index(next) {
-  yield this.render('modules/default', renderOption('case-details', '/weddingpat', '/scheme',this.params))
+  yield this.render('modules/default', renderOption('follow-photo-details', '/followPhoto', '/scheme',this.params))
 })
 
 // 婚礼视频
-siteRouter.get('/weddingvideo', function* index(next) {
-  yield this.render('modules/default', renderOption('wedding-video', '/weddingvideo', '/scheme'))
+siteRouter.get('/followVideo', function* index(next) {
+  yield this.render('modules/default', renderOption('follow-video', '/followVideo', '/scheme'))
 })
 // 婚礼视频详情
 siteRouter.get('/followVideo/:id', function* index(next) {
-  yield this.render('modules/default', renderOption('wedding-video-details', '/weddingvideo', '/scheme',this.params))
+  yield this.render('modules/default', renderOption('follow-video-details', '/followVideo', '/scheme',this.params))
 })
+
+
+
+
 ///** 提交婚庆需求 **/
 //siteRouter.get('/scheme-require', function* index(next) {
 //  yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))

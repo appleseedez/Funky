@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import _ from 'lodash'
 
 import { MediaItem } from './common/media-item.jsx'
-import { CaseDetailsConfig } from './config/case-details-config'
+import { CasesDetailsConfig } from './config/cases-details-config'
 
 const BasicInfo = React.createClass({
   render () {
@@ -109,7 +109,7 @@ const Price = React.createClass({
   }
 })
 
-const CaseDetails = React.createClass({
+const CasesDetails = React.createClass({
   render () {
     let imageListData = []
     imageListData = JSON.parse(this.state.data.pcDetailImages || '[]')
@@ -153,9 +153,7 @@ const CaseDetails = React.createClass({
               <div className='line-left' />
                 <BasicInfo {...this.state.data} />
                 <Concept {...this.state.data} />
-                {
-                  this.state.showPrice && <Price {...this.state.data} />
-                }
+                <Price {...this.state.data} />
               </div>
           </div>
         </div>
@@ -164,16 +162,12 @@ const CaseDetails = React.createClass({
   },
   getInitialState: function() {
     return {
-      data:{},
-      showPrice:true
+      data:{}
     }
   },
   componentDidMount() {
-    // 跟拍不展示价格
 
-    // 由于case—details被多个模块共用 所以使用连接来进行区别
-    let detailsKey = this.props.dataCurrentKey || '/cases'
-    let cfg = CaseDetailsConfig[detailsKey]
+    let cfg = CasesDetailsConfig['CasesDetails']
     let fetchUrl = cfg['buildUrl'](this.props.dataParams,cfg['dataUrl'])
     if(fetchUrl){
       fetch(fetchUrl)
@@ -181,7 +175,7 @@ const CaseDetails = React.createClass({
         .then(j=>{
           if(j.success && j.data.length > 0) {
             // 因为后天返回的pcDetailImages是一个字符串,所以要转换成json
-            this.setState({data:j.data[0], showPrice:cfg['type'] === 'pat' ? false : true},()=>{
+            this.setState({data:j.data[0]},()=>{
               $("#slider_case_detail").Slider({
                 type: "Horizontal"
               })
@@ -192,4 +186,4 @@ const CaseDetails = React.createClass({
   }
 })
 
-export { CaseDetails }
+export { CasesDetails }
