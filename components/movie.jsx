@@ -91,7 +91,7 @@ const ItemType = React.createClass({
           if(j.success) {
             // 针对每个数据,只取 id, type, coverUrlWeb, description, videoUrl, videoId, hitNum
             temp[i] = _.map(j.data || [], (v,k)=>{
-              return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl'])
+              return _.pick(v,['name','videoId', 'type', 'coverUrlWeb', 'description', 'videoUrl', 'id'])
             });
             this.setState({data:temp, index:i});
           }
