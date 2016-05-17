@@ -4,7 +4,7 @@ import { BaseConfig } from './base'
 const SchemeConfig = {
   // 顶部广告
   'MediaSlider':_.merge({
-    'dataUrl':'vda/scheme_top',
+    'dataUrl':'vda/scheme_index_top',
     'aspectRatio':'192:68',
     'height':680
   },BaseConfig),
@@ -18,7 +18,7 @@ const SchemeConfig = {
 
   // 婚庆定制最新动态
   'SchemeImageHot': _.merge({
-    'dataUrl': 'vda/scheme_hot?pageIndex=1&pageSize=5', // 数据请求地址
+    'dataUrl': 'vda/scheme_index_hot?pageIndex=1&pageSize=5', // 数据请求地址
   },BaseConfig),
 
   // 最佳案例热区

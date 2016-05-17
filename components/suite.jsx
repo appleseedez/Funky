@@ -44,7 +44,7 @@ const SuiteList = React.createClass({
           _.map(this.state.data,(v,k)=>{
             return (
               <li className="item-box" key={k}>
-                <a className='img-box' href={ '/suite/'+v.id }>
+                <a className='img-box' href={ '/suite/'+v.id } target='_blank' >
                   <MediaItem aspectRatio={'55:32'} height={320} mediaUrl={v.coverUrlWeb}  water={false}/>
                 </a>
                 <div className='r-box'>

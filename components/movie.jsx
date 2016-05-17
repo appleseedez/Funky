@@ -82,7 +82,7 @@ const ItemType = React.createClass({
             _.map(this.state.data[this.state.index], (v,k) => {
               let key = ''+this.state.index+k;
               let hf = '/movie-details?id='+v.id;
-              console.log(hf)
+              let description = v.description || ''
               return (
                 <li key={key} className="item-box">
                   <div className="animat-1-hive" />
@@ -93,7 +93,7 @@ const ItemType = React.createClass({
                     </div>
                     <div className="item-info">
                       <h2>{v.name}</h2>
-                      <p>{v.description.length>41?v.description.slice(0,40)+'......':v.description}</p>
+                      <p>{description.length>41?v.description.slice(0,40)+'......':v.description}</p>
                       <span className="more"> >>更多详情</span>
                     </div>
                   </a>

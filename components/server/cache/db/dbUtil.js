@@ -10,8 +10,6 @@ var FilterConditionHotelDistrict = require("./module/filterCondition/hotelDistri
 var Adv = require("./module/adv.js");
 var Pringles = require("./module/pringles.js");
 var PringlesSeason = require("./module/pringlesSeason.js");
-var RecordVideo = require("./module/recordVideo.js");
-var RecordVideoSeason = require("./module/recordVideoSeason.js");
 var Sample = require("./module/sample.js");
 var Suite = require("./module/suite.js");
 var FilterConditionShootStyle = require("./module/filterCondition/shootStyle.js");
@@ -58,8 +56,6 @@ var models = {
   "Sample": Sample,
   "Pringles": Pringles,
   "PringlesSeason": PringlesSeason,
-  "RecordVideo": RecordVideo,
-  "RecordVideoSeason": RecordVideoSeason,
   "Suite": Suite,
   "FilterConditionShootStyle": FilterConditionShootStyle,
   "FilterConditionExterior": FilterConditionExterior,
@@ -100,8 +96,6 @@ var mSyncFlg = {
   "Sample": false,
   "Pringles": false,
   "PringlesSeason": false,
-  "RecordVideo": false,
-  "RecordVideoSeason": false,
   "Suite": false,
   "FilterConditionShootStyle": false,
   "FilterConditionExterior": false,
@@ -338,8 +332,8 @@ exports.Instance = function() {
   // 分三级数据拉取级别
   // 一级资源,更新比较频繁的资源
   var tasks1 = [
-    'Activity', 'Adv', 'Sample', 'Pringles', 'RecordVideo', 'FollowPhoto', 'FollowVideo',
-    'PringlesSeason', 'RecordVideoSeason', 'FollowPhotoSeason', 'FollowVideoSeason',
+    'Activity', 'Adv', 'Sample', 'Pringles', 'FollowPhoto', 'FollowVideo',
+    'PringlesSeason', 'FollowPhotoSeason', 'FollowVideoSeason',
     'Cases3D', 'Suite', 'WeddingClass', 'Dress', 'Movie'
   ];
 

@@ -25,10 +25,6 @@ const DBConfig = {
   PringlesPath:"/api/pringles/all",
   // 客片分季数据
   PringlesSeasonPath:"/api/pringlesSeason/all",
-  // 纪实MV
-  RecordVideoPath:"/api/recordVideo/all",
-  // 纪实MV分季
-  RecordVideoSeasonPath:"/api/recordVideoSeason/all",
   // 套系
   SuitePath:'/api/suite/all',
   // 摄影风格
@@ -94,7 +90,7 @@ const MemConfig = {
 
 module.exports = {
   'APIPort': "8088",
-  'APIHost': (process.env.NODE_ENV === 'production')?'127.0.0.1':'192.168.1.5',
+  'APIHost': (process.env.NODE_ENV === 'production')?'127.0.0.1':'120.25.252.134',
   'DBConfig':DBConfig,
   'Thinky':Thinky,
   'MemConfig':MemConfig

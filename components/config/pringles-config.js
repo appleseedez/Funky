@@ -10,8 +10,8 @@ const PringlesConfig  = {
     'type':'pringles',
     'link':'/pringles',
     'countPlugin':true, // 是否需要显示列表的数据总数
-    'dataUrl':'pringles/pringles_list',
-    'displayTextPrefix':'找到最佳客片',
+    'dataUrl':'pringles/weddingshot_index_best_pringles',
+    'displayTextPrefix':'最佳客片',
     'displayTextSuffix':'套',
     'params':{
       'pageSize':8,

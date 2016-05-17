@@ -373,27 +373,41 @@ const HotelMenu = React.createClass({
   }
 })
 
-
 const HotelRecommend = React.createClass({
   render () {
-    return (
-      <ul className="list-adv">
-        {
-          _.map(this.state.recommends,function(v,k){
-            return (
-              <li className="item-box" key={k}>
-                <a href={'/hotel/'+v.id} className='img-box' target='_blank'>
-                  <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
-                </a>
-                <div className="title-box">
-                <span>{v.name}</span>
-                </div>
-              </li>
-            )
-          })
-        }
-      </ul>
-    )
+    if (this.state.recommends && this.state.recommends.length > 0) {
+      return (
+        <div className='recommend-adv-box'>
+          <div className='hotel-recommend-adv-box clearfix'>
+            <div className="title-rcmd">
+              <h1>推荐酒店</h1>
+              <div className="line-middle" />
+            </div>
+            <div className="sel-card-jsbn">
+              <span className="item">同价位</span>
+            </div>
+            <ul className="list-adv">
+              {
+                _.map(this.state.recommends,function(v,k){
+                  return (
+                    <li className="item-box" key={k}>
+                      <a href={'/hotel/'+v.id} className='img-box' target='_blank'>
+                        <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
+                      </a>
+                      <div className="title-box">
+                        <span>{v.name}</span>
+                      </div>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+        </div>
+      )
+    } else {
+      return null
+    }
   },
   getDefaultProps(){
     return {
@@ -463,18 +477,7 @@ const HotelDetails = React.createClass({
               <HotelMenu data={menus}/>
             </div>
           </div>
-          <div className='recommend-adv-box'>
-            <div className='hotel-recommend-adv-box clearfix'>
-              <div className="title-rcmd">
-                  <h1>推荐酒店</h1>
-                  <div className="line-middle" />
-              </div>
-              <div className="sel-card-jsbn">
-                  <span className="item">同价位</span>
-              </div>
-              <HotelRecommend {...HotelDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
-            </div>
-          </div>
+          <HotelRecommend {...HotelDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
         </div>
       </div>
     )

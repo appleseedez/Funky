@@ -4,40 +4,186 @@ import _ from 'lodash'
 import { MediaItem } from './common/media-item.jsx'
 import { HallDetailsConfig } from './config/hall-details-config'
 
-const HallThumb = React.createClass({
+//const HallThumb = React.createClass({
+//  render () {
+//    return (
+//      <div className='img-info'>
+//        <div className='slider-box-4-js'>
+//          {
+//            _.map(this.props.data,(v,k)=>{
+//              let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
+//              if (0===k) {
+//                return (
+//                  <a href={url} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image' >
+//                    <div className='big-img-box mgb30'>
+//                      <MediaItem {...HallDetailsConfig['HallThumbMediaItem']} mediaUrl={v} water={false} />
+//                    </div>
+//                    <div className='slider-tip-box'>
+//                      <span>点击看大图</span>
+//                    </div>
+//                  </a>
+//                )
+//              }else {
+//                return (
+//                  <a href={url} key={k} data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image'></a>
+//                )
+//              }
+//            })
+//          }
+//        </div>
+//      </div>
+//    )
+//  },
+//  getDefaultProps(){
+//    return {
+//      data:[]
+//    }
+//  }
+//})
+
+let ThumbShow = React.createClass({
   render () {
     return (
-      <div className='img-info'>
-        <div className='slider-box-4-js'>
-          {
-            _.map(this.props.data,(v,k)=>{
-              let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
-              if (0===k) {
-                return (
-                  <a href={url} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image' >
-                    <div className='big-img-box mgb30'>
-                      <MediaItem {...HallDetailsConfig['HallThumbMediaItem']} mediaUrl={v} water={false} />
-                    </div>
-                    <div className='slider-tip-box'>
-                      <span>点击看大图</span>
-                    </div>
+      <div>
+        {
+          _.map(this.props.data,(v,k)=>{
+            let url = v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
+            if (k === this.props.index) {
+              return (
+                <div className="wrap_bimg" key={k}>
+                  <a href={url} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image' >
+                    <img src={url} />
                   </a>
-                )
-              }else {
-                return (
-                  <a href={url} key={k} data-uk-lightbox='{group:"hallThumb"}' data-lightbox-type='image'></a>
-                )
+                </div>
+              )
+            } else {
+              return (
+                <a href={url} key={k} data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image'></a>
+              )
+            }
+          })
+        }
+      </div>
+    )
+  },
+
+  getDefaultProps(){
+    return {
+      data:[],
+      index: 0
+    }
+  }
+});
+
+
+let HallThumb = React.createClass({
+  render () {
+    return (
+      <div className="gallery">
+        <ThumbShow data={this.props.data} index={this.state.index} />
+        <div className="wrap_img_list">
+          <div className="picul">
+            <ul className="spic" style={{width:140*4}}>
+              {
+                _.map(this.props.data,(v,k)=>{
+                  // 只显示4个
+                  if ((k >= this.state.sIndex) && (k < this.state.sIndex+4)) {
+                    return (
+                      <li key={k} className="galleryItem stopGallery"
+                          data-origin={v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'}
+                          onClick={this.click.bind(this, k)}
+                      >
+                        <img src={v+'@120w_75h_90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'} />
+                      </li>
+                    )
+                  }
+                })
               }
-            })
-          }
+            </ul>
+          </div>
+          <div className={this.state.previousClass} onClick={this.previous}></div>
+          <div className={this.state.nextClass} onClick={this.next}></div>
         </div>
       </div>
     )
   },
+
   getDefaultProps(){
     return {
       data:[]
     }
+  },
+
+  getInitialState() {
+    return {
+      index:0,
+      sIndex:0,
+      previousClass:'left disabled',
+      nextClass:'right'
+    }
+  },
+
+  componentWillReceiveProps(nextProps) {
+    let maxI = nextProps.data.length;
+    if (maxI > 4) {
+      this.setState(
+        {sIndex:0, previousClass:'left disabled', nextClass:'right'}
+      );
+    } else {
+      this.setState(
+        {sIndex:0, previousClass:'left disabled', nextClass:'right disabled'}
+      );
+    }
+  },
+
+  componentDidMount() {
+  },
+
+  previous(e) {
+    let index = this.state.sIndex;
+    let maxI = this.props.data.length;
+    if (index-4 <= 0) {
+      index = 0;
+      if (maxI <= 4) {
+        this.setState(
+          {sIndex:index, previousClass:'left disabled', nextClass:'right disabled'}
+        );
+      } else {
+        this.setState(
+          {sIndex:index, previousClass:'left disabled', nextClass:'right'}
+        );
+      }
+    } else {
+      index -= 4;
+      if (maxI > index+4) {
+        this.setState(
+          {sIndex:index, previousClass:'left', nextClass:'right'}
+        );
+      } else {
+        this.setState(
+          {sIndex:index, previousClass:'left', nextClass:'right disabled'}
+        );
+      }
+    }
+  },
+
+  next(e) {
+    let index = this.state.sIndex;
+    let maxI = this.props.data.length;
+    if (index+4 < maxI) {
+      index += 4;
+      this.setState(
+        {sIndex:index, previousClass:'left', nextClass:'right'}
+      );
+    } else {
+      this.setState(
+        {sIndex:index, nextClass:'right disabled'}
+      );
+    }
+  },
+
+  click(index, e) {
+    this.setState({index:index});
   }
 })
 
@@ -68,24 +214,36 @@ const HallBaseInfo = React.createClass({
 
 const HotelRecommend = React.createClass({
   render () {
-    return (
-      <ul className="list-adv">
-          {
-              _.map(this.state.recommends,function(v,k){
+    if (this.state.recommends && this.state.recommends.length > 0) {
+      return (
+        <div className='recommend-adv-box'>
+          <div className='hotel-recommend-adv-box clearfix'>
+            <div className="title-rcmd">
+              <h1>推荐酒店</h1>
+              <div className="line-middle" />
+            </div>
+            <ul className="list-adv">
+              {
+                _.map(this.state.recommends,function(v,k){
                   return (
-                      <li className="item-box" key={k}>
-                          <a href={'/hotel/'+v.id} className='img-box' target='_blank'>
-                            <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
-                          </a>
-                          <div className="title-box">
-                          <span>{v.name}</span>
-                          </div>
-                      </li>
+                    <li className="item-box" key={k}>
+                      <a href={'/hotel/'+v.id} className='img-box' target='_blank'>
+                        <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
+                      </a>
+                      <div className="title-box">
+                        <span>{v.name}</span>
+                      </div>
+                    </li>
                   )
-              })
-          }
-      </ul>
-    )
+                })
+              }
+            </ul>
+          </div>
+        </div>
+      )
+    } else {
+      return null
+    }
   },
   getDefaultProps(){
     return {
@@ -95,8 +253,8 @@ const HotelRecommend = React.createClass({
   getInitialState() {
     return {
       recommends:[{
-        'coverUrlWeb':'//placehold.it/168x112',
-        'name':'金色百年'
+        'coverUrlWeb':'',
+        'name':''
       }]
     }
   },
@@ -131,16 +289,16 @@ const HotelRecommend = React.createClass({
 
 const CasesShow = React.createClass({
   render () {
-    console.log(this.state.data[0])
     let recommend = this.state.data[0] //第一个
-    let secondary = this.state.data.slice(1,5) //剩下四个
     if (recommend) {
       return (
         <div>
           <h2 className="mgb10">本厅婚礼实例</h2>
           <div className='Case-box mgb20'>
             <div className='img-box'>
-              <MediaItem width={720} aspectRatio={'1:-1'} mediaUrl={recommend.coverUrlWeb} />
+              <a href={'/cases/'+recommend.id} target='_blank'>
+                <MediaItem width={720} aspectRatio={'1:-1'} mediaUrl={recommend.coverUrlWeb} />
+              </a>
             </div>
             <div className='info-box'>
               <h3>{recommend.name}</h3>
@@ -154,28 +312,32 @@ const CasesShow = React.createClass({
           </div>
           <ul className="list-2-js list-case clearfix">
             {
-              _.map(secondary,(v,k)=>{
-                return (
-                  <li className="item-box column-mg20-17 mg0" key={k}>
-                    <a className="hover-box transition-opacity" href={'/cases/'+v.id}>
-                    <div className="pos-box">
-                        <h3>{v.name}</h3>
-                        <div className="etc-info"><b>{parseInt(v.senceCost)!==0?'￥'+parseFloat(v.senceCost).toFixed(2):''}</b><span>（{v.holdingTime}）</span></div>
-                        <div className="btn-box"></div>
-                        <div classNameL="mask-bg"></div>
-                    </div>
-                  </a>
-                  <div className='img-box'>
-                    <MediaItem width={463} aspectRatio={'1:-1'} mediaUrl={v.coverUrlWeb} />
-                  </div>
-                </li>
-                )
+              _.map(this.state.data,(v,k)=>{
+                if (v && k > 0) {
+                  return (
+                    <li className="item-box column-mg20-17 mg0" key={k}>
+                      <a className="hover-box transition-opacity" href={'/cases/'+v.id} target='_blank'>
+                        <div className="pos-box">
+                          <h3>{v.name}</h3>
+                          <div className="etc-info"><span>{v.holdingTime}</span></div>
+                          <div className="btn-box"></div>
+                          <div classNameL="mask-bg"></div>
+                        </div>
+                      </a>
+                      <div className='img-box'>
+                        <MediaItem height={310} aspectRatio={'465:310'} mediaUrl={v.coverUrlWeb} />
+                      </div>
+                    </li>
+                  )
+                } else {
+                  return null
+                }
               })
             }
           </ul>
         </div>
       )
-    }else {
+    } else {
       return null
     }
 
@@ -194,7 +356,9 @@ const CasesShow = React.createClass({
     if (nextProps.dataUrl !== undefined && nextProps.caseId) {
       let casesIDs = nextProps.caseId.split(',') || []
       Promise.all(_.map(casesIDs.slice(0,5),(v,k)=>{
-        return fetch(nextProps.baseUrl + nextProps.dataUrl+v).then(res=>res.json()).then(j=>j.data[0])
+        if (v && v.length > 0) {
+          return fetch(nextProps.baseUrl + nextProps.dataUrl+v).then(res=>res.json()).then(j=>j.data[0])
+        }
       })).then((data)=>{
         this.setState({
           data:data
@@ -206,7 +370,9 @@ const CasesShow = React.createClass({
     if (this.props.dataUrl !== undefined && this.props.caseId) {
       let casesIDs = this.props.caseId.split(',') || []
       Promise.all(_.map(casesIDs,(v,k)=>{
-        return fetch(this.props.baseUrl + this.props.dataUrl+v).then(res=>res.json()).then(j=>j.data[0])
+        if (v && v.length > 0) {
+          return fetch(this.props.baseUrl + this.props.dataUrl+v).then(res=>res.json()).then(j=>j.data[0])
+        }
       })).then((data)=>{
         this.setState({
           data:data
@@ -237,20 +403,12 @@ const HallDetails = React.createClass({
             <div className="hotel-detail-info banquet-detail-info clearfix">
               <h2 className="mgb10">本厅平面图</h2>
               <div className="banquet-img-box mgb30">
-                <MediaItem aspectRatio='95:54' height={540} mediaUrl={this.state.details.graphicDesignUrl} water={false} />
+                <MediaItem aspectRatio='95:54' width={950} mediaUrl={this.state.details.graphicDesignUrl} water={false} />
               </div>
               <CasesShow {..._.merge(this.state.details,HallDetailsConfig['CasesShow'])} caseId={this.state.details.caseId}/>
             </div>
           </div>
-          <div className='recommend-adv-box'>
-            <div className='hotel-recommend-adv-box clearfix'>
-              <div className="title-rcmd">
-                  <h1>推荐酒店</h1>
-                  <div className="line-middle" />
-              </div>
-              <HotelRecommend {...HallDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
-            </div>
-          </div>
+          <HotelRecommend {...HallDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
         </div>
       </div>
     )

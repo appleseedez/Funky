@@ -14,8 +14,8 @@ const FollowPhotoConfig = {
     'countPlugin':true,
     'link':'followPhoto',
     'dataUrl':'followPhoto/weddingpat_list',
-    'displayTextPrefix':'找到最佳案例',
-    'displayTextSuffix':'套',
+    'displayTextPrefix':'共有',
+    'displayTextSuffix':'套婚礼跟拍',
     'params':{
       'pageSize':12,
       'pageIndex':1

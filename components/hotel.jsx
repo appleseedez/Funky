@@ -61,7 +61,7 @@ const ListItemHallList = React.createClass({
           _.map(this.props.banquetHallList.slice(0,2),(v,k)=>{
             return (
               <dd key={k}>
-                <a href={'/hall/'+v.id}>
+                <a href={'/hall/'+v.id} target="_blank">
                   <span>{v.name}</span>
                   <span><b>{v.maxTableNum}</b><em>桌</em></span>
                   <span>{v.height+'米'}</span>
@@ -197,7 +197,7 @@ const HotelListItem = React.createClass({
       <li className='item-box clearfix'>
         <div className='info-box'>
           <div className='content-box'>
-            <a href={'/hotel/'+this.props.id} className='img-box'>
+            <a href={'/hotel/'+this.props.id} className='img-box' target="_blank">
               <MediaItem {...HotelConfig['HotelList']} mediaUrl={this.props.coverUrlWeb} water={false} />
             </a>
             <div className='info'>

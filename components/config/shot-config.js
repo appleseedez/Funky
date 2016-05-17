@@ -4,7 +4,7 @@ import _ from 'lodash'
 const ShotConfig = {
   // 顶部广告
   'MediaSlider':_.merge({
-    'dataUrl':'vda/shot_top',
+    'dataUrl':'vda/weddingshot_index_top',
     'aspectRatio':'192:68',
     'height':680
   },BaseConfig),
@@ -18,7 +18,7 @@ const ShotConfig = {
     'imageUrl': '//img2.jsbn.com/static/satisfashion.jpg'
   }],
 
-  // 婚纱摄影最细动态
+  // 婚纱摄影最新动态
   'ShotImageHot': _.merge({
     'dataUrl': 'vda/weddingshot_index_news?pageIndex=1&pageSize=5', // 数据请求地址
   },BaseConfig),
@@ -30,7 +30,7 @@ const ShotConfig = {
 
   // 最佳客片热区
   BestPringlesHot: _.merge({
-    'dataUrl': 'pringles/pringles_list?pageIndex=1&pageSize=8', // 数据请求地址
+    'dataUrl': 'pringles/weddingshot_index_best_pringles?pageIndex=1&pageSize=8', // 数据请求地址
   },BaseConfig),
 
   // 最新活动

@@ -34,7 +34,7 @@ const Episode = React.createClass({
                         <div className='pic'>
                           <MediaItem {...this.props} mediaUrl={v.coverUrlWeb} water={false} />
                         </div>
-                        <p><span>{v.weddingDate}</span><br /><span>{v.name}</span></p>
+                        <p><span>{v.name}</span></p>
                       </div>
                     </li>
                   )

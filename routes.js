@@ -50,9 +50,6 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/pringlesSeason/all':'客片分季',
     '/api/suite/:position':'套系列表',
     '/api/suite/detail/:id': '套系详情',
-    '/api/recordVideo/:position?seasonId=分级ID&sort=data(按时间排序) or hits(按点击量排序)': '婚纱摄影-纪实MV',
-    '/api/recordVideo/detail/:id': '婚纱摄影-纪实MV详情',
-    '/api/recordVideoSeason/all': '婚纱摄影-纪实MV分季',
     '/api/cases/:position?styleId=风格ID&minPrice=最低价格&maxPrice=最高价格':'实景案例',
     '/api/cases/detail/:id': '实景案例详情',
     '/api/case3D/:position?':'3D案例',
@@ -89,7 +86,7 @@ apiRouter.get('/', function* apiRoot(next) {
     '/api/weddingroom/detail/:id': '婚礼课堂详情',
     'Adv': '^_^',
     'Hotel,FilterConditionHotelType,FilterConditionHotelDistrict': '^_^',
-    'Sample,Pringles,PringlesSeason,RecordVideo,RecordVideoSeason,Suite,FilterConditionShootStyle,FilterConditionExterior': '^_^',
+    'Sample,Pringles,PringlesSeason,Suite,FilterConditionShootStyle,FilterConditionExterior': '^_^',
     'Cases,Case3D,FollowPhoto,FollowPhotoSeason,FollowVideo,FollowVideoSeason,F4Photographer,F4Camera,F4Dresser,F4Host,F4Team,FilterConditionCaseStyle': '^_^',
     'Dress,FilterConditionDressBrand,FilterConditionDressType': '^_^',
     'Movie': '^_^',
@@ -256,8 +253,6 @@ siteRouter.get('/followVideo/:id', function* index(next) {
 })
 
 
-
-
 ///** 提交婚庆需求 **/
 //siteRouter.get('/scheme-require', function* index(next) {
 //  yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))
@@ -307,9 +302,6 @@ siteRouter.get('/map/:longitude/:latitude', function* index(next) {
 siteRouter.get('/hotel-require', function* index(next) {
   yield this.render('modules/default', renderOption('hotel-require', '/hotel-require', '/hotel'))
 })
-
-
-
 
 
 ///** 婚礼课堂 **/

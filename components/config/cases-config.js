@@ -21,7 +21,7 @@ const CasesConfig = {
     'countPlugin':true,
     'link':'cases',
     'dataUrl':'cases/scheme_list',
-    'displayTextPrefix':'找到最佳案例',
+    'displayTextPrefix':'最佳案例',
     'displayTextSuffix':'套',
     'params':{
       'pageSize':12,
