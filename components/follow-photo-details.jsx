@@ -17,14 +17,14 @@ const BasicInfo = React.createClass({
           <div className='type-box'>
             <span>风格:</span>
             {
-              _.map(this.props.caseStyleName&&this.props.caseStyleName.split(',')||[],(v,k)=>{
+              _.map(this.props.styleName&&this.props.styleName.split(',')||[],(v,k)=>{
                 return <p key={k}>{v + ' '}</p>
               })
             }
           </div>
           <div className='type-box'>
             <span>色系:</span>
-            <p>{this.props.color || '默认色系'}</p>
+            <p>{this.props.color}</p>
             <i className='violet-bg-1-js' />
             <i className='golden-bg-1-js' />
           </div>
@@ -85,21 +85,23 @@ const FollowPhotoDetails = React.createClass({
               </div>
             </div>
           </div>
-          <div className="tilte-box">
-            <h1>{this.state.data.name}</h1>
-          </div>
-          <div className='case-detail-box responsive-box clearfix'>
-            <div className='left-box'>
-              <div className='intr-box'>
-                <p>{this.state.data.description}</p>
-              </div>
-            </div>
-            <div className='right-box'>
-              <div className='line-left' />
-              <BasicInfo {...this.state.data} />
-              <Concept {...this.state.data} />
-            </div>
-          </div>
+          {
+            //<div className="tilte-box">
+            //  <h1>{this.state.data.name}</h1>
+            //</div>
+            //<div className='case-detail-box responsive-box clearfix'>
+            //<div className='left-box'>
+            //<div className='intr-box'>
+            //<p>{this.state.data.description}</p>
+            //</div>
+            //</div>
+            //<div className='right-box'>
+            //<div className='line-left' />
+            //<BasicInfo {...this.state.data} />
+            //<Concept {...this.state.data} />
+            //</div>
+            //</div>
+          }
         </div>
       </div>
     )
