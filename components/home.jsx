@@ -426,7 +426,7 @@ const HotelDiamondHot = React.createClass({
               </li>
               <li className="item">
                 <a href="http://www.chinad9.com" target='_blank'>
-                  <span>婚戒砖石</span>
+                  <span>婚戒钻石</span>
                   <div className="tab-black"></div>
                 </a>
               </li>

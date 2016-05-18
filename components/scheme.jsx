@@ -81,7 +81,7 @@ const NavGallery = React.createClass({
               </li>
               <li className="item index-last">
                 <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
-                  <span>如何挑选婚礼人</span>
+                  <span>挑选婚礼人</span>
                   <div className="tab-black"></div>
                 </a>
               </li>
@@ -211,7 +211,7 @@ const BestCasesHot = React.createClass({
               </li>
               <li className="item">
                 <a href="/cases">
-                  <span>更多精品</span>
+                  <span>实景案例</span>
                   <div className="tab-black"></div>
                 </a>
               </li>

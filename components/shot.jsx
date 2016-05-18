@@ -54,7 +54,7 @@ const ShotImageHot = React.createClass({
                 </a>
               </li>
               <li className="item index-last">
-                <a href="javascript:void(0)">
+                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
                   <span>询问档期及拍摄相关</span>
                   <div className="tab-black"></div>
                 </a>
