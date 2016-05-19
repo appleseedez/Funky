@@ -139,7 +139,6 @@ const siteRouter = new Router()
  */
 let renderOption = (templateName, menuKey, parentKey,params) => {
   let p = params || {}
-  console.log(templateName)
   return {
     'title':ComponentsSeo[templateName].seoTitle,
     'seoKeywords':ComponentsSeo[templateName].seoKeywords,

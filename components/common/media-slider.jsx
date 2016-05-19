@@ -53,7 +53,7 @@ const MediaSlider = React.createClass({
     if (_.size(nextProps.params)>0) {
       p = '?'+$.param(nextProps.params)
     }
-    console.log(nextProps.baseUrl);
+
     fetch(nextProps.baseUrl + nextProps.dataUrl + p)
     .then(res => {return res.json()})
     .then(j=>{

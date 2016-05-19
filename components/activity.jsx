@@ -7,7 +7,6 @@ const Activity = React.createClass({
   render() {
     let imageListData = []
     imageListData = JSON.parse(this.state.data.detailImages || '[]')
-    console.log(imageListData)
     return(
       <div className="global-center-box">
         {
