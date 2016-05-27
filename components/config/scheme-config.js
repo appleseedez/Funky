@@ -23,7 +23,7 @@ const SchemeConfig = {
 
   // 最佳案例热区
   BestCasesHot: _.merge({
-    'dataUrl': 'cases/scheme_recommend_list?pageIndex=1&pageSize=9', // 数据请求地址
+    'dataUrl': 'cases/scheme_index_recommend_list?pageIndex=1&pageSize=9', // 数据请求地址
   },BaseConfig),
 
   // 婚礼用品&婚车租赁热区
