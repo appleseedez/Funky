@@ -5,6 +5,7 @@ let r = env.Thinky.r
 const advApi = {
   // 广告
   'get+/vda/:position': function*(next) {
+    this.APIKey = 'Adv'
 
     if (this.params.position === 'all') {
       this.model = adv.filter({})
@@ -26,7 +27,9 @@ const advApi = {
       }
     })
 
-    this.APIKey = 'Adv'
+    // 只区有用的字段
+    this.model = this.model.pluck("coverUrlWeb","coverUrlWx","videoUrl","linkUrl");
+
     yield next
   }
 

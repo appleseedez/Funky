@@ -61,14 +61,22 @@ const photoApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
+        // 只取有用的字段
+        this.model = this.model.pluck("id","coverUrlWeb","coverUrlWx","name");
+
         yield next
     },
     // 样片详情
     'get+/sample/detail/:id':function*(next){
+        this.APIKey = 'Sample'
+
         this.model = sample.filter({
             id:parseInt(this.params.id)
         })
-        this.APIKey = 'Sample'
+
+        // 只区有用的字段
+        this.model = this.model.pluck("pcDetailImages","wxDetailImages");
+
         yield next
     },
 
@@ -114,19 +122,28 @@ const photoApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
+        this.model = this.model.pluck("id","coverUrlWeb","coverUrlWx","name","actorMaleName","actorFemaleName");
+
         yield next
     },
     // 客片详情
     'get+/pringles/detail/:id': function*(next) {
+        this.APIKey = 'Pringles'
+
         this.model = pringles.filter({
             id: parseInt(this.params.id)
         })
-        this.APIKey = 'Pringles'
+
+        // 只区有用的字段
+        this.model = this.model.pluck("pcDetailImages","wxDetailImages");
+
         yield next
     },
 
     // 客片分季列表
     'get+/pringlesSeason/:position': function*(next) {
+        this.APIKey = 'PringlesSeason'
+
         if (this.params.position === 'all') {
             this.model = pringlesSeason.filter({})
         } else {
@@ -148,13 +165,16 @@ const photoApi = {
             }
         })
 
-        this.APIKey = 'PringlesSeason'
+        // 只区有用的字段
+        this.model = this.model.pluck("coverUrlWeb","coverUrlWx","name");
+
         yield next
     },
 
     // 婚纱摄影-套系列表
     'get+/suite/:position': function*(next) {
         this.APIKey = 'Suite'
+
         if (this.params.position === 'all') {
             this.model = suite.filter({})
         } else {
@@ -182,14 +202,24 @@ const photoApi = {
                 this.model = this.model.limit(parseInt(this.request.query["pageSize"] || '10'));
             }
         })
+
+        // TODO:新版上线以后去掉 description,updateTime
+        // 只区有用的字段
+        this.model = this.model.pluck("id","coverUrlWeb","coverUrlWx","salePrice","detail","description","updateTime");
+
         yield next
     },
     // 婚纱摄影-套系详情
     'get+/suite/detail/:id': function*(next) {
+        this.APIKey = 'Suite'
+
         this.model = suite.filter({
             id: parseInt(this.params.id)
         })
-        this.APIKey = 'Suite'
+
+        // 只区有用的字段
+        this.model = this.model.pluck("pcDetailImages","wxDetailImages");
+
         yield next
     }
 }
