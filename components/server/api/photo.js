@@ -205,7 +205,7 @@ const photoApi = {
 
         // TODO:新版上线以后去掉 description,updateTime
         // 只区有用的字段
-        this.model = this.model.pluck("id","coverUrlWeb","coverUrlWx","salePrice","detail","description","updateTime");
+        this.model = this.model.pluck("id","coverUrlWeb","coverUrlWx","salePrice","detail","description","createTime");
 
         yield next
     },
