@@ -166,7 +166,7 @@ const photoApi = {
         })
 
         // 只区有用的字段
-        this.model = this.model.pluck("coverUrlWeb","coverUrlWx","name");
+        this.model = this.model.pluck("seasonId","coverUrlWeb","coverUrlWx","name");
 
         yield next
     },
