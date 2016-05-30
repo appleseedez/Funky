@@ -78,7 +78,7 @@ const Episode = React.createClass({
         this.setState({
           'dataUrl':'pringles/pringles_season',
           data:j.data,
-          params:{'seasonId':j.data[0].id}
+          params:{'seasonId':j.data[0].seasonId}
         },()=>{
           let slider = $('#J_SliderQuarterly');
           slider.Slider({type:'Horizontal',margin:40,focusShift:false});
