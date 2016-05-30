@@ -28,7 +28,7 @@ const advApi = {
     })
 
     // 只区有用的字段
-    this.model = this.model.pluck("coverUrlWeb","coverUrlWx","videoUrl","linkUrl");
+    this.model = this.model.pluck("coverUrlWeb","coverUrlWx","videoUrl","linkUrl","name","description");
 
     yield next
   }
