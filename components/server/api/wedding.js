@@ -66,25 +66,29 @@ const weddingApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
+        //todo: id, coverUrlWeb, name, holdingTime
+
         yield next
     },
     // 获取实景案例详情,根据资源ID查询
     'get+/cases/detail/:id': function*(next) {
+        this.APIKey = 'Cases'
         this.model = cases.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'Cases'
+        //todo: pcDetailImages name description totalCost originalPrice senceCost hdpcCost designConcept theme caseStyleName color
         yield next
     },
 
     // 根据资源Id查询案例详情
     'get+/detailByResourceId/:resourceId': function*(next) {
+        this.APIKey = 'Cases'
         this.model = cases.filter({
             caseId: parseInt(this.params.resourceId)
         }).skip(0).limit(1)
 
-        this.APIKey = 'Cases'
+        //todo: pcDetailImages name description totalCost originalPrice senceCost hdpcCost designConcept theme caseStyleName color
         yield next
     },
 
@@ -180,15 +184,20 @@ const weddingApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
+        //todo: id, coverUrlWeb, name, holdingTime
+
         yield next
     },
     // 获取跟拍详情
     'get+/followPhoto/detail/:id': function*(next) {
+        this.APIKey = 'FollowPhoto'
+
         this.model = followPhoto.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'FollowPhoto'
+        //todo: pcDetailImages
+
         yield next
     },
 
@@ -261,15 +270,20 @@ const weddingApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
+        //todo: id coverUrlWeb name updateTime
+
         yield next
     },
     // 婚礼视频详情
     'get+/followVideo/detail/:id': function*(next) {
+        this.APIKey = 'FollowVideo'
+
         this.model = followVideo.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'FollowVideo'
+        //todo: name description coverUrlWeb videoUrl
+
         yield next
     },
 

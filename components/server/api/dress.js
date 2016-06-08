@@ -9,10 +9,9 @@ let r = env.Thinky.r
 // 婚纱礼服
 
 const dressApi = {
-
     // 获取礼服详情
     'get+/dress/:position': function*(next) {
-
+        this.APIKey = 'Dress'
         if (this.params.position === 'all') {
             this.model = dress.filter({})
         } else {
@@ -43,9 +42,10 @@ const dressApi = {
 
         this.model = this.model.orderBy(r.desc('weight'));
 
-        this.APIKey = 'Dress'
+        //todo: imageUrl number
+
         yield next
     }
-
 }
+
 export default dressApi

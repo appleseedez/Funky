@@ -64,16 +64,20 @@ const carApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize);
 
+        // todo:id coverUrlWeb title rentalPrice marketPrice
+
         yield next
     },
 
-    // 获取案例详情
+    // 获取婚车详情
     'get+/car/detail/:id': function*(next) {
+        this.APIKey = 'Car'
         this.model = car.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'Car'
+        // todo:pcDetailImages title description parameter content rentalPrice marketPrice
+
         yield next
     }
 

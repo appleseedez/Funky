@@ -56,16 +56,20 @@ const suppliesApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize);
 
+        // todo:id coverUrlWeb title sellingPrice marketPrice
+
         yield next
     },
 
     // 获取案例详情
     'get+/weddingsupplies/detail/:id': function*(next) {
+        this.APIKey = 'Supplies'
         this.model = supplies.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'Supplies'
+        // todo:pcDetailImages title description parameter content sellingPrice marketPrice
+
         yield next
     }
 

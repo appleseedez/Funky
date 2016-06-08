@@ -3,6 +3,13 @@ import _ from 'lodash'
 import { BaseConfig } from '../config/base'
 import { MediaItem } from './media-item.jsx'
 import { ListCount } from './list-count.jsx'
+
+/*
+ <div className="date">
+ <span>({ v.holdingTime })</span>
+ </div>
+* */
+
 const SchemeListItem = React.createClass({
   render () {
     let link = this.props.link || 'cases'
@@ -18,10 +25,6 @@ const SchemeListItem = React.createClass({
                       <div className="layer"/>
                       <div className="info">
                         <h3>{v.name}</h3>
-                        <div className="date">
-                          <b>{v.price || ''}</b>
-                          <span>({v.holdingTime })</span>
-                        </div>
                       </div>
                     </a>
                   </div>

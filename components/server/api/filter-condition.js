@@ -23,6 +23,8 @@ let r = env.Thinky.r
 
 const filterConditionApi = {
   'get+/exterior/all':function*(next){ //外景
+    this.APIKey = 'FilterConditionExterior';
+
     if (this.params.position === 'all') {
       this.model = filterConditionExterior.filter({})
     } else {
@@ -44,11 +46,14 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionExterior';
+    // TODO:exteriorId name
+
     yield next
   },
 
   'get+/shootStyle/all':function*(next){ //风格
+    this.APIKey = 'FilterConditionShootStyle';
+
     if (this.params.position === 'all') {
       this.model = filterConditionShootStyle.filter({})
     } else {
@@ -70,7 +75,8 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionShootStyle';
+    // TODO:shootStyleId name
+
     yield next
   },
 
@@ -101,6 +107,8 @@ const filterConditionApi = {
   },
 
   'get+/caseStyle/all':function*(next){ //案例风格
+    this.APIKey = 'FilterConditionCaseStyle';
+
     if (this.params.position === 'all') {
       this.model = filterConditionCaseStyle.filter({})
     } else {
@@ -122,7 +130,8 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionCaseStyle';
+    //todo: caseStyleId name
+
     yield next
   },
 
@@ -154,6 +163,8 @@ const filterConditionApi = {
   },
 
   'get+/carModels/all':function*(next){ // 婚礼租车型号
+    this.APIKey = 'FilterConditionCarModels';
+
     if (this.params.position === 'all') {
       this.model = filterConditionCarModels.filter({})
     } else {
@@ -175,11 +186,14 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionCarModels';
+    //todo: modelsId name
+
     yield next
   },
 
   'get+/carLevel/all':function*(next){ // 婚礼租车档次
+    this.APIKey = 'FilterConditionCarLevel';
+
     if (this.params.position === 'all') {
       this.model = filterConditionCarLevel.filter({})
     } else {
@@ -201,11 +215,14 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionCarLevel';
+    //todo: levelId name
+
     yield next
   },
 
   'get+/carBrand/all':function*(next){ // 婚礼租车品牌
+    this.APIKey = 'FilterConditionCarBrand';
+
     if (this.params.position === 'all') {
       this.model = filterConditionCarBrand.filter({})
     } else {
@@ -227,11 +244,14 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionCarBrand';
+    //todo: brandId name
+
     yield next
   },
 
   'get+/suppliesBrand/all':function*(next){ // 婚礼用品品牌
+    this.APIKey = 'FilterConditionSuppliesBrand';
+
     if (this.params.position === 'all') {
       this.model = filterConditionSuppliesBrand.filter({})
     } else {
@@ -253,11 +273,14 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionSuppliesBrand';
+    //todo: brandId name
+
     yield next
   },
 
   'get+/suppliesType/all':function*(next){ // 婚礼用品类型
+    this.APIKey = 'FilterConditionSuppliesType';
+
     if (this.params.position === 'all') {
       this.model = filterConditionSuppliesType.filter({})
     } else {
@@ -279,12 +302,15 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionSuppliesType';
+    //todo: typeId name
+
     yield next
   },
 
   // 婚纱礼服--类型
   'get+/dressType/all':function*(next){
+    this.APIKey = 'FilterConditionDressType';
+
     if (this.params.position === 'all') {
       this.model = filterConditionDressType.filter({})
     } else {
@@ -306,37 +332,52 @@ const filterConditionApi = {
       }
     })
 
-    this.APIKey = 'FilterConditionDressType';
+    // todo:typeId name
+
     yield next
   },
 
   // 婚纱礼服--品牌
   'get+/dressBrand/all':function*(next){
-    this.model = filterConditionDressBrand;
-    this.model = this.model.orderBy(r.desc('weight'))
+    this.APIKey = 'FilterConditionDressBrand';
 
+    this.model = filterConditionDressBrand;
+
+    let pageIndex = 0;
+    let pageSize = 10;
     _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
+      if (k.indexOf('pageIndex') !== -1) {
+        pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+        if (pageIndex < 0) {
+          pageIndex = 0
         }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-      else if(k.indexOf('position') !== -1) {
+      } else if(k.indexOf('pageSize') !== -1) {
+        pageSize = parseInt(this.request.query['pageSize'] || '1')
+        if (pageSize < 0) {
+          pageSize = 1
+        }
+      } else if(k.indexOf('position') !== -1) {
         this.model = this.model.filter({
           position: this.params.position})
-      }
-      else if(k.indexOf('typeId') !== -1) {
+      } else if(k.indexOf('typeId') !== -1) {
         this.model = filterConditionDressBrand.filter({
           type: parseInt(this.request.query["typeId"])
         })
       }
     })
 
-    this.APIKey = 'FilterConditionDressBrand';
+    try {
+      let all = yield this.model
+      this.count = all.length || 0
+    } catch (e) {
+      this.count = 0
+    }
+
+    this.model = this.model.orderBy(r.desc('weight'))
+    this.model = this.model.skip(pageIndex * pageSize).limit(pageSize);
+
+    //todo brandId coverUrlWeb name logoUrl
+
     yield next
   }
 

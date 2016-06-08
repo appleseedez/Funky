@@ -53,16 +53,19 @@ const wdyVideoApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
+        //todo 'name', 'coverUrlWeb', 'description', 'id'
+
         yield next
     },
 
     // 微电影详情
     'get+/video/detail/:id': function*(next) {
+        this.APIKey = 'Movie'
         this.model = wdyVideo.filter({
             id: parseInt(this.params.id)
         })
 
-        this.APIKey = 'Movie'
+        //todo 'name', 'coverUrlWeb', 'description', 'videoUrl'
         yield next
     }
 }
