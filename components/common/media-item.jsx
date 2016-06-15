@@ -162,10 +162,11 @@ const ImageItem = React.createClass({
      **/
     let width = this.props.width
     let height = this.props.height
-    let found = this.props.mediaUrl.match(RegForDimension)
+    let found = null;
 
     let fileExtend=''
     if (this.props.mediaUrl) {
+      found = this.props.mediaUrl.match(RegForDimension)
       fileExtend = this.props.mediaUrl.substring(this.props.mediaUrl.lastIndexOf('.')).toLowerCase();
     }
 
