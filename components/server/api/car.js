@@ -1,14 +1,12 @@
 /**
  * Created by chenjianjun on 16/2/26.
  */
-
 import car from '../cache/db/module/car.js'
 import _ from 'lodash'
 import env from '../cache/config'
 let r = env.Thinky.r
 
 // 婚车租赁
-
 const carApi = {
 
     // 获取婚车列表
@@ -64,7 +62,8 @@ const carApi = {
         this.model = this.model.orderBy(r.desc('weight'))
         this.model = this.model.skip(pageIndex * pageSize).limit(pageSize);
 
-        // todo:id coverUrlWeb title rentalPrice marketPrice
+        // 只取有用的字段
+        this.model = this.model.pluck("id","coverUrlWeb","title","rentalPrice","marketPrice");
 
         yield next
     },
@@ -76,7 +75,8 @@ const carApi = {
             id: parseInt(this.params.id)
         })
 
-        // todo:pcDetailImages title description parameter content rentalPrice marketPrice
+        // 只取有用的字段
+        this.model = this.model.pluck("pcDetailImages","title","description","parameter","content","rentalPrice","marketPrice");
 
         yield next
     }

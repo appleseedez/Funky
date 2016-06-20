@@ -97,8 +97,8 @@ const Supply = React.createClass({
             <div className="filter-title">
               <span className="sel">分类</span>
             </div>
-            <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['weddingSuppliesTypeId']} {...SupplyConfig['TypesCategory']} />
-            <ListFilter title={'品牌'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']} sorterKey={['brandId']} {...SupplyConfig['BrandCategory']} />
+            <ListFilter title={'分类'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['typeId']}  sorterKey={['weddingSuppliesTypeId']} {...SupplyConfig['TypesCategory']} />
+            <ListFilter title={'品牌'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['brandId']} sorterKey={['brandId']} {...SupplyConfig['BrandCategory']} />
           </div>
 
           <SupplyItemList {...SupplyConfig['SupplyItemList']} params={_.merge(this.state.params,SupplyConfig['SupplyItemList'].params)} />

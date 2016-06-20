@@ -22,287 +22,132 @@ import env from '../cache/config.js'
 let r = env.Thinky.r
 
 const filterConditionApi = {
-  'get+/exterior/all':function*(next){ //外景
+  // 拍摄外景
+  'get+/exterior/all':function*(next){
     this.APIKey = 'FilterConditionExterior';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionExterior.filter({})
-    } else {
-      this.model = filterConditionExterior.filter({
-        position: this.params.position
-      })
-    }
-
+    this.model = filterConditionExterior;
     this.model = this.model.orderBy(r.desc('weight'))
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
 
-    // TODO:exteriorId name
+    // 只取有用的字段
+    this.model = this.model.pluck("exteriorId","name");
 
     yield next
   },
 
-  'get+/shootStyle/all':function*(next){ //风格
+  // 拍摄风格
+  'get+/shootStyle/all':function*(next){
     this.APIKey = 'FilterConditionShootStyle';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionShootStyle.filter({})
-    } else {
-      this.model = filterConditionShootStyle.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionShootStyle;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    // TODO:shootStyleId name
+    // 只取有用的字段
+    this.model = this.model.pluck("shootStyleId","name");
 
     yield next
   },
 
-  'get+/hotelType/all':function*(next){ // 酒店类型
-    if (this.params.position === 'all') {
-      this.model = filterConditionHotelType.filter({})
-    } else {
-      this.model = filterConditionHotelType.filter({
-        position: this.params.position
-      })
-    }
-    this.model = this.model.orderBy(r.desc('weight'))
-
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
+  // 酒店类型
+  'get+/hotelType/all':function*(next){
     this.APIKey = 'FilterConditionHotelType';
+
+    this.model = filterConditionHotelType;
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    // 只取有用的字段
+    this.model = this.model.pluck("typeId","name");
+
     yield next
   },
 
-  'get+/caseStyle/all':function*(next){ //案例风格
+  //案例风格
+  'get+/caseStyle/all':function*(next){
     this.APIKey = 'FilterConditionCaseStyle';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionCaseStyle.filter({})
-    } else {
-      this.model = filterConditionCaseStyle.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionCaseStyle;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    //todo: caseStyleId name
+    // 只取有用的字段
+    this.model = this.model.pluck("caseStyleId","name");
 
     yield next
   },
 
-  'get+/hotelDistrict/all':function*(next){ //酒店区域
-    if (this.params.position === 'all') {
-      this.model = filterConditionHotelDistrict.filter({})
-    } else {
-      this.model = filterConditionHotelDistrict.filter({
-        position: this.params.position
-      })
-    }
-
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    this.model = this.model.orderBy(r.desc('weight'))
-
+  //酒店区域
+  'get+/hotelDistrict/all':function*(next){
     this.APIKey = 'FilterConditionHotelDistrict';
+
+    this.model = filterConditionHotelDistrict;
+    this.model = this.model.orderBy(r.desc('weight'))
+
+    // 只取有用的字段
+    this.model = this.model.pluck("id","name");
+
     yield next
   },
 
-  'get+/carModels/all':function*(next){ // 婚礼租车型号
+  // 婚礼租车型号
+  'get+/carModels/all':function*(next){
     this.APIKey = 'FilterConditionCarModels';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionCarModels.filter({})
-    } else {
-      this.model = filterConditionCarModels.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionCarModels;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    //todo: modelsId name
+    // 只取有用的字段
+    this.model = this.model.pluck("modelsId","name");
 
     yield next
   },
 
-  'get+/carLevel/all':function*(next){ // 婚礼租车档次
+  // 婚礼租车档次
+  'get+/carLevel/all':function*(next){
     this.APIKey = 'FilterConditionCarLevel';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionCarLevel.filter({})
-    } else {
-      this.model = filterConditionCarLevel.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionCarLevel;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    //todo: levelId name
+    // 只取有用的字段
+    this.model = this.model.pluck("levelId","name");
 
     yield next
   },
 
-  'get+/carBrand/all':function*(next){ // 婚礼租车品牌
+  // 婚礼租车品牌
+  'get+/carBrand/all':function*(next){
     this.APIKey = 'FilterConditionCarBrand';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionCarBrand.filter({})
-    } else {
-      this.model = filterConditionCarBrand.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionCarBrand;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    //todo: brandId name
+    // 只取有用的字段
+    this.model = this.model.pluck("brandId","name");
 
     yield next
   },
 
-  'get+/suppliesBrand/all':function*(next){ // 婚礼用品品牌
+  // 婚礼用品品牌
+  'get+/suppliesBrand/all':function*(next){
     this.APIKey = 'FilterConditionSuppliesBrand';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionSuppliesBrand.filter({})
-    } else {
-      this.model = filterConditionSuppliesBrand.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionSuppliesBrand;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    //todo: brandId name
+    // 只取有用的字段
+    this.model = this.model.pluck("brandId","name");
 
     yield next
   },
 
-  'get+/suppliesType/all':function*(next){ // 婚礼用品类型
+  // 婚礼用品类型
+  'get+/suppliesType/all':function*(next){
     this.APIKey = 'FilterConditionSuppliesType';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionSuppliesType.filter({})
-    } else {
-      this.model = filterConditionSuppliesType.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionSuppliesType;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    //todo: typeId name
+    // 只取有用的字段
+    this.model = this.model.pluck("typeId","name");
 
     yield next
   },
@@ -311,28 +156,11 @@ const filterConditionApi = {
   'get+/dressType/all':function*(next){
     this.APIKey = 'FilterConditionDressType';
 
-    if (this.params.position === 'all') {
-      this.model = filterConditionDressType.filter({})
-    } else {
-      this.model = filterConditionDressType.filter({
-        position: this.params.position
-      })
-    }
+    this.model = filterConditionDressType;
     this.model = this.model.orderBy(r.desc('weight'))
 
-    _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageSize') !== -1) {
-        let limit = 0
-        limit = Number(this.request.query['pageIndex'] || '1') - 1
-        if (limit < 0) {
-          limit = 0
-        }
-        this.model = this.model.skip(limit * Number(this.request.query["pageSize"] || '10'));
-        this.model = this.model.limit(Number(this.request.query["pageSize"] || '10'));
-      }
-    })
-
-    // todo:typeId name
+    // 只取有用的字段
+    this.model = this.model.pluck("typeId","name");
 
     yield next
   },
@@ -341,42 +169,43 @@ const filterConditionApi = {
   'get+/dressBrand/all':function*(next){
     this.APIKey = 'FilterConditionDressBrand';
 
-    this.model = filterConditionDressBrand;
 
-    let pageIndex = 0;
-    let pageSize = 10;
+    //let pageIndex = 0;
+    //let pageSize = 10;
     _.each(this.request.query, (v, k) => {
-      if (k.indexOf('pageIndex') !== -1) {
-        pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
-        if (pageIndex < 0) {
-          pageIndex = 0
-        }
-      } else if(k.indexOf('pageSize') !== -1) {
-        pageSize = parseInt(this.request.query['pageSize'] || '1')
-        if (pageSize < 0) {
-          pageSize = 1
-        }
-      } else if(k.indexOf('position') !== -1) {
-        this.model = this.model.filter({
-          position: this.params.position})
-      } else if(k.indexOf('typeId') !== -1) {
+      //if (k.indexOf('pageIndex') !== -1) {
+      //  pageIndex = parseInt(this.request.query['pageIndex'] || '1') - 1
+      //  if (pageIndex < 0) {
+      //    pageIndex = 0
+      //  }
+      //} else if(k.indexOf('pageSize') !== -1) {
+      //  pageSize = parseInt(this.request.query['pageSize'] || '1')
+      //  if (pageSize < 0) {
+      //    pageSize = 1
+      //  }
+      //} else if(k.indexOf('position') !== -1) {
+      //  this.model = this.model.filter({
+      //    position: this.params.position})
+      //} else
+      if(k.indexOf('typeId') !== -1) {
         this.model = filterConditionDressBrand.filter({
           type: parseInt(this.request.query["typeId"])
         })
       }
     })
-
-    try {
-      let all = yield this.model
-      this.count = all.length || 0
-    } catch (e) {
-      this.count = 0
-    }
+    //
+    //try {
+    //  let all = yield this.model
+    //  this.count = all.length || 0
+    //} catch (e) {
+    //  this.count = 0
+    //}
 
     this.model = this.model.orderBy(r.desc('weight'))
-    this.model = this.model.skip(pageIndex * pageSize).limit(pageSize);
+    //this.model = this.model.skip(pageIndex * pageSize).limit(pageSize);
 
-    //todo brandId coverUrlWeb name logoUrl
+    // 只取有用的字段
+    this.model = this.model.pluck("brandId","name","logoUrl","coverUrlWeb","type");
 
     yield next
   }

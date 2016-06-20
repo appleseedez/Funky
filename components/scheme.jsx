@@ -233,6 +233,12 @@ const BestCasesHot = React.createClass({
 
         <ul className="cases-list">
           {
+            /*
+             <div className="date">
+             <b>{v.price || ''}</b>
+             <span>({v.holdingTime })</span>
+             </div>
+            * */
             _.map(this.state.data,(v,k)=>{
               return (
                 <li className="item-box" key={k}>
@@ -242,10 +248,6 @@ const BestCasesHot = React.createClass({
                       <div className="layer"/>
                       <div className="info">
                         <h3>{v.name}</h3>
-                        <div className="date">
-                          <b>{v.price || ''}</b>
-                          <span>({v.holdingTime })</span>
-                        </div>
                       </div>
                     </a>
                   </div>

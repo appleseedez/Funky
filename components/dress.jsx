@@ -17,7 +17,7 @@ import { DressConfig } from './config/dress-config'
  **/
 const DressHolder = React.createClass({
   render () {
-    let hf = '/dress-details?brandId='+this.props.data.id+'&typeId='+this.props.data.type;
+    let hf = '/dress-details?brandId='+this.props.data.brandId+'&typeId='+this.props.data.type;
     return (
       <div className="show-box">
         <div className="layer-box" />
@@ -77,13 +77,11 @@ const DressType  = React.createClass({
     // 取到配置的获取婚纱品牌数据的请求地址
     const DressBrand = DressConfig['DressBrand']
     if (DressBrand.dataUrl !== undefined) {
-      fetch(DressBrand.baseUrl + DressBrand.dataUrl + this.props.id)
+      fetch(DressBrand.baseUrl + DressBrand.dataUrl + this.props.typeId)
         .then(res => {return res.json()})
         .then(j=>{
           if(j.success && j.data.length > 0) {
-            /* 针对每个类型只取name,id,logoUrl,coverUrlWeb,description,type字段 */
-            this.setState({ brands: _.map(j.data,(v,k)=>{
-              return _.pick(v,['name','id', 'logoUrl', 'coverUrlWeb', 'description', 'type']) }), index:0})
+            this.setState({ brands:j.data, index:0})
           }
         })
     }
@@ -133,7 +131,7 @@ const Dress = React.createClass({
         .then(j=>{
           if(j.success && j.data.length > 0) {
             /* 针对每个类型只取name和id字段 */
-            this.setState({ types: _.map(j.data, (v,k)=>{ return _.pick(v,['name','id']) }) })
+            this.setState({ types:j.data})
           }
         })
     }

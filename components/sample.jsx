@@ -23,8 +23,8 @@ const Sample = React.createClass({
     if (this.state.showFilter) {
       FilterComponent = (
         <div>
-          <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['id']}  sorterKey={['shootStyleId']} {...SampleConfig['StyleFilter']} />
-          <ListFilter title={'场景'} name={'name'} klass={'ico-1-js ico-1-3-js'} valueKey={['id']} sorterKey={['exteriorId']} {...SampleConfig['ExteriorFilter']}/>
+          <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['shootStyleId']}  sorterKey={['shootStyleId']} {...SampleConfig['StyleFilter']} />
+          <ListFilter title={'场景'} name={'name'} klass={'ico-1-js ico-1-3-js'} valueKey={['exteriorId']} sorterKey={['exteriorId']} {...SampleConfig['ExteriorFilter']}/>
         </div>
       )
     }

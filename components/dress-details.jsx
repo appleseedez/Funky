@@ -34,6 +34,11 @@ const DressDetails = React.createClass({
               })
             }
           </ul>
+          {
+            this.state.showMoreFlg
+              ? <div className="more-btn" onClick={this.handleMore}><span>点击查看更多</span></div>
+              : null
+          }
         </div>
       </div>
     );
@@ -47,26 +52,58 @@ const DressDetails = React.createClass({
   getInitialState: function() {
     return {
       dressItems:[],
-      title:""
+      title:"",
+      showMoreFlg:true,
+      params: {
+        pageSize:9,
+        pageIndex:1,
+      }
     };
+  },
+
+  handleMore(e) {
+    e.preventDefault();
+
+    let p = {};
+    p = _.merge(p, this.state.params)
+    p.pageIndex += 1;
+    this.queryData(p, true);
   },
 
   // 数据请求/dress/dress_list?brandld=5品牌ID&typeId=礼服类型ID
   componentDidMount() {
     let request = this.props.dataParams;
     if(request['brandId'] && request['typeId']) {
-      let fetchUrl = DressDetailsConfig['APIConfig']['baseUrl']+'dress/dress_list?'+'brandId='+request['brandId']+'&typeId='+request['typeId'];
-      /** 请求礼服列表 **/
-      fetch(fetchUrl)
-        .then(res => {return res.json()})
-        .then(j=>{
-          if(j.success && j.data.length > 0) {
-            //this.setState({ dressItems:j.data , title:request['typeName']+':'+request['brandName']})
-            this.setState({dressItems:j.data})
-          }
-        })
+      let p = {}
+      p.pageSize = this.state.params.pageSize;
+      p.pageIndex = 1;
+      _.merge(p, {brandId:request['brandId'], typeId:request['typeId']})
+      this.queryData(p, false);
     }
+  },
+
+  queryData(params, isChunk=false) {
+    let fetchUrl = DressDetailsConfig['APIConfig'].buildQueryUrl(params, 'dress/dress_list');
+    fetch(fetchUrl)
+      .then(res => {return res.json()})
+      .then(j=>{
+        if(j.success && j.data.length > 0) {
+          let t;
+          // 如果是加载更多
+          if (isChunk) {
+            t = this.state.dressItems;
+            t = t.concat(j.data);
+          } else {
+            t = j.data;
+          }
+
+          // 判断服务器数据是否加载完毕
+          let m = (j.count > t.length) ? true : false;
+          this.setState({params:params, dressItems:t, showMoreFlg:m})
+        }
+      })
   }
+
 });
 
 export { DressDetails };

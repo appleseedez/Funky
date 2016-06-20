@@ -129,8 +129,8 @@ const Car = React.createClass({
           </div>
         </div>
         <div className="layout-center-box clearfix J_FilterCtrl">
-          <ListFilter title={'婚车车型'} name={'name'} klass={'ico-17-js ico-17-2-js'} valueKey={['id']} sorterKey={['modelsId']} {...CarConfig['ModelCategory']}/>
-          <ListFilter title={'婚车品牌'} name={'name'} klass={'ico-17-js ico-17-3-js'} valueKey={['id']} sorterKey={['brandId']} {...CarConfig['BrandCategory']} />
+          <ListFilter title={'婚车车型'} name={'name'} klass={'ico-17-js ico-17-2-js'} valueKey={['modelsId']} sorterKey={['modelsId']} {...CarConfig['ModelCategory']}/>
+          <ListFilter title={'婚车品牌'} name={'name'} klass={'ico-17-js ico-17-3-js'} valueKey={['brandId']} sorterKey={['brandId']} {...CarConfig['BrandCategory']} />
           <ListFilter title={'婚车价格'} name={'name'} klass={'ico-17-js ico-17-4-js'} valueKey={['minPrice','maxPrice']}  sorterKey={['minPrice','maxPrice']} {...CarConfig['PriceCategory']}  />
           <CarItemList {...CarConfig['CarItemList']} params={_.merge(this.state.params,CarConfig['CarItemList'].params)}/>
           <div id="J_MoreButton">

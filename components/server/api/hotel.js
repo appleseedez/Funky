@@ -113,21 +113,31 @@ const hotelApi = {
     } else {
       this.model = this.model.limit(10);
     }
+
+    // 只取有用的字段
+    //this.model = this.model.pluck("typeId","name");
+
     yield next
   },
 
   // 酒店详情 id是资源ID不是酒店ID
   'get+/hotel/detail/:id': function*(next) {
+    this.APIKey = 'Hotel'
+
     this.model = hotel.filter({
       id: parseInt(this.params.id)
     })
 
-    this.APIKey = 'Hotel'
+    // 只取有用的字段
+    //this.model = this.model.pluck("typeId","name");
+
     yield next
   },
 
   // 获取宴会厅列表
   'get+/banquetHall/list': function*(next) {
+    this.APIKey = 'BanquetHall';
+
     this.model = banquetHall;
     _.each(this.request.query, (v, k) => {
       if (k.indexOf('pageSize') !== -1) {
@@ -146,17 +156,23 @@ const hotelApi = {
       }
     });
 
-    this.APIKey = 'BanquetHall';
+    // 只取有用的字段
+    //this.model = this.model.pluck("typeId","name");
+
     yield next;
   },
 
   // 宴会厅详情
   'get+/banquetHall/detail/:id': function*(next) {
+    this.APIKey = 'BanquetHall';
+
     this.model = banquetHall.filter({
       id: parseInt(this.params.id)
     })
 
-    this.APIKey = 'BanquetHall';
+    // 只取有用的字段
+    //this.model = this.model.pluck("typeId","name");
+
     yield next;
   }
 
