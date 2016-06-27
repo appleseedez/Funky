@@ -3,7 +3,7 @@
  */
 var http = require('http');
 var cache = require("./cache");
-var Config = require("../config.js");
+var Config = require("../../config.js");
 
 var myCache = cache.createCache();
 var memTool = null;

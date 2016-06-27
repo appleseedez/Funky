@@ -19,9 +19,7 @@ import { Suite } from '../suite.jsx'
 import { SuiteDetails } from '../suite-details.jsx'
 import { Hotel } from '../hotel.jsx'
 import { HotelDetails } from '../hotel-details.jsx'
-import { HallDetails } from '../hall-details.jsx'
 import { HotelRequire } from '../hotel-require.jsx'
-import { MapLocation } from '../map-location.jsx'
 import { Scheme } from '../scheme.jsx'
 import { Cases } from '../cases.jsx'
 import { CasesDetails } from '../cases-details.jsx'
@@ -53,8 +51,6 @@ const ComponentsIndex = {
   'suite-details': <SuiteDetails />,
   'hotel': <Hotel />,
   'hotel-details': <HotelDetails />,
-  'hall-details': <HallDetails />,
-  'map-location': <MapLocation />,
   'hotel-require': <HotelRequire />,
   'scheme': <Scheme />,
   'cases': <Cases />,

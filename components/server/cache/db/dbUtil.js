@@ -2,7 +2,7 @@
  * Created by chenjianjun on 15/12/8.
  */
 var http = require('http');
-var Config = require("../config.js");
+var Config = require("../../config.js");
 var Hotel = require("./module/hotel.js");
 var BanquetHall = require("./module/banquetHall.js");
 var FilterConditionHotelType = require("./module/filterCondition/hotelType.js");

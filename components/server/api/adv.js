@@ -1,6 +1,6 @@
 import adv from '../cache/db/module/adv.js'
 import _ from 'lodash'
-import env from '../cache/config'
+import env from '../config'
 let r = env.Thinky.r
 const advApi = {
   // 广告

@@ -3,7 +3,7 @@
  */
 import activity from '../cache/db/module/activity'
 import _ from 'lodash'
-import env from '../cache/config'
+import env from '../config'
 let r = env.Thinky.r
 
 const activityApi = {

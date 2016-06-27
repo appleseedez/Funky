@@ -12,7 +12,7 @@ const Navigation = React.createClass({
         {
           _.map(MenuConfig[menuKey],(v,k)=>{
             let menuClass = v.kClass
-            if (v.link === currentKey) {
+            if (v.menu === currentKey) {
               menuClass += ' item-current'
             }
             if (v.target) {

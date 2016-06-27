@@ -1,22 +1,23 @@
 import Koa from 'koa'
+import convert from 'koa-convert'
 import ejsEngine from 'koa-ejs'
 import Path from 'path'
 import Favicon from 'koa-favicon'
 import Logger from 'koa-logger'
 import StaticFile from 'koa-static'
 import thunkify from 'thunkify-wrap'
-import Boom from 'boom'
 import _ from 'lodash'
+import bodyParser from 'koa-bodyparser'
 
-import { apiRouter } from './routes'
-import { siteRouter } from './routes'
+import { apiRouter } from './route/api-router'
+import { siteRouter } from './route/site-router'
+import { busRouter } from './route/bus-router'
 import db from './components/server/cache/db/dbUtil'
 import memCacheMgr from './components/server/cache/mem/manager'
-
-const ReactServer = Koa()
 const DBUtil = db.Instance()
 const MEMUtil = memCacheMgr.Instance()
 
+const ReactServer = new Koa()
 /**
 初始化模板引擎 使用ejs作为页面引擎
 可以在中间件中用this.render('templateName',jsonData)
@@ -31,42 +32,21 @@ ejsEngine(ReactServer, {
   debug: true
 })
 
-/**
-
-路由分成两部分。
-第一部分是api的 以 /api开头
-
-第二部分是针对客户端的
-以八个大模块来划分。(婚纱摄影，婚宴预订，婚庆定制，婚纱礼服，微电影，婚戒钻石，婚礼用品，婚车租赁)
-由于是服务端渲染到数据，那么基本到规则就是渲染初始状态。
-
-这里就有两种设计选择：
-1. 当用户请求某个资源时，开始发起
-数据预取请求， 待数据返回后才渲染页面返回。
-2. 服务端渲染只是做页面框架。渲染时把针对数据请求到js作为数据输出
-那么客户端在收到此页面后即开始发起数据请求。
-
-实践中选择了方案二。当然这样做有一个大的问题就是SEO时，机器人爬到的页面只有框架部分没有动态数据。 因为动态数据都是在js加载以后通过xhr请求的。
-**/
-
-/**
-结构示意图;
-  ----- api routes ----------   <== set the keys
-  ----- data fetcher --------
-  ----- site routes ---------
- **/
 process.env.NODE_ENV === 'development' && ReactServer.use(Logger()) // 只有在NODE_ENV为development才加载日志
 ReactServer.use(Favicon(__dirname + '/assets/images/favicon.png')) // favico
 ReactServer.use(StaticFile('./assets',{'maxage':3*60*1000})) // 其他静态资源：js/images/css
+ReactServer.use(convert(bodyParser()));
+
+// 业务路由
+ReactServer.use(convert(busRouter.routes()))
 
 /** 准备进入路由层。 先确保一切为默认 **/
-ReactServer.use(function*(next){
+ReactServer.use(convert(function*(next){
   this.APIKey = null
   yield next
-})
-
+}))
 // api路由
-ReactServer.use(apiRouter.routes())
+ReactServer.use(convert(apiRouter.routes()))
 
 /**
  如果经过了api路由层，则APIKey 就一定会被设置上. APIKey如果为null 表示最初状态
@@ -79,7 +59,8 @@ ReactServer.use(apiRouter.routes())
 // 就是将一个带callback的任意函数转换为
 // 只带callback的函数
 let proxyFetcher = thunkify.genify(MEMUtil.getData)
-let dataFetchMiddleWare = function*(next) {
+// 过来api的数据中间件
+ReactServer.use(convert(function*(next) {
   let resData = {
     success: true,
     message: "",
@@ -124,13 +105,10 @@ let dataFetchMiddleWare = function*(next) {
   }
 
   yield next
-}
-
-// 过来api的数据中间件
-ReactServer.use(dataFetchMiddleWare)
+}))
 
 // 网站路由
-ReactServer.use(siteRouter.routes())
+ReactServer.use(convert(siteRouter.routes()))
 
 // 服务器异常处理
 if (process.env.NODE_ENV === 'test') {

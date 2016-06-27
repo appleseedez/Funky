@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/5/7.
  */
-var env=require("../../config");
+var env=require("../../../config");
 var type=env.Thinky.type;
 
 // 活动模型

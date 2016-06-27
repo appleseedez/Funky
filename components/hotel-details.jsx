@@ -1,47 +1,412 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 
-import { MediaItem } from './common/media-item.jsx'
+import { MediaItem, EmImgProcessType } from './common/item-media.jsx'
 import { HotelDetailsConfig } from './config/hotel-details-config'
+import { Calendar } from './common/calendar.jsx'
+import { MapLocation } from './common/map-location.jsx'
+import { NetApi } from './common/net-api'
 
-//const HotelThumb = React.createClass({
-//  render () {
-//    return (
-//      <div className='img-info'>
-//        <div className='slider-box-4-js'>
-//          {
-//            _.map(this.props.data,(v,k)=>{
-//              let url=v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
-//              if (0===k) {
-//                return (
-//                  <a href={url} key={k} className='slider-hover-box' data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image' >
-//                    <div className='big-img-box mgb30'>
-//                      <MediaItem {...HotelDetailsConfig['HotelThumbMediaItem']} mediaUrl={v} water={false} />
-//                    </div>
-//                    <div className='slider-tip-box'>
-//                      <span>点击看大图</span>
-//                    </div>
-//                  </a>
-//                )
-//              }else {
-//                return (
-//                  <a href={url} key={k} data-uk-lightbox='{group:"hotelThumb"}' data-lightbox-type='image'></a>
-//                )
-//              }
-//            })
-//          }
-//        </div>
-//      </div>
-//    )
-//  },
-//  getDefaultProps(){
-//    return {
-//      data:[]
-//    }
-//  }
-//})
+const HintType = {
+  emHT_INIT:-1,// 初始状态
+  emHT_SEE_SITE:0,// 查看酒店场地
+  emHT_SEE_HOTEL_SCHEDULE:1, // 查看酒店档期
+  emHT_SEE_HALL_SCHEDULE:2, // 查看宴会厅档期
+}
 
-const ThumbShow = React.createClass({
+class SexRadio extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      indexId:0,
+      data:[
+        {id:0, text:'男'},
+        {id:1, text:'女'}
+      ]
+    }
+  }
+
+  render () {
+    return (
+      <div className="radio-box">
+        {
+          _.map(this.state.data, (v,k)=>{
+            let handle = this.checked.bind(this, v.id);
+            return (
+              <input key={k} name="sex" type="radio" onChange={handle} checked={this.state.indexId === v.id}><span>{v.text}</span></input>
+            )
+          })
+        }
+      </div>
+    )
+  }
+
+  checked(id, e) {
+    // 不要去调用e.preventDefault();会阻止事件的传递,导致不能选中
+    this.setState({indexId:id});
+  }
+
+  getValue() {
+    return this.state.indexId;
+  }
+}
+
+// 提交内容组件
+class CommitContent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.intervalId=null;
+    this.state = {
+      // 错误信息
+      errMsg:'',
+      // 是否显示倒计时,用于重新获取验证码
+      showTimeFlg:false,
+      // 获取验证码间隔时间
+      timeNum:60,
+      // 控制提交按钮的点击
+      commitFlg:true,
+    }
+  }
+
+  init() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId)
+    }
+    this.setState({
+      errMsg:'',
+      showTime:false,
+      timeNum:60,
+      commitFlg:true,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <div className="phone-box">
+          <label className="not-null-label">*</label>
+          <input className="input-phone"
+                 type="text"
+                 maxlength="11"
+                 placeholder="请输入您的手机号"
+                 ref={(ref)=>this.phone=ref} ></input>
+        </div>
+        <div className="pin-box">
+          <label className="not-null-label">*</label>
+          <input className="input-pin"
+                 type="text"
+                 placeholder="请输入短信验证码"
+                 maxlength="6"
+                 ref={(ref)=>this.sms=ref} ></input>
+          {
+            this.state.showTime
+              ? <div className="send-pin-btn invalid-btn" >{this.state.timeNum+'秒后重新获取'}</div>
+              : <div className="send-pin-btn" onClick={this.getSMS.bind(this)}>获取验证码</div>
+          }
+        </div>
+        <div className="name-box">
+          <input className="input-name"
+                 type="text"
+                 maxlength="11"
+                 placeholder="请输入你的姓名"
+                 ref={(ref)=>this.contactName=ref} ></input>
+          <SexRadio ref={(ref)=>this.gender=ref} />
+        </div>
+        <div className="desc-box">
+          <textarea
+            className="input-desc"
+            placeholder="备注信息"
+            ref={(ref)=>this.remark=ref} ></textarea>
+        </div>
+        <div className="error">{this.state.errMsg}</div>
+        {
+          this.state.commitFlg
+            ? <div className="confirm-btn" onClick={this.commit.bind(this)}><span>提交需求</span></div>
+            : <div className="confirm-btn invalid-btn">
+                <span>提交需求</span>
+                <div className="icon-box">
+                  <img src="http://img2.jsbn.com/static/loading.gif" />
+                </div>
+              </div>
+        }
+      </div>
+    )
+  }
+
+  getSMS(e) {
+    e.preventDefault();
+
+    let phone = this.phone.value;
+    if (phone.length !== 11) {
+      this.setState({
+        errMsg:'请输入正确的手机号'
+      })
+      return;
+    }
+
+    if(!(/^1[3|4|5|7|8]\d{9}$/.test(phone))) {
+      this.setState({
+        errMsg:'请输入正确的手机号'
+      })
+      return;
+    }
+
+    this.setState({
+      errMsg:''
+    })
+
+    NetApi.post('/bus/sms', {contact:phone}, (err, j)=>{
+      if (err) {
+        this.setState({
+          errMsg:'获取验证码失败'
+        })
+      }
+    })
+
+    this.setState({showTime:true});
+    this.intervalId = setInterval(()=>{
+      let i = this.state.timeNum;
+      if (--i < 0) {
+        this.setState({timeNum:60, showTime:false})
+        if (this.intervalId) {
+          clearInterval(this.intervalId)
+        }
+      } else {
+        this.setState({timeNum:i})
+      }
+    }, 1000);
+  }
+
+  commit(e) {
+    e.preventDefault();
+    // 电话号码
+    let phoneValue = this.phone.value;
+    // 短信验证码
+    let smsValue = this.sms.value;
+    if(!(/^1[3|4|5|7|8]\d{9}$/.test(phoneValue))) {
+      this.setState({
+        errMsg:'请输入正确的手机号码'
+      })
+    } else if (!(/\d{6}$/.test(smsValue))) {
+      this.setState({
+        errMsg:'请输入正确的验证码'
+      })
+    } else {
+      let body={
+        code:smsValue,
+        contact:phoneValue,
+        remark:this.remark.value||'',
+        contactName:this.contactName.value||'',
+        gender:this.gender.getValue()||0,
+        bookingTime:this.props.parameter.schedule||'',
+        place:this.props.parameter.place||'',
+        tableNum:this.props.parameter.tableNum||'',
+        hotelName:this.props.parameter.hotelName||'',
+      }
+      // 设置在请求回来之前不能提交
+      this.setState({
+        commitFlg:false,
+        errMsg:'',
+      })
+      NetApi.post('/bus/hotelSurvey', body, (err, j)=>{
+        if (err) {
+          this.setState({
+            commitFlg:true,
+            errMsg:err
+          })
+        } else {
+          console.log(JSON.stringify(j))
+          if (!j.success) {
+            this.setState({
+              commitFlg:true,
+              errMsg:j.message
+            })
+          } else {
+            // 提交成功,通知父组件
+            if (this.props.notifySucceed) {
+              this.props.notifySucceed();
+            }
+          }
+        }
+      })
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId)
+    }
+  }
+}
+CommitContent.propTypes = {
+  parameter:PropTypes.object,
+};
+CommitContent.defaultProps = {
+  parameter:{},
+};
+
+class HintBox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // 提示类型
+      hintType:HintType.emHT_INIT,
+      // 显示状态
+      showFlg:false,
+      // 提交成功标志
+      cmitSuceFlg:false,
+      // 参数
+      parameter: {},
+    }
+  }
+
+  getSucHint(msg) {
+    return (
+      <div className="submit-layer-box">
+        <div className="title-text">
+          <span>&emsp;&emsp;{msg}</span>
+          <strong>，稍后我们会安排专属客服为您服务。感谢您对金色百年的信任与支持！</strong>
+          <div className="subtitle-text">
+            <strong>&emsp;&emsp;特别提醒小主，通过我们平台成功预订该酒店即可享受金色百年送出的超值大礼包和组合优惠套餐，不要错过了哟！</strong>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  //请留下联系信息，我们将免费为您安排酒店经理专门接待您
+  render () {
+    let title='';
+    let content=null;
+    let kClass='';
+
+    // 判断是否显示
+    if (this.state.showFlg) {
+      kClass=' show';
+    }
+
+    switch (this.state.hintType) {
+      case HintType.emHT_INIT: {
+        return null;
+      }
+      case HintType.emHT_SEE_SITE: {
+        title='场地预约'
+        if (this.state.cmitSuceFlg) {
+          content=this.getSucHint('场地预约提交成功');
+        } else {
+          content=(
+            <div className="submit-layer-box">
+              <div className="name">
+                <span className="hotel-name">{this.state.parameter.hotelName}</span>
+              </div>
+              <div className="text">
+                <strong>为了更高效的为你预约该场地，请完善下面的内容，便于我们的工作人员即时与您联系。</strong>
+              </div>
+              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed.bind(this)} />
+            </div>
+          )
+        }
+        break;
+      }
+      case HintType.emHT_SEE_HOTEL_SCHEDULE: {
+        title='酒店档期查询'
+        if (this.state.cmitSuceFlg) {
+          content=this.getSucHint('酒店档期查询提交成功');
+        } else {
+          content=(
+            <div className="submit-layer-box">
+              <div className="name">
+                <span className="hotel-name">{this.state.parameter.hotelName}</span>
+              </div>
+              <div className="text">
+                <strong>为了帮你准确查询：</strong>
+                <span>{this.state.parameter.schedule}</span>
+                <strong>该酒店的档期情况，请完善下面的内容，便于我们的工作人员即时与您联系并介绍该酒店的实时档期信息。</strong>
+              </div>
+              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed.bind(this)} />
+            </div>
+          )
+        }
+        break;
+      }
+      case HintType.emHT_SEE_HALL_SCHEDULE: {
+        title='宴会厅档期查询'
+        if (this.state.cmitSuceFlg) {
+          content=this.getSucHint('宴会厅档期查询提交成功');
+        } else {
+          content=(
+            <div className="submit-layer-box">
+              <div className="name">
+                <span className="hotel-name">{this.state.parameter.hotelName}</span>
+                <span className="hall-name">{this.state.parameter.banquetHallName}</span>
+              </div>
+              <div className="text">
+                <strong>为了帮你准确查询：</strong>
+                <span>{this.state.parameter.schedule}</span>
+                <strong>该宴会厅的婚宴档期情况，请完善下面的内容，便于我们的工作人员即时与您联系并介绍该宴会厅的实时档期信息。</strong>
+              </div>
+              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed.bind(this)} />
+            </div>
+          )
+        }
+        break;
+      }
+      default:{
+        return null;
+      }
+    }
+
+    return (
+      <div className={"flex-full-box"+kClass}>
+        <div className="shadow-box"></div>
+        <div className="center-cell">
+          <div className="center-box query-schedule-box">
+            <div className="title">
+              <div className="close" onClick={this.close.bind(this)}></div>
+              {title}
+            </div>
+            {
+              content
+            }
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  setData(parameter, hintType) {
+    this.setState({
+      showFlg:true,
+      cmitSuceFlg:false,
+      parameter:parameter,
+      hintType:hintType,
+    })
+  }
+
+  close(e) {
+    e.preventDefault();
+    this.setState({
+      showFlg:false,
+      cmitSuceFlg:false,
+      parameter:{},
+    })
+    if (this.commitContent && typeof this.commitContent.init == 'function') {
+      this.commitContent.init();
+    }
+  }
+
+  commitSucceed() {
+    this.commitContent.init();
+    this.setState({
+      cmitSuceFlg:true,
+    })
+  }
+}
+
+class ThumbShow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render () {
     return (
@@ -66,34 +431,44 @@ const ThumbShow = React.createClass({
         }
       </div>
     )
-  },
+  }
+}
+ThumbShow.propTypes = {
+  data:PropTypes.array,
+  index:PropTypes.number
+};
+ThumbShow.defaultProps = {
+  data:[],
+  index:0
+};
 
-  getDefaultProps(){
-    return {
-      data:[],
-      index: 0
+class HotelThumb extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      index:0,
+      sIndex:0,
+      previousClass:'left disabled',
+      nextClass:'right'
     }
   }
-});
 
-const HotelThumb = React.createClass({
   render () {
     return (
-      <div id="hotel_img_show" className="gallery">
-        <ThumbShow data={this.props.data} index={this.state.index} />
+      <div className="gallery">
+        <ThumbShow data={this.props.data} index={this.state.index}/>
         <div className="wrap_img_list">
           <div className="picul">
             <ul className="spic" style={{width:140*4}}>
               {
-                _.map(this.props.data,(v,k)=>{
+                _.map(this.props.data, (v, k)=> {
                   // 只显示4个
-                  if ((k >= this.state.sIndex) && (k < this.state.sIndex+4)) {
+                  if ((k >= this.state.sIndex) && (k < this.state.sIndex + 4)) {
                     return (
                       <li key={k} className="galleryItem stopGallery"
                           data-origin={v+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'}
-                          onClick={this.click.bind(this, k)}
-                      >
-                        <img src={v+'@120w_75h_90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'} />
+                          onClick={this.click.bind(this, k)}>
+                        <img src={v+'@120w_75h_90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'}/>
                       </li>
                     )
                   }
@@ -101,27 +476,12 @@ const HotelThumb = React.createClass({
               }
             </ul>
           </div>
-          <div className={this.state.previousClass} onClick={this.previous}></div>
-          <div className={this.state.nextClass} onClick={this.next}></div>
+          <div className={this.state.previousClass} onClick={this.previous.bind(this)}></div>
+          <div className={this.state.nextClass} onClick={this.next.bind(this)}></div>
         </div>
       </div>
     )
-  },
-
-  getDefaultProps(){
-    return {
-      data:[]
-    }
-  },
-
-  getInitialState() {
-    return {
-      index:0,
-      sIndex:0,
-      previousClass:'left disabled',
-      nextClass:'right'
-    }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     let maxI = nextProps.data.length;
@@ -134,12 +494,13 @@ const HotelThumb = React.createClass({
         {sIndex:0, previousClass:'left disabled', nextClass:'right disabled'}
       );
     }
-  },
+  }
 
   componentDidMount() {
-  },
+  }
 
   previous(e) {
+    e.preventDefault();
     let index = this.state.sIndex;
     let maxI = this.props.data.length;
     if (index-4 <= 0) {
@@ -165,9 +526,10 @@ const HotelThumb = React.createClass({
         );
       }
     }
-  },
+  }
 
   next(e) {
+    e.preventDefault();
     let index = this.state.sIndex;
     let maxI = this.props.data.length;
     if (index+4 < maxI) {
@@ -180,177 +542,204 @@ const HotelThumb = React.createClass({
         {sIndex:index, nextClass:'right disabled'}
       );
     }
-  },
+  }
 
   click(index, e) {
     this.setState({index:index});
   }
-})
+}
+HotelThumb.propTypes = {
+  data:PropTypes.array,
+};
+HotelThumb.defaultProps = {
+  data:[],
+};
 
-const HotelBaseInfo = React.createClass({
+class HotelBaseInfo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render () {
+    // 酒店描述
+    let des = this.props.introduction||'';
+    if (des.length > 50) {
+      des = des.substring(0, 50);
+      des += '...';
+    }
+
+    // 酒店地址
+    let address = this.props.address||'';
+    if (address.length > 6) {
+      address = address.substring(0, address.length-5);
+    }
+    address+='***'
+
+    // 酒店标签
+    let featureLabel = [];
+    if (this.props.featureLabel) {
+      featureLabel = this.props.featureLabel.split('、')||[];
+    }
+
+    // 促销优惠
+    if (this.props.lableDetail) {
+      _.each(JSON.parse(this.props.lableDetail), (v,k)=>{
+        featureLabel.push(v.name);
+      })
+    }
+
+    // 宴会厅个数
+    let banquetHallNum = 0;
+    if (this.props.banquetHall) {
+      banquetHallNum = this.props.banquetHall.length;
+    }
+
     return (
       <div className="base-info">
-        <h1 className="mgb10">{this.props.name}</h1>
-        <div className="p mgb30 clearfix">
-          <p>酒店类型:<span><b>{this.props.typeName}</b></span></p>
-          <p>消费价格:<span><b>{'¥'+this.props.lowestConsumption}</b>-<b>{this.props.highestConsumption}</b>/桌</span></p>
-          <p>宴厅数量:<span><b>{(this.props.banquetHall && this.props.banquetHall.length) || 0}</b>个专用宴会厅</span></p>
-          <p>容纳桌数:<span><b>{this.props.maxTableNum}</b>桌</span></p>
-          <p>联系方式:<span><b>400-015-9999</b></span></p>
-          <p id="J_AddressButton" >酒店地址:<span>
-            <a href={'/map/'+this.props.longitude+'/'+this.props.latitude} target='_blank'>
-              <b>{this.props.address}</b>
-              <i className="ico-8-js" />
-            </a>
-            </span>
-          </p>
+
+        <div className="hotel-title">
+          <span className="title">{this.props.name||''}</span>
+          <span className="desc-text">{des}<strong className="see-hotel-desc" onClick={this.hrefIntroduction} >&gt;&gt;详情</strong></span>
         </div>
-        <div id='J_InfoContainer' className="score-info mgb40 clearfix">
-          {
-            //<div className="star-box">
-            //  <div className="star">
-            //    <span>服务质量</span>
-            //    <div>
-            //      <i className="ico-star-3-js ico-star-3-gray-js" />
-            //      <i className="ico-star-3-js ico-star-3-pink-js" style={{width:45}} />
-            //    </div>
-            //  </div>
-            //  <div className="star">
-            //    <span>菜品质量</span>
-            //    <div>
-            //      <i className="ico-star-3-js ico-star-3-gray-js" />
-            //      <i className="ico-star-3-js ico-star-3-pink-js" />
-            //    </div>
-            //  </div>
-            //  <div className="star">
-            //    <span>装修档次</span>
-            //    <div>
-            //      <i className="ico-star-3-js ico-star-3-gray-js" />
-            //      <i className="ico-star-3-js ico-star-3-pink-js" />
-            //    </div>
-            //  </div>
-            //</div>
-          }
-          <div className="etc">
+        <div className="hotel-price-box">
+          <span className="hint">价格：¥</span>
+          <b className="text"><i>{this.props.lowestConsumption+'-'+this.props.highestConsumption}</i> /桌</b>
+        </div>
+
+        <div className="activity-box">
+          <div className="list-item">
             <div className="item">
-              <a href="/activity/detail/libao" target="_blank">
+              <a href="/activity/detail/libao?parentKey=hotel&menuKey=libao" target="_blank">
                 <em>礼包</em>
-                <span>通过金色百年预定婚宴，领取12999大礼包</span>
-              </a>
-            </div>
-            <div className="item">
-              <a href="/activity/detail/zuhe" target="_blank">
-                <em>优惠</em>
-                <span>消费项目越多，优惠力度越大</span>
+                <span>通过金色百年预定婚宴，领取万元品质大礼包</span>
               </a>
             </div>
           </div>
         </div>
+
+        <div className="parameter-box">
+          <strong>类型：<b>{this.props.typeName||''}</b></strong>
+          <strong>容纳桌数：<b>{this.props.maxTableNum||0}桌</b> </strong>
+          <strong>宴厅数量：<b>{banquetHallNum}个专用宴会厅</b> </strong>
+          <strong>地址：<b><span>{address}</span><span className="seeMap" onClick={this.hrefIntroduction}>查看地图</span></b></strong>
+        </div>
+
+        <div className="tab-box">
+          <div className="tag-title">标签:</div>
+          <div className="hotel-tag-list">
+            {
+              _.map(featureLabel,(v,k)=>{
+                return (
+                  <span key={k} className="hotel-tag">{v}</span>
+                )
+              })
+            }
+          </div>
+        </div>
+
+        <div className="business-btn-box">
+          <div className="schedule-btn" ref={(ref)=>this.schedule=ref} onClick={this.showCalendar.bind(this, this.schedule)}>查看档期</div>
+          <div className="site-see-btn" ref={(ref)=>this.site=ref} onClick={this.showSite.bind(this)}>预约看场地</div>
+          <div className="phone-number">
+            <span className="hint">联系商家：</span>
+            <span className="text">400-015-9999</span>
+          </div>
+        </div>
       </div>
     )
-  },
-  getDefaultProps(){
-    return {
-      data:{
-        'name':'金色百年',
-        'typeName':'特色酒店',
-        'banquetHall':[]
-      }
+  }
+
+  showCalendar(obj, e){
+    e.stopPropagation();
+    let top = $(obj).offset().top+$(obj).height();
+    let left = $(obj).offset().left;
+    if (this.props.optCalendar) {
+      this.props.optCalendar(true, top, left, {type:HintType.emHT_SEE_HOTEL_SCHEDULE});
     }
   }
-})
 
-const HotelIntroduction = React.createClass({
-  render () {
+  showSite(e) {
+    e.preventDefault();
+    if (this.props.optSite) {
+      this.props.optSite();
+    }
+  }
+
+  hrefIntroduction(e) {
+    e.preventDefault();
+    window.location.href="#introduction"
+  }
+}
+
+class HeaderContent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let thumbs = JSON.parse(this.props.pcDetailImages||'[]')
     return (
-      <div className="hotel-info-box mgb30">
-          <div className="img-box">
-              <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={this.props.coverUrlWeb} water={false} />
+      <div className="header-module">
+        <div className="layout-center-box">
+          <div className="hotel-detail-box clearfix">
+            <HotelThumb data={thumbs} />
+            <HotelBaseInfo {...this.props} />
           </div>
-          <div className="p">
-              <p>{ this.props.introduction }</p>
-          </div>
+        </div>
       </div>
     )
-  },
-  getDefaultProps(){
-    return {
-      coverUrlWeb:'',
-      introduction:''
-    }
   }
-})
+}
 
-const HotelHall = React.createClass({
-  render () {
-    return (
-      <ul className="list-recommend">
-        {
-          _.map(this.props.banquetHall,function(v,k){
-            return (
-              <li key={k} className={(k%2 === 1)?'item-box mgb20 mg0' :'item-box mgb20 mgr20'}>
-                <div className="title-box">
-                  <h2>{v.name}</h2>
-                </div>
-                <div className="img-box">
-                  <MediaItem {...HotelDetailsConfig['CoverMediaItem']} mediaUrl={v.coverUrlWeb} water={false} />
-                </div>
-                <div className="info-box">
-                  <ul className="clearfix">
-                    <li className="li_w1"><span >桌数：</span><span><span>{(v.maxTableNum || '--')}</span><span>桌</span></span></li>
-                    <li className="li_w1"><span>柱子：</span><span>{parseInt(v.pillerNum)>0?'有':'无' || '--'}</span></li>
-                    <li className="li_w2"><span>面积：</span><span><span>{(v.area||'--')}</span><span>平方米</span></span></li>
-                    <li className="li_w1"><span>形状：</span><span>{v.shape || '--'}</span></li>
-                    <li className="li_w1"><span>层高：</span><span><span>{v.height || '--'}</span><span>米</span></span></li>
-                    <li className="li_w2"><span>低消：</span><span><span>¥</span><span>{ parseFloat(v.lowestConsumption).toFixed(2)}</span><span>／桌</span></span></li>
-                  </ul>
-                    <a className="btn-js btn-grayline-pink-1-js transition-bg"
-                        href={'/hall/'+v.id}>查看详情</a>
-                </div>
-              </li>
-            )
-          })
-        }
-      </ul>
-    )
-  },
-  getDefaultProps(){
-    return {
-      banquetHall:[]
-    }
+class HotelHall extends React.Component {
+  constructor(props) {
+    super(props);
+    this.query=[];
   }
-})
 
-
-const HotelMenu = React.createClass({
-  render () {
+  render() {
     return (
-      <div className="package-menu">
-        <ul className="hotel-menu-list" id="hotel_menu_list">
+      <div className="layout-center-box">
+        <div className="hotel-title-box">
+          <i className="line"></i>
+          <span className="text">宴会厅介绍</span>
+        </div>
+        <ul className="list-recommend">
           {
-            _.map(this.props.data,function(v,i){
+            _.map(this.props.banquetHall||[],(v,k)=>{
+              let detailImage=JSON.parse(v.pcDetailImages||'[]');
+              let group = "{'group':'hotelHall-"+v.id+"'}"
               return (
-                <li className={i === 0 && "list-item-1-js list-item-1-current-js" || "list-item-1-js"} key={i}>
-                  <div className="item-box">
-                    <h3 className="transition">
-                    <span>{v.name}</span>
-                    </h3>
-                    <i className="arrow-rig" />
-                  <span className="pirce">
-                    <strong>￥</strong>
-                    <b>{v.price}</b>
-                    <strong>／桌</strong>
-                  </span>
-                    <i className="arrow-lef" />
-                    <a className="more transition">详情</a>
+                <li key={k} className="item-box">
+                  <div className="img-box">
+                    <a href={v.graphicDesignUrl||v.coverUrlWeb} className='slider-hover-box' data-uk-lightbox={group} data-lightbox-type='image' >
+                      <MediaItem
+                        aspectRatio="3:2"
+                        imageUrl={v.coverUrlWeb}
+                        processType={EmImgProcessType.emGD_S_S}
+                        height={600}
+                      />
+                    </a>
+                    {
+                      _.map(detailImage,(vv,kk)=>{
+                        let url = vv+'@90q|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
+                        return (
+                          <a href={url} key={kk} data-uk-lightbox={group} data-lightbox-type='image'></a>
+                        )
+                      })
+                    }
                   </div>
-                  <div className="cont-menu transition">
-                    <dl>
-                      {
-                        v.dishesList.length>0 ? _.map(v.dishesList,function(vx,ix){return (<dd key={ix}>{vx.name}</dd>)}) : <span><b>*暂无菜单,请到店详询.</b></span>
-                      }
-                    </dl>
+                  <div className="info-box">
+                    <div className="title-box"><h2>{v.name}</h2></div>
+                    <ul className="info-list">
+                      <li><span className="hint">桌数:</span> <span className="text">{v.maxTableNum}桌</span></li>
+                      <li><span className="hint">柱子:</span> <span className="text">{parseInt(v.pillerNum)>0?'有':'无'}</span></li>
+                      <li><span className="hint">面积:</span> <span className="text">{v.area}平方米</span></li>
+                      <li><span className="hint">形状:</span> <span className="text">{v.shape}</span></li>
+                      <li><span className="hint">层高:</span> <span className="text">{v.height}米</span></li>
+                      <li><span className="hint">低消:</span> <span className="text">¥{v.lowestConsumption}/桌</span></li>
+                    </ul>
+                    <div className="btn-query" ref={(ref)=>this.query.push(ref)} onClick={this.showCalendar.bind(this, this.query, k, v.name)} >查询档期</div>
                   </div>
                 </li>
               )
@@ -359,135 +748,224 @@ const HotelMenu = React.createClass({
         </ul>
       </div>
     )
-  },
-  componentDidMount() {
-    let $hotel_menu_list = $('#hotel_menu_list')
+  }
 
-    $hotel_menu_list.on('click', 'li', function() {
-      if ($(this).hasClass('list-item-1-current-js')) {
-        $(this).removeClass('list-item-1-current-js');
-        return;
+  showCalendar(obj, k, hallName, e){
+    e.stopPropagation();
+    let top = $(obj[k]).offset().top+$(obj[k]).height();
+    let left = $(obj[k]).offset().left;
+    if (this.props.optCalendar) {
+      this.props.optCalendar(true, top, left, {banquetHallName:hallName, type:HintType.emHT_SEE_HALL_SCHEDULE});
+    }
+  }
+}
+
+class HotelMenu extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  getMenuContent() {
+    let setMealDetail = [];
+    if (this.props.setMealDetail) {
+      setMealDetail = JSON.parse(this.props.setMealDetail);
+    }
+
+    let content = {
+      v:[],
+      n:[],
+    };
+
+    _.each(setMealDetail, (v,k)=>{
+      if (v.dishesList && v.dishesList.length>0) {
+        content.v.push(
+          <li key={k} className="menu-item">
+            <div className="cd-name">
+              <div className="name">{v.name}</div>
+              <div className="outer-box"></div>
+              <div className="inner-box"></div>
+              <div className="price-box">
+                <i>¥</i>
+                <span>{v.price}</span>
+                <i>/桌</i>
+              </div>
+            </div>
+            <div className="cd-list">
+              <ul>
+                {
+                  _.map(v.dishesList, (v,k)=>{
+                    return (
+                      <li key={k}>{v.name}</li>
+                    )
+                  })
+                }
+              </ul>
+            </div>
+          </li>
+        );
+      } else {
+        content.n.push(
+          <li key={k} className="menu-item">
+            <div className="cd-name">
+              <div className="name">{v.name}</div>
+              <div className="outer-box"></div>
+              <div className="inner-box"></div>
+              <div className="price-box">
+                <i>¥</i>
+                <span>{v.price}</span>
+                <i>/桌</i>
+              </div>
+            </div>
+            <div className="cd-list">
+              <div className="hint-text">暂无菜单,请到店详询.</div>
+            </div>
+          </li>
+        )
       }
-      $(this).addClass('list-item-1-current-js').siblings().removeClass('list-item-1-current-js')
     })
+
+    return content;
   }
-})
 
-const HotelRecommend = React.createClass({
-  render () {
-    if (this.state.recommends && this.state.recommends.length > 0) {
-      return (
-        <div className='recommend-adv-box'>
-          <div className='hotel-recommend-adv-box clearfix'>
-            <div className="title-rcmd">
-              <h1>推荐酒店</h1>
-              <div className="line-middle" />
-            </div>
-            <div className="sel-card-jsbn">
-              <span className="item">同价位</span>
-            </div>
-            <ul className="list-adv">
-              {
-                _.map(this.state.recommends,function(v,k){
-                  return (
-                    <li className="item-box" key={k}>
-                      <a href={'/hotel/'+v.id} className='img-box' target='_blank'>
-                        <MediaItem mediaUrl={v.coverUrlWeb} width={168} aspectRatio='3:2' />
-                      </a>
-                      <div className="title-box">
-                        <span>{v.name}</span>
-                      </div>
-                    </li>
-                  )
-                })
-              }
-            </ul>
-          </div>
-        </div>
-      )
-    } else {
-      return null
-    }
-  },
-  getDefaultProps(){
-    return {
-      conditions:{}
-    }
-  },
-  getInitialState() {
-    return {
-      recommends:[{
-        'coverUrlWeb':'',
-        'name':'金色百年'
-      }]
-    }
-  },
-  componentWillReceiveProps(nextProps) {
-    let p = ''
-    if (_.size(this.props.params)>0) {
-      p = '?' + $.param(_.merge(this.props.params,nextProps.conditions))
-    }
-    fetch(this.props.baseUrl + this.props.dataUrl + p )
-    .then(res=>res.json())
-    .then(j =>{
-      this.setState({
-        recommends:j.data
-      })
-    })
-  },
-  componentDidMount() {
-    let p = ''
-    if (_.size(this.props.params)>0) {
-      p = '?' + $.param(this.props.params)
-    }
-
-    fetch(this.props.baseUrl + this.props.dataUrl + p )
-    .then(res=>res.json())
-    .then(j =>{
-      this.setState({
-        recommends:j.data
-      })
-    })
-  }
-})
-
-
-const HotelDetails = React.createClass({
-  render () {
-    let thumbs = JSON.parse(this.state.details.pcDetailImages||'[]')
-    let menus = JSON.parse(this.state.details.setMealDetail || '[]')
-    let recommendCondition = {
-      'minPrice':
-      this.state.details.lowestConsumption || 0
-    }
+  render() {
+    let content = this.getMenuContent();
     return (
-      <div className='hyyd-detail-view'>
-        <div className='layout-center-box'>
-          <div className='hotel-detail-box'>
-            <HotelThumb data={thumbs} />
-            <HotelBaseInfo {...this.state.details} />
-          </div>
-          <div className='leftInner'>
-            <div className="hotel-detail-info clearfix">
-              <h2 className="mgb10">酒店介绍</h2>
-              <HotelIntroduction {...this.state.details} />
-              <h2 className="mgb20">宴会厅介绍</h2>
-              <HotelHall {...this.state.details} />
-              <h2 id='test'>婚宴套系菜单</h2>
-              <HotelMenu data={menus}/>
-            </div>
-          </div>
-          <HotelRecommend {...HotelDetailsConfig['HotelRecommend']} conditions={recommendCondition} />
+      <div className="layout-center-box">
+        <div className="hotel-title-box">
+          <i className="line"></i>
+          <span className="text">婚宴菜单</span>
+        </div>
+        <div className="package-menu">
+          <ul className="hotel-menu-list">
+            {
+              content.v
+            }
+          </ul>
+          <ul className="hotel-menu-null-list">
+            {
+              content.n
+            }
+          </ul>
         </div>
       </div>
     )
-  },
-  getInitialState() {
-    return {
-      details:{ },
-      recommends:[]
+  }
+}
+
+class HotelIntroduction extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    // 酒店地址
+    let address = this.props.address||'';
+
+    return (
+      <div id="introduction" className="layout-center-box">
+        <div className="hotel-title-box">
+          <i className="line"></i>
+          <span className="text">酒店介绍</span>
+        </div>
+        <div className="hotel-desc-box">
+          <div className="map-box">
+            <div className="map">
+              {
+                this.props.latitude
+                  ? <MapLocation latitude={this.props.latitude} longitude={this.props.longitude} />
+                  : null
+              }
+            </div>
+            <div className="info-box">
+              <div className="address-box">
+                <p>酒店地址：<i>{address}</i>(到店前请提前预约)</p>
+              </div>
+            </div>
+          </div>
+          <div className="detail-box">
+            <div className="desc-box">
+              <div className="desc-text">&emsp;&emsp;{this.props.introduction}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+class BodyContent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="content-module">
+        <HotelHall {...this.props} />
+        <HotelMenu {...this.props} />
+        <HotelIntroduction {...this.props} />
+      </div>
+    )
+  }
+}
+
+class HotelDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      details:{}
     }
-  },
+  }
+
+  render () {
+    return (
+      <div className='hyyd-detail-view' onClick={this.click.bind(this)}>
+        <HeaderContent {...this.state.details} optCalendar={this.optCalendar.bind(this)} optSite={this.optSite.bind(this)}/>
+        <BodyContent {...this.state.details} optCalendar={this.optCalendar.bind(this)} />
+        <Calendar onDateChange={this.onDateChange.bind(this)} ref={(ref)=>this.myCalendar=ref} />
+        <HintBox ref={(ref)=>this.myHintSeeSchedule=ref} />
+      </div>
+    )
+  }
+
+  click(e) {
+    // 不要去阻止事件
+    this.optCalendar(false, null, null);
+  }
+
+  optCalendar(showFlg, top, left, external) {
+    this.myCalendar.setChange(showFlg, top, left, 2, external);
+  }
+
+  optSite() {
+    let p = {
+      // 酒店名称
+      hotelName:this.state.details.name,
+      // 区域
+      place:''+this.state.details.cityId,
+    }
+    this.myHintSeeSchedule.setData(p, HintType.emHT_SEE_SITE);
+  }
+
+  onDateChange(dateStr, external) {
+    // 隐藏日历
+    this.optCalendar(false, null, null);
+    let p = {
+      // 酒店名称
+      hotelName:this.state.details.name,
+      // 宴会厅名称
+      banquetHallName:external.banquetHallName||'',
+      // 档期时间
+      schedule:dateStr,
+      // 区域
+      place:''+this.state.details.cityId,
+    }
+    this.myHintSeeSchedule.setData(p, external.type);
+  }
+
+  componentDidUpdate() {
+  }
+
   componentDidMount() {
     let cfg = HotelDetailsConfig['HotelDetails']
     let fetchUrl = cfg['buildUrl'](this.props.dataParams,cfg['dataUrl'])
@@ -499,6 +977,6 @@ const HotelDetails = React.createClass({
         })
     }
   }
-})
+}
 
 export  { HotelDetails }

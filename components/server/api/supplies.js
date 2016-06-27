@@ -3,7 +3,7 @@
  */
 import supplies from '../cache/db/module/supplies.js'
 import _ from 'lodash'
-import env from '../cache/config'
+import env from '../config'
 let r = env.Thinky.r
 
 // 婚车用品

@@ -234,7 +234,7 @@ const HotelListItem = React.createClass({
         </div>
         <div className="reply-box">
           <div className="content-box">
-            <ListItemFeatureLabel features={this.props.featureLabel.split(',')||[]} />
+            <ListItemFeatureLabel features={this.props.featureLabel.split('、')||[]} />
           </div>
         </div>
       </li>
