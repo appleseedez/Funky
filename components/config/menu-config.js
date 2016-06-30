@@ -184,15 +184,6 @@ const MenuConfig = {
       target:false,
       kClass:'item second-menu',
       remark:''
-    },
-    {
-      cn:'组合优惠',
-      en:'DISCOUNT',
-      menu:'/zuhe',
-      link:'/activity/detail/zuhe?parentKey=hotel&menuKey=zuhe',
-      target:false,
-      kClass:'item second-menu',
-      remark:''
     }
   ],
   '/scheme':[

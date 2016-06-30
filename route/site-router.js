@@ -54,13 +54,11 @@ siteRouter.get('/home', function* index(next) {
   yield this.render('modules/default', renderOption('home', '/home', '/home'))
 })
 
-
 /*********************************** 婚纱摄影 *************************************/
 // 婚纱摄影首页
 siteRouter.get('/shot', function* index(next) {
   yield this.render('modules/default', renderOption('shot', '/shot', '/shot'))
 })
-
 // 作品(样片)
 siteRouter.get('/sample', function* index(next) {
   yield this.render('modules/default', renderOption('sample', '/sample', '/shot'))
@@ -69,7 +67,6 @@ siteRouter.get('/sample', function* index(next) {
 siteRouter.get('/sample/:id', function* index(next) {
   yield this.render('modules/default', renderOption('sample-details', '/sample', '/shot',this.params))
 })
-
 // 客片
 siteRouter.get('/pringles', function* index(next) {
   yield this.render('modules/default', renderOption('pringles', '/pringles', '/shot'))
@@ -78,7 +75,6 @@ siteRouter.get('/pringles', function* index(next) {
 siteRouter.get('/pringles/:id', function* index(next) {
   yield this.render('modules/default', renderOption('pringles-details', '/pringles', '/shot',this.params))
 })
-
 // 套系
 siteRouter.get('/suite', function* index(next) {
   yield this.render('modules/default', renderOption('suite', '/suite', '/shot'))
@@ -87,7 +83,6 @@ siteRouter.get('/suite', function* index(next) {
 siteRouter.get('/suite/:id', function* index(next) {
   yield this.render('modules/default', renderOption('suite-details', '/suite', '/shot',this.params))
 })
-
 // 微电影
 siteRouter.get('/movie', function* index(next) {
   yield this.render('modules/default', renderOption('movie', '/movie', '/shot'))
@@ -102,7 +97,6 @@ siteRouter.get('/movie-details', function* index(next) {
 siteRouter.get('/scheme', function* index(next) {
   yield this.render('modules/default', renderOption('scheme', '/scheme', '/scheme'))
 })
-
 // 实景案例
 siteRouter.get('/cases', function* index(next) {
   yield this.render('modules/default', renderOption('cases', '/cases', '/scheme'))
@@ -111,8 +105,6 @@ siteRouter.get('/cases', function* index(next) {
 siteRouter.get('/cases/:id', function* index(next) {
   yield this.render('modules/default', renderOption('cases-details', '/cases', '/scheme',this.params))
 })
-
-
 // 婚礼跟拍
 siteRouter.get('/followPhoto', function* index(next) {
   yield this.render('modules/default', renderOption('follow-photo', '/followPhoto', '/scheme'))
@@ -121,7 +113,6 @@ siteRouter.get('/followPhoto', function* index(next) {
 siteRouter.get('/followPhoto/:id', function* index(next) {
   yield this.render('modules/default', renderOption('follow-photo-details', '/followPhoto', '/scheme',this.params))
 })
-
 // 婚礼视频
 siteRouter.get('/followVideo', function* index(next) {
   yield this.render('modules/default', renderOption('follow-video', '/followVideo', '/scheme'))
@@ -130,12 +121,6 @@ siteRouter.get('/followVideo', function* index(next) {
 siteRouter.get('/followVideo/:id', function* index(next) {
   yield this.render('modules/default', renderOption('follow-video-details', '/followVideo', '/scheme',this.params))
 })
-
-
-///** 提交婚庆需求 **/
-//siteRouter.get('/scheme-require', function* index(next) {
-//  yield this.render('modules/default', renderOption('scheme-require', '/scheme-require', '/scheme'))
-//})
 // 选婚礼人(四大金刚)
 siteRouter.get('/f4', function* index(next) {
   yield this.render('modules/default', renderOption('f4', '/f4', '/scheme', this.request.query))
@@ -161,11 +146,11 @@ siteRouter.get('/car', function* index(next) {
 })
 
 /****************************************** 婚宴预订 *********************************************/
-// 婚宴预订首页
+// 婚宴酒店
 siteRouter.get('/hotel', function* index(next) {
   yield this.render('modules/default', renderOption('hotel', '/hotel', '/hotel'))
 })
-/** 婚宴酒店详情页 **/
+// 酒店详情页
 siteRouter.get('/hotel/:id', function* index(next) {
   yield this.render('modules/default', renderOption('hotel-details', '/hotel', '/hotel',this.params))
 })

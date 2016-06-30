@@ -4,11 +4,10 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 
-class Calendar extends React.Component {
+const Calendar = React.createClass({
 
-  constructor(props) {
-    super(props);
-    this.state = {
+  getInitialState() {
+    return {
       kClass:'',
       external:{},
       indexMonth:0,// 偏移月份
@@ -16,8 +15,8 @@ class Calendar extends React.Component {
       style: {
         width:'37.5em',
       }
-    }
-  }
+    };
+  },
 
   setChange(showFlg, top=0, left=0, shoMonthNum=2, external={}) {
     if (showFlg) {
@@ -46,7 +45,7 @@ class Calendar extends React.Component {
         }
       })
     }
-  }
+  },
 
   render() {
     // 开始时间,外部传入
@@ -138,7 +137,7 @@ class Calendar extends React.Component {
     }
 
     return (
-      <div id="xq-datepicker-box" className={"xq-datepicker-box "+this.state.kClass} style={this.state.style} onClick={this.click.bind(this)} >
+      <div id="xq-datepicker-box" className={"xq-datepicker-box "+this.state.kClass} style={this.state.style} onClick={this.click} >
         <div className="datepicker">
           {
             _.map(itemsContent,(v,k)=>{
@@ -146,7 +145,7 @@ class Calendar extends React.Component {
                 return (
                   <div key={k} className="datepicker-group datepicker-group-first ">
                     <div className="datepicker-header">
-                      <div className="left-btn-box" onClick={this.onPrev.bind(this)}>
+                      <div className="left-btn-box" onClick={this.onPrev}>
                         <span className="icon-left-btn"></span>
                       </div>
                       {
@@ -165,7 +164,7 @@ class Calendar extends React.Component {
                       {
                         v.head
                       }
-                      <div className="right-btn-box" onClick={this.onNext.bind(this)}>
+                      <div className="right-btn-box" onClick={this.onNext}>
                         <span className="icon-right-btn"></span>
                       </div>
                     </div>
@@ -180,29 +179,28 @@ class Calendar extends React.Component {
         </div>
       </div>
     )
-  }
+  },
 
   click(e) {
     e.stopPropagation();
-  }
+  },
 
   onPrev(e) {
     e.stopPropagation();
     this.setState({indexMonth:this.state.indexMonth-1})
-  }
+  },
 
   onNext(e) {
     e.stopPropagation();
     this.setState({indexMonth:this.state.indexMonth+1})
-  }
+  },
 
   onDateChange(dateStr, e) {
     e.stopPropagation();
-    console.log(dateStr)
     if (this.props.onDateChange) {
       this.props.onDateChange(dateStr, this.state.external);
     }
   }
-}
+})
 
 export { Calendar }

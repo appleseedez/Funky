@@ -26,8 +26,10 @@ const Hotel = env.Thinky.createModel('hotel', {
     typeName: type.string(),
     // 酒店详细地址
     address: type.string(),
-    // 最大容客桌数
+    // 宴会厅最大容客桌数
     maxTableNum: type.number(),
+    // 宴会厅最小容客桌数
+    minTableNum: type.number(),
     // 宴会厅数量
     banquetHalNum: type.number(),
     // 开始营业时间

@@ -8,15 +8,14 @@ import _ from 'lodash'
  width:显示宽度
  height:显示高度
  * */
-class VideoItem extends React.Component {
+const VideoItem = React.createClass({
 
-  constructor() {
-    super();
-    this.state = {
+  getInitialState() {
+    return {
       genId: ShortId.generate(),// 用来生成每个组件唯一的id便于视频初始化
       dataSetup: {}
     };
-  }
+  },
 
   render() {
     if (this.props.width && this.props.height && this.props.videoUrl) {
@@ -40,7 +39,7 @@ class VideoItem extends React.Component {
     } else {
       return null
     }
-  }
+  },
 
   componentDidMount() {
     if (this.props.videoUrl.includes('taobao.com')) {
@@ -63,7 +62,7 @@ class VideoItem extends React.Component {
         console.log('视频类型错误')
       }
     }
-  }
+  },
 
   loadVideo(vid, autoPlay=false) {
     if (autoPlay) {
@@ -91,7 +90,7 @@ class VideoItem extends React.Component {
         })
       }
     }
-  }
+  },
 
   loadTBVideo(vid,videoUrl,width,height,posterUrl) {
     return ()=>{
@@ -118,7 +117,7 @@ class VideoItem extends React.Component {
           allowFullScreen:"true" });
     }
   }
-}
+})
 
 /*
 图片处理方式
@@ -151,10 +150,9 @@ const EmImgProcessType = {
  processType:图片处理方式
  water:是否打水印
 * */
-class ImageItem extends React.Component {
+const ImageItem = React.createClass({
 
   render() {
-
     let imageUrl = ''
     if (this.props.imageUrl && this.props.imageUrl !== '') {
       // 宽度
@@ -263,12 +261,11 @@ class ImageItem extends React.Component {
       )
     }
   }
-}
+})
 
-class MediaItem extends React.Component {
+const MediaItem = React.createClass({
 
   render () {
-
     let width;
     let height;
 
@@ -301,6 +298,6 @@ class MediaItem extends React.Component {
       return (<ImageItem {...this.props} height={height} width={width} />)
     }
   }
-}
+})
 
 export { MediaItem, EmImgProcessType }

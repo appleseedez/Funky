@@ -36,35 +36,26 @@ const hotelApi = {
     if(this.request.query["hotelType"]) {
       this.model = this.model.filter({type: parseInt(this.request.query["hotelType"])});
     }
-    // 最小容客桌数
-    if(this.request.query["minTable"]) {
-      this.model = this.model.filter(r.row("maxTableNum").gt(parseInt(this.request.query["minTable"])));
+    // 最小容客桌数/最大容客桌数
+    if(this.request.query["minTable"] && this.request.query["maxTable"]) {
+      // 同时存在最小，最大价格
+      let minTable = parseInt(this.request.query["minTable"]);
+      let maxTable = parseInt(this.request.query["maxTable"]);
+      // 最小桌数落在区间内 或者最大桌数落在区间内
+      this.model = this.model.filter(r.row("minTableNum").ge(minTable)
+        .and(r.row("minTableNum").le(maxTable))
+        .or(r.row("maxTableNum").ge(minTable)
+          .and(r.row("maxTableNum").le(maxTable))));
     }
-    // 最大容客桌数
-    if(this.request.query["maxTable"]) {
-      this.model = this.model.filter(r.row("maxTableNum").lt(parseInt(this.request.query["maxTable"])));
-    }
-
     // 按照价格搜索
     if(this.request.query["minPrice"]&&this.request.query["maxPrice"]) {
-      // 同时存在最小，最大价格
-      var minPrice = parseInt(this.request.query["minPrice"]);
-      var maxPrice = parseInt(this.request.query["maxPrice"]);
+      let minPrice = parseInt(this.request.query["minPrice"]);
+      let maxPrice = parseInt(this.request.query["maxPrice"]);
       // 最小价格落在区间内 或者最大价格落在区间内
       this.model = this.model.filter(r.row("lowestConsumption").ge(minPrice)
         .and(r.row("lowestConsumption").le(maxPrice))
         .or(r.row("highestConsumption").ge(minPrice)
           .and(r.row("highestConsumption").le(maxPrice))));
-    }
-    else if(this.request.query["minPrice"]) {
-      // 只有最小价格
-      var minPrice = parseInt(this.request.query["minPrice"]);
-      this.model = this.model.filter(r.row("lowestConsumption").gt(minPrice));
-    }
-    else if(this.request.query["maxPrice"]) {
-      // 只有最大价格
-      var maxPrice = parseInt(this.request.query["minPrice"]);
-      this.model = this.model.filter(r.row("highestConsumption").lt(maxPrice));
     }
 
     // 获取一下总数

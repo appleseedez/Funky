@@ -14,17 +14,17 @@ const HintType = {
   emHT_SEE_HALL_SCHEDULE:2, // 查看宴会厅档期
 }
 
-class SexRadio extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state={
+const SexRadio = React.createClass({
+
+  getInitialState() {
+    return {
       indexId:0,
       data:[
         {id:0, text:'男'},
         {id:1, text:'女'}
       ]
-    }
-  }
+    };
+  },
 
   render () {
     return (
@@ -39,24 +39,23 @@ class SexRadio extends React.Component {
         }
       </div>
     )
-  }
+  },
 
   checked(id, e) {
     // 不要去调用e.preventDefault();会阻止事件的传递,导致不能选中
     this.setState({indexId:id});
-  }
+  },
 
   getValue() {
     return this.state.indexId;
   }
-}
+})
 
 // 提交内容组件
-class CommitContent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.intervalId=null;
-    this.state = {
+const CommitContent = React.createClass({
+
+  getInitialState() {
+    return {
       // 错误信息
       errMsg:'',
       // 是否显示倒计时,用于重新获取验证码
@@ -65,8 +64,18 @@ class CommitContent extends React.Component {
       timeNum:60,
       // 控制提交按钮的点击
       commitFlg:true,
+    };
+  },
+
+  propTypes: {
+    parameter:PropTypes.object,
+  },
+
+  getDefaultProps(){
+    return {
+      parameter:{},
     }
-  }
+  },
 
   init() {
     if (this.intervalId) {
@@ -74,11 +83,11 @@ class CommitContent extends React.Component {
     }
     this.setState({
       errMsg:'',
-      showTime:false,
+      showTimeFlg:false,
       timeNum:60,
       commitFlg:true,
     })
-  }
+  },
 
   render() {
     return (
@@ -99,9 +108,9 @@ class CommitContent extends React.Component {
                  maxlength="6"
                  ref={(ref)=>this.sms=ref} ></input>
           {
-            this.state.showTime
+            this.state.showTimeFlg
               ? <div className="send-pin-btn invalid-btn" >{this.state.timeNum+'秒后重新获取'}</div>
-              : <div className="send-pin-btn" onClick={this.getSMS.bind(this)}>获取验证码</div>
+              : <div className="send-pin-btn" onClick={this.getSMS}>获取验证码</div>
           }
         </div>
         <div className="name-box">
@@ -121,7 +130,7 @@ class CommitContent extends React.Component {
         <div className="error">{this.state.errMsg}</div>
         {
           this.state.commitFlg
-            ? <div className="confirm-btn" onClick={this.commit.bind(this)}><span>提交需求</span></div>
+            ? <div className="confirm-btn" onClick={this.commit}><span>提交需求</span></div>
             : <div className="confirm-btn invalid-btn">
                 <span>提交需求</span>
                 <div className="icon-box">
@@ -131,7 +140,7 @@ class CommitContent extends React.Component {
         }
       </div>
     )
-  }
+  },
 
   getSMS(e) {
     e.preventDefault();
@@ -158,16 +167,16 @@ class CommitContent extends React.Component {
     NetApi.post('/bus/sms', {contact:phone}, (err, j)=>{
       if (err) {
         this.setState({
-          errMsg:'获取验证码失败'
+          errMsg:'获取验证码失败,请稍后重试.'
         })
       }
     })
 
-    this.setState({showTime:true});
+    this.setState({showTimeFlg:true});
     this.intervalId = setInterval(()=>{
       let i = this.state.timeNum;
       if (--i < 0) {
-        this.setState({timeNum:60, showTime:false})
+        this.setState({timeNum:60, showTimeFlg:false})
         if (this.intervalId) {
           clearInterval(this.intervalId)
         }
@@ -175,7 +184,7 @@ class CommitContent extends React.Component {
         this.setState({timeNum:i})
       }
     }, 1000);
-  }
+  },
 
   commit(e) {
     e.preventDefault();
@@ -230,25 +239,19 @@ class CommitContent extends React.Component {
         }
       })
     }
-  }
+  },
 
   componentWillUnmount() {
     if (this.intervalId) {
       clearInterval(this.intervalId)
     }
   }
-}
-CommitContent.propTypes = {
-  parameter:PropTypes.object,
-};
-CommitContent.defaultProps = {
-  parameter:{},
-};
+})
 
-class HintBox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+const HintBox = React.createClass({
+
+  getInitialState() {
+    return {
       // 提示类型
       hintType:HintType.emHT_INIT,
       // 显示状态
@@ -257,8 +260,8 @@ class HintBox extends React.Component {
       cmitSuceFlg:false,
       // 参数
       parameter: {},
-    }
-  }
+    };
+  },
 
   getSucHint(msg) {
     return (
@@ -272,7 +275,7 @@ class HintBox extends React.Component {
         </div>
       </div>
     )
-  }
+  },
 
   //请留下联系信息，我们将免费为您安排酒店经理专门接待您
   render () {
@@ -302,7 +305,7 @@ class HintBox extends React.Component {
               <div className="text">
                 <strong>为了更高效的为你预约该场地，请完善下面的内容，便于我们的工作人员即时与您联系。</strong>
               </div>
-              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed.bind(this)} />
+              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed} />
             </div>
           )
         }
@@ -323,7 +326,7 @@ class HintBox extends React.Component {
                 <span>{this.state.parameter.schedule}</span>
                 <strong>该酒店的档期情况，请完善下面的内容，便于我们的工作人员即时与您联系并介绍该酒店的实时档期信息。</strong>
               </div>
-              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed.bind(this)} />
+              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed} />
             </div>
           )
         }
@@ -345,7 +348,7 @@ class HintBox extends React.Component {
                 <span>{this.state.parameter.schedule}</span>
                 <strong>该宴会厅的婚宴档期情况，请完善下面的内容，便于我们的工作人员即时与您联系并介绍该宴会厅的实时档期信息。</strong>
               </div>
-              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed.bind(this)} />
+              <CommitContent parameter={this.state.parameter} ref={(ref)=>this.commitContent=ref} notifySucceed={this.commitSucceed} />
             </div>
           )
         }
@@ -362,7 +365,7 @@ class HintBox extends React.Component {
         <div className="center-cell">
           <div className="center-box query-schedule-box">
             <div className="title">
-              <div className="close" onClick={this.close.bind(this)}></div>
+              <div className="close" onClick={this.close}></div>
               {title}
             </div>
             {
@@ -372,7 +375,7 @@ class HintBox extends React.Component {
         </div>
       </div>
     )
-  }
+  },
 
   setData(parameter, hintType) {
     this.setState({
@@ -381,7 +384,7 @@ class HintBox extends React.Component {
       parameter:parameter,
       hintType:hintType,
     })
-  }
+  },
 
   close(e) {
     e.preventDefault();
@@ -393,7 +396,7 @@ class HintBox extends React.Component {
     if (this.commitContent && typeof this.commitContent.init == 'function') {
       this.commitContent.init();
     }
-  }
+  },
 
   commitSucceed() {
     this.commitContent.init();
@@ -401,12 +404,21 @@ class HintBox extends React.Component {
       cmitSuceFlg:true,
     })
   }
-}
+})
 
-class ThumbShow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const ThumbShow = React.createClass({
+
+  propTypes: {
+    data:PropTypes.array,
+    index:PropTypes.number
+  },
+
+  getDefaultProps(){
+    return {
+      data:[],
+      index:0
+    }
+  },
 
   render () {
     return (
@@ -432,26 +444,28 @@ class ThumbShow extends React.Component {
       </div>
     )
   }
-}
-ThumbShow.propTypes = {
-  data:PropTypes.array,
-  index:PropTypes.number
-};
-ThumbShow.defaultProps = {
-  data:[],
-  index:0
-};
+})
 
-class HotelThumb extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+const HotelThumb = React.createClass({
+
+  getInitialState() {
+    return {
       index:0,
       sIndex:0,
       previousClass:'left disabled',
       nextClass:'right'
+    };
+  },
+
+  propTypes: {
+    data:PropTypes.array,
+  },
+
+  getDefaultProps(){
+    return {
+      data:[],
     }
-  }
+  },
 
   render () {
     return (
@@ -476,12 +490,12 @@ class HotelThumb extends React.Component {
               }
             </ul>
           </div>
-          <div className={this.state.previousClass} onClick={this.previous.bind(this)}></div>
-          <div className={this.state.nextClass} onClick={this.next.bind(this)}></div>
+          <div className={this.state.previousClass} onClick={this.previous}></div>
+          <div className={this.state.nextClass} onClick={this.next}></div>
         </div>
       </div>
     )
-  }
+  },
 
   componentWillReceiveProps(nextProps) {
     let maxI = nextProps.data.length;
@@ -494,10 +508,10 @@ class HotelThumb extends React.Component {
         {sIndex:0, previousClass:'left disabled', nextClass:'right disabled'}
       );
     }
-  }
+  },
 
   componentDidMount() {
-  }
+  },
 
   previous(e) {
     e.preventDefault();
@@ -526,7 +540,7 @@ class HotelThumb extends React.Component {
         );
       }
     }
-  }
+  },
 
   next(e) {
     e.preventDefault();
@@ -542,24 +556,14 @@ class HotelThumb extends React.Component {
         {sIndex:index, nextClass:'right disabled'}
       );
     }
-  }
+  },
 
   click(index, e) {
     this.setState({index:index});
   }
-}
-HotelThumb.propTypes = {
-  data:PropTypes.array,
-};
-HotelThumb.defaultProps = {
-  data:[],
-};
+})
 
-class HotelBaseInfo extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+const HotelBaseInfo = React.createClass({
   render () {
     // 酒店描述
     let des = this.props.introduction||'';
@@ -639,7 +643,7 @@ class HotelBaseInfo extends React.Component {
 
         <div className="business-btn-box">
           <div className="schedule-btn" ref={(ref)=>this.schedule=ref} onClick={this.showCalendar.bind(this, this.schedule)}>查看档期</div>
-          <div className="site-see-btn" ref={(ref)=>this.site=ref} onClick={this.showSite.bind(this)}>预约看场地</div>
+          <div className="site-see-btn" ref={(ref)=>this.site=ref} onClick={this.showSite}>预约看场地</div>
           <div className="phone-number">
             <span className="hint">联系商家：</span>
             <span className="text">400-015-9999</span>
@@ -647,7 +651,7 @@ class HotelBaseInfo extends React.Component {
         </div>
       </div>
     )
-  }
+  },
 
   showCalendar(obj, e){
     e.stopPropagation();
@@ -656,26 +660,22 @@ class HotelBaseInfo extends React.Component {
     if (this.props.optCalendar) {
       this.props.optCalendar(true, top, left, {type:HintType.emHT_SEE_HOTEL_SCHEDULE});
     }
-  }
+  },
 
   showSite(e) {
     e.preventDefault();
     if (this.props.optSite) {
       this.props.optSite();
     }
-  }
+  },
 
   hrefIntroduction(e) {
     e.preventDefault();
     window.location.href="#introduction"
   }
-}
+})
 
-class HeaderContent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+const HeaderContent = React.createClass({
   render() {
     let thumbs = JSON.parse(this.props.pcDetailImages||'[]')
     return (
@@ -689,13 +689,9 @@ class HeaderContent extends React.Component {
       </div>
     )
   }
-}
+})
 
-class HotelHall extends React.Component {
-  constructor(props) {
-    super(props);
-    this.query=[];
-  }
+const HotelHall = React.createClass({
 
   render() {
     return (
@@ -739,7 +735,7 @@ class HotelHall extends React.Component {
                       <li><span className="hint">层高:</span> <span className="text">{v.height}米</span></li>
                       <li><span className="hint">低消:</span> <span className="text">¥{v.lowestConsumption}/桌</span></li>
                     </ul>
-                    <div className="btn-query" ref={(ref)=>this.query.push(ref)} onClick={this.showCalendar.bind(this, this.query, k, v.name)} >查询档期</div>
+                    <div className="btn-query" ref={(ref)=>this.query[k]=ref} onClick={this.showCalendar.bind(this, this.query, k, v.name)} >查询档期</div>
                   </div>
                 </li>
               )
@@ -748,7 +744,11 @@ class HotelHall extends React.Component {
         </ul>
       </div>
     )
-  }
+  },
+
+  componentDidMount() {
+    this.query=[];
+  },
 
   showCalendar(obj, k, hallName, e){
     e.stopPropagation();
@@ -758,12 +758,9 @@ class HotelHall extends React.Component {
       this.props.optCalendar(true, top, left, {banquetHallName:hallName, type:HintType.emHT_SEE_HALL_SCHEDULE});
     }
   }
-}
+})
 
-class HotelMenu extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const HotelMenu = React.createClass({
 
   getMenuContent() {
     let setMealDetail = [];
@@ -825,7 +822,7 @@ class HotelMenu extends React.Component {
     })
 
     return content;
-  }
+  },
 
   render() {
     let content = this.getMenuContent();
@@ -850,13 +847,9 @@ class HotelMenu extends React.Component {
       </div>
     )
   }
-}
+})
 
-class HotelIntroduction extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+const HotelIntroduction = React.createClass({
   render() {
     // 酒店地址
     let address = this.props.address||'';
@@ -891,13 +884,9 @@ class HotelIntroduction extends React.Component {
       </div>
     )
   }
-}
+})
 
-class BodyContent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
+const BodyContent = React.createClass({
   render() {
     return (
       <div className="content-module">
@@ -907,35 +896,35 @@ class BodyContent extends React.Component {
       </div>
     )
   }
-}
+})
 
-class HotelDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
+const HotelDetails = React.createClass({
+
+  getInitialState() {
+    return {
       details:{}
-    }
-  }
+    };
+  },
 
   render () {
     return (
-      <div className='hyyd-detail-view' onClick={this.click.bind(this)}>
-        <HeaderContent {...this.state.details} optCalendar={this.optCalendar.bind(this)} optSite={this.optSite.bind(this)}/>
-        <BodyContent {...this.state.details} optCalendar={this.optCalendar.bind(this)} />
-        <Calendar onDateChange={this.onDateChange.bind(this)} ref={(ref)=>this.myCalendar=ref} />
+      <div className='hyyd-detail-view' onClick={this.click}>
+        <HeaderContent {...this.state.details} optCalendar={this.optCalendar} optSite={this.optSite}/>
+        <BodyContent {...this.state.details} optCalendar={this.optCalendar} />
+        <Calendar onDateChange={this.onDateChange} ref={(ref)=>this.myCalendar=ref} />
         <HintBox ref={(ref)=>this.myHintSeeSchedule=ref} />
       </div>
     )
-  }
+  },
 
   click(e) {
     // 不要去阻止事件
     this.optCalendar(false, null, null);
-  }
+  },
 
   optCalendar(showFlg, top, left, external) {
     this.myCalendar.setChange(showFlg, top, left, 2, external);
-  }
+  },
 
   optSite() {
     let p = {
@@ -945,7 +934,7 @@ class HotelDetails extends React.Component {
       place:''+this.state.details.cityId,
     }
     this.myHintSeeSchedule.setData(p, HintType.emHT_SEE_SITE);
-  }
+  },
 
   onDateChange(dateStr, external) {
     // 隐藏日历
@@ -961,10 +950,10 @@ class HotelDetails extends React.Component {
       place:''+this.state.details.cityId,
     }
     this.myHintSeeSchedule.setData(p, external.type);
-  }
+  },
 
   componentDidUpdate() {
-  }
+  },
 
   componentDidMount() {
     let cfg = HotelDetailsConfig['HotelDetails']
@@ -977,6 +966,6 @@ class HotelDetails extends React.Component {
         })
     }
   }
-}
+})
 
 export  { HotelDetails }
