@@ -224,7 +224,6 @@ const CommitContent = React.createClass({
             errMsg:err
           })
         } else {
-          console.log(JSON.stringify(j))
           if (!j.success) {
             this.setState({
               commitFlg:true,
