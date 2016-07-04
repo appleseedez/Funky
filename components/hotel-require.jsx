@@ -205,11 +205,6 @@ const BookingTimeInfo = React.createClass({
     this.setState({index:1});
   },
 
-  closeCalendar() {
-    // 隐藏日历
-    this.myCalendar.setChange(false, null, null, 2, external);
-  },
-
   clickChecked(index, obj, e) {
     if (index === 0) {
       e.stopPropagation();
@@ -225,8 +220,14 @@ const BookingTimeInfo = React.createClass({
   },
 
   getValue() {
-    return {
-      bookingTime:this.state.bookingTime,
+    if (this.state.index == 1) {
+      return {
+        bookingTime:'',
+      }
+    } else {
+      return {
+        bookingTime:this.state.bookingTime,
+      }
     }
   },
 

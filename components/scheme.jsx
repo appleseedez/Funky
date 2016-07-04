@@ -21,18 +21,20 @@ const PhotoGallery = React.createClass({
           </div>
           <div className="nav-label-box">
             <ul className="label-list">
-              <li className="item">
-                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
-                  <span>近期活动</span>
-                  <div className="tab-black"></div>
-                </a>
-              </li>
-              <li className="item index-last">
-                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
-                  <span>在线咨询</span>
-                  <div className="tab-black"></div>
-                </a>
-              </li>
+              {
+                //<li className="item">
+                //  <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
+                //    <span>近期活动</span>
+                //    <div className="tab-black"></div>
+                //  </a>
+                //</li>
+                //<li className="item index-last">
+                //<a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
+                //<span>在线咨询</span>
+                //<div className="tab-black"></div>
+                //</a>
+                //</li>
+              }
             </ul>
           </div>
         </div>
@@ -73,18 +75,20 @@ const NavGallery = React.createClass({
           </div>
           <div className="nav-label-box">
             <ul className="label-list">
-              <li className="item">
-                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
-                  <span>近期活动</span>
-                  <div className="tab-black"></div>
-                </a>
-              </li>
-              <li className="item index-last">
-                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
-                  <span>挑选婚礼人</span>
-                  <div className="tab-black"></div>
-                </a>
-              </li>
+              {
+                //<li className="item">
+                //  <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
+                //    <span>近期活动</span>
+                //    <div className="tab-black"></div>
+                //  </a>
+                //</li>
+                //<li className="item index-last">
+                //<a href="/f4">
+                //<span>选婚礼人</span>
+                //<div className="tab-black"></div>
+                //</a>
+                //</li>
+              }
             </ul>
             <div className="moreBtn">
               <a href="/f4">
@@ -204,12 +208,6 @@ const BestCasesHot = React.createClass({
           <div className="nav-label-box">
             <ul className="label-list">
               <li className="item">
-                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
-                  <span>近期活动</span>
-                  <div className="tab-black"></div>
-                </a>
-              </li>
-              <li className="item">
                 <a href="/cases">
                   <span>实景案例</span>
                   <div className="tab-black"></div>
@@ -297,12 +295,6 @@ const SupplyCarHot = React.createClass({
           </div>
           <div className="nav-label-box">
             <ul className="label-list">
-              <li className="item">
-                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
-                  <span>近期活动</span>
-                  <div className="tab-black"></div>
-                </a>
-              </li>
               <li className="item">
                 <a href="/supply">
                   <span>婚礼用品</span>
