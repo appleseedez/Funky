@@ -86,7 +86,7 @@
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "shortid": "^2.2.6",
-    "thinky": "^2.2.6",
+    "thinky": "^2.3.2",
     "thunkify-wrap": "^1.0.4",
     "boom": "^3.2.2",
     "console-polyfill": "^0.2.2",
