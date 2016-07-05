@@ -269,7 +269,7 @@ const HintBox = React.createClass({
           <span>&emsp;&emsp;{msg}</span>
           <strong>，稍后我们会安排专属客服为您服务。感谢您对金色百年的信任与支持！</strong>
           <div className="subtitle-text">
-            <strong>&emsp;&emsp;特别提醒小主，通过我们平台成功预订该酒店即可享受金色百年送出的超值大礼包和组合优惠套餐，不要错过了哟！</strong>
+            <strong>&emsp;&emsp;特别提醒小主，通过我们平台成功预订该酒店即可享受金色百年送出的超值大礼包哟，不要错过了哟！</strong>
           </div>
         </div>
       </div>

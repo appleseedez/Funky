@@ -177,7 +177,7 @@ const BookingTimeInfo = React.createClass({
     return (
       <li  className="data-item">
         <div className="hint-box">
-          <label className="hint-text">您的预订时间</label>
+          <label className="hint-text">请选择您的宴会日期</label>
         </div>
         <div className="data-box">
           <div className="date-box">
@@ -250,7 +250,7 @@ const PlaceInfo = React.createClass({
     return (
       <li  className="data-item">
         <div className="hint-box">
-          <label className="hint-text">您的婚礼会在哪个区办呢</label>
+          <label className="hint-text">您的宴会在哪个区办呢</label>
         </div>
         <div className="data-box">
           <ul className="option-group">
@@ -306,13 +306,14 @@ const PlaceInfo = React.createClass({
 const TableNumInfo = React.createClass({
   getInitialState() {
     return {
-      index:5,
+      index:6,
       data:[
         {name:'10桌以下'},
         {name:'10至20桌'},
         {name:'20至30桌'},
         {name:'30至40桌'},
-        {name:'40桌以上'},
+        {name:'40至50桌'},
+        {name:'50桌以上'},
         {name:'未确定'}
       ]
     };
@@ -322,7 +323,7 @@ const TableNumInfo = React.createClass({
     return (
       <li  className="data-item">
         <div className="hint-box">
-          <label className="hint-text">请选择你的桌数</label>
+          <label className="hint-text">您的桌数大概是</label>
         </div>
         <div className="data-box">
           <ul className="option-group">
@@ -379,7 +380,7 @@ const HotelRequire = React.createClass({
   getInitialState() {
     return {
       commitFlg:true,
-      sucessHint:'金色百年感谢您的信任与支持，现在可以提交了。',
+      sucessHint:'',
     };
   },
 
@@ -396,10 +397,9 @@ const HotelRequire = React.createClass({
                 <div className="header-box" >
                   <h2 className="title">金色百年婚宴预定需求提交</h2>
                   <span className="desc-text">
-                    在金色百年婚宴预订服务平台，已接入包括重庆第一婚宴品牌芭菲嘉宴等上百家婚宴酒店，
-                    我们的婚礼顾问对这些酒店的了解程度、对婚宴本身的专业知识和丰富的婚宴预定经验，
-                    能帮你轻松预定到如你所愿的酒店。简单填写以下表格，剩下的交给统筹师搞定，服务免费，
-                    还有万元优质大礼包可以拿哟，赶快行动吧！
+                    &emsp;&emsp;在金色百年婚宴预订服务平台，已接入包括重庆第一婚宴品牌芭菲嘉宴等上百家婚宴酒店，我们的婚礼顾问对这些酒店的了解程度、
+                    对婚宴本身的专业知识和丰富的婚宴预定经验，能帮你轻松预定到如你所愿的酒店。简单填写以下表格，剩下的交给我们的婚礼顾问帮您搞定，
+                    服务免费，还有万元优质大礼包可以拿哟，赶快行动吧！
                   </span>
                 </div>
                 <ul className="data-item-list">
