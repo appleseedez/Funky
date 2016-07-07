@@ -510,13 +510,13 @@ const PublicityHot = React.createClass({
                 </a>
               </li>
               <li className="item">
-                <a href="/activity/detail/aboutUs" target='_blank'>
+                <a href="//cq.jsbn.com/activity/detail/syp" target='_blank'>
                   <span>关于我们</span>
                   <div className="tab-black"></div>
                 </a>
               </li>
               <li className="item index-last">
-                <a href="/activity/detail/aboutUs" target='_blank'>
+                <a href="https://static.meiqia.com/dist/standalone.html?eid=12020" target='_blank'>
                   <span>联系我们</span>
                   <div className="tab-black"></div>
                 </a>
