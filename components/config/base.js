@@ -58,16 +58,19 @@ const BaseConfig = {
         if($(evt.target).hasClass('tab')){
            $('.tab-box').find('.tab').removeClass('tab-sel')
            $(evt.target).addClass('tab-sel')
-           _.unset(filterParams,'all')
-           filterParams['all'] = {}
-           filterParams['all'][$(evt.target).attr('data-key')] = $(evt.target).attr('data-value')
-           if ( ''===$(evt.target).attr('data-value') ) {
-             _.unset(filterParams,'all.'+$(evt.target).attr('data-key'))
-           }
-           component.setState({
-             params:_.merge(filterParams['all'],component.state.params)
-           })
 
+          _.unset(filterParams,'all')
+
+          filterParams['all'] = {}
+          let keys = $(evt.target).attr('data-key').split(',')
+          let values = $(evt.target).attr('data-value').split(',')
+          _.map(keys, (v,k)=>{
+            filterParams['all'][v] = values[k]
+          })
+
+          component.setState({
+             params:filterParams['all']
+           })
         }
       })
     }else {

@@ -63,7 +63,7 @@ const Cases = React.createClass({
     }
   },
   componentDidMount() {
-    CasesConfig['StyleFilter']['setupFilterClick']('multi',this)
+    CasesConfig['StyleFilter']['setupFilterClick']('single',this)
   }
 })
 
