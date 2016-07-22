@@ -65,7 +65,9 @@ const BaseConfig = {
           let keys = $(evt.target).attr('data-key').split(',')
           let values = $(evt.target).attr('data-value').split(',')
           _.map(keys, (v,k)=>{
-            filterParams['all'][v] = values[k]
+            if ( ''!==values[k] && undefined !== values[k]) {
+              filterParams['all'][v] = values[k]
+            }
           })
 
           component.setState({
