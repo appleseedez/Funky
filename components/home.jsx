@@ -413,7 +413,7 @@ const HotelDiamondHot = React.createClass({
             <span className="primary-title">NEWS</span>
           </div>
           <div className="chinese-title">
-            <span className="primary-title">婚宴预订&婚戒钻石</span>
+            <span className="primary-title">婚宴预订</span>
             <span className="secondary-title">最新动态</span>
           </div>
           <div className="nav-label-box">
@@ -421,12 +421,6 @@ const HotelDiamondHot = React.createClass({
               <li className="item">
                 <a href="/hotel">
                   <span>婚宴预订</span>
-                  <div className="tab-black"></div>
-                </a>
-              </li>
-              <li className="item">
-                <a href="http://www.chinad9.com" target='_blank'>
-                  <span>婚戒钻石</span>
                   <div className="tab-black"></div>
                 </a>
               </li>

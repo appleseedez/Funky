@@ -1,6 +1,14 @@
 const MenuConfig = {
   '/':[
     {
+      cn:'婚庆定制',
+      en:'WEDDING',
+      menu:'/scheme',
+      link:'/scheme',
+      target:false,
+      kClass:'item primary'
+    },
+    {
       cn:'婚纱摄影',
       en:'PHOTO',
       menu:'/shot',
@@ -8,14 +16,6 @@ const MenuConfig = {
       target:false,
       kClass:'item primary',
       remark:''
-    },
-    {
-      cn:'婚庆定制',
-      en:'WEDDING',
-      menu:'/scheme',
-      link:'/scheme',
-      target:false,
-      kClass:'item primary'
     },
     {
       cn:'金色旅拍',
@@ -33,20 +33,19 @@ const MenuConfig = {
       link:'/hotel',
       target:false,
       kClass:'item secondary index-1',
-      remark:' >'
-    },
-    {
-      cn:'婚戒钻石',
-      en:'DIAMOND',
-      menu:'',
-      link:'http://www.chinad9.com',
-      target:true,
-      kClass:'item secondary index-2',
       remark:' >'
     }
   ],
   '/home':[
     {
+      cn:'婚庆定制',
+      en:'WEDDING',
+      menu:'/scheme',
+      link:'/scheme',
+      target:false,
+      kClass:'item primary'
+    },
+    {
       cn:'婚纱摄影',
       en:'PHOTO',
       menu:'/shot',
@@ -54,14 +53,6 @@ const MenuConfig = {
       target:false,
       kClass:'item primary',
       remark:''
-    },
-    {
-      cn:'婚庆定制',
-      en:'WEDDING',
-      menu:'/scheme',
-      link:'/scheme',
-      target:false,
-      kClass:'item primary'
     },
     {
       cn:'金色旅拍',
@@ -79,15 +70,6 @@ const MenuConfig = {
       link:'/hotel',
       target:false,
       kClass:'item secondary index-1',
-      remark:' >'
-    },
-    {
-      cn:'婚戒钻石',
-      en:'DIAMOND',
-      menu:'',
-      link:'http://www.chinad9.com',
-      target:true,
-      kClass:'item secondary index-2',
       remark:' >'
     }
   ],
