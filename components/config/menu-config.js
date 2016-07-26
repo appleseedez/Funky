@@ -1,3 +1,6 @@
+//
+//kClass:'item secondary index-1',
+//remark:' >'
 const MenuConfig = {
   '/':[
     {
@@ -32,8 +35,8 @@ const MenuConfig = {
       menu:'/hotel',
       link:'/hotel',
       target:false,
-      kClass:'item secondary index-1',
-      remark:' >'
+      kClass:'item primary',
+      remark:''
     }
   ],
   '/home':[
@@ -69,8 +72,8 @@ const MenuConfig = {
       menu:'/hotel',
       link:'/hotel',
       target:false,
-      kClass:'item secondary index-1',
-      remark:' >'
+      kClass:'item primary',
+      remark:''
     }
   ],
 
