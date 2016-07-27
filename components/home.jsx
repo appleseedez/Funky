@@ -620,7 +620,11 @@ const Home = React.createClass({
         <ShotHot />
         <WeddingHot />
         <TripHot />
-        <HotelDiamondHot />
+        {
+          this.props.dataParams.isBafei
+            ? null
+            : <HotelDiamondHot />
+        }
         <PublicityHot />
         {
           //<div className='bannar-all-box'>
@@ -633,6 +637,14 @@ const Home = React.createClass({
         <ActivityHot />
       </div>
     )
+  },
+
+  getDefaultProps(){
+    return {
+      dataParams:{
+        isBafei:false
+      }
+    }
   }
 })
 
