@@ -104,6 +104,7 @@ ReactServer.use(convert(function*(next) {
       this.body = resData
     }
   } else {
+    console.log(':::::::::::::::::::::::::'+this.request.host)
     // 判断是否芭菲官网跳转过来的
     if (this.request.host.indexOf('bafei.jsbn.com') !== -1) {
       this.isBafei = true;
