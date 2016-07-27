@@ -10,5 +10,5 @@ let parentMenuKey = $('#J_Matrix').attr('data-parent-menu-key')
 let currentKey = $('#J_Matrix').attr('data-current-menu-key')
 
 /*渲染本模块的菜单*/
-ReactDOM.render(<Navigation menuKey={parentMenuKey} currentKey={currentKey} />,document.getElementById('J_Nav'))
+ReactDOM.render(<Navigation menuKey={parentMenuKey} currentKey={currentKey} isBafei={params.isBafei} />,document.getElementById('J_Nav'))
 ReactDOM.render(<Home dataParams={params} />,document.getElementById('J_Main'))

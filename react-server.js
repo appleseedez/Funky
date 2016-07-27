@@ -43,6 +43,7 @@ ReactServer.use(convert(busRouter.routes()))
 /** 准备进入路由层。 先确保一切为默认 **/
 ReactServer.use(convert(function*(next){
   this.APIKey = null
+  this.isBafei = false;
   yield next
 }))
 // api路由
@@ -101,6 +102,11 @@ ReactServer.use(convert(function*(next) {
       }
 
       this.body = resData
+    }
+  } else {
+    // 判断是否芭菲官网跳转过来的
+    if (this.request.host.indexOf('bafei.jsbn.com') !== -1) {
+      this.isBafei = true;
     }
   }
 

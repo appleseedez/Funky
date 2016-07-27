@@ -36,6 +36,7 @@ const MenuConfig = {
       link:'/hotel',
       target:false,
       kClass:'item primary',
+      isCheckBafei:true,
       remark:''
     }
   ],
@@ -73,6 +74,7 @@ const MenuConfig = {
       link:'/hotel',
       target:false,
       kClass:'item primary',
+      isCheckBafei:true,
       remark:''
     }
   ],

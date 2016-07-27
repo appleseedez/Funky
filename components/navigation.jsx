@@ -11,10 +11,16 @@ const Navigation = React.createClass({
       <div>
         {
           _.map(MenuConfig[menuKey],(v,k)=>{
+            // 判断是否是芭菲过来的
+            if (v.isCheckBafei && this.props.isBafei) {
+              return null;
+            }
+
             let menuClass = v.kClass
             if (v.menu === currentKey) {
               menuClass += ' item-current'
             }
+
             if (v.target) {
               return (
                 <div key={k} className={menuClass}>
@@ -62,7 +68,8 @@ const Navigation = React.createClass({
   getDefaultProps(){
     return {
       menuKey:'/',
-      currentKey:'/'
+      currentKey:'/',
+      isBafei:false,
     }
   }
 })
