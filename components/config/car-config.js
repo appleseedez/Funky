@@ -52,18 +52,18 @@ const CarConfig = {
     'conditions':[
       {
         'minPrice': '0',
-        'maxPrice': '999',
+        'maxPrice': '1000',
         'name': '1000元以下'
       }, {
-        'minPrice': '1000',
+        'minPrice': '999',
         'maxPrice': '2000',
         'name': '1000-2000元'
       }, {
-        'minPrice': '2000',
+        'minPrice': '1999',
         'maxPrice': '3000',
         'name': '2000-3000元'
       }, {
-        'minPrice': '3000',
+        'minPrice': '2999',
         'maxPrice': '99999',
         'name': '3000元以上'
       }

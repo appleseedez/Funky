@@ -34,37 +34,37 @@ const CasesConfig = {
   'PriceFilter':_.merge({
     'conditions':[{
 					name: '5000-10,000',
-					minPrice: 5000,
+					minPrice: 4999,
 					maxPrice: 10000
 
 				}, {
 					name: '10,000-15,000',
-					minPrice: 10000,
+					minPrice: 9999,
 					maxPrice: 15000
 
 				}, {
 					name: '15,000-20,000',
-					minPrice: 15000,
+					minPrice: 14999,
 					maxPrice: 20000
 
 				}, {
 					name: '20,000-30,000',
-					minPrice: 20000,
+					minPrice: 19999,
 					maxPrice: 30000
 
 				}, {
 					name: '30,000-50,000',
-					minPrice: 30000,
+					minPrice: 29999,
 					maxPrice: 50000
 
 				}, {
 					name: '50,000-100,000',
-					minPrice: 50000,
+					minPrice: 49999,
 					maxPrice: 100000
 
 				}, {
 					name: '100,000以上',
-					minPrice: 100000,
+					minPrice: 99999,
 					maxPrice: 9999999
 
 				}]

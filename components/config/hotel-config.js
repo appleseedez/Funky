@@ -28,15 +28,15 @@ const HotelConfig = {
       'maxPrice': '2000',
       'name': '2000元以下'
     }, {
-      'minPrice': '2000',
+      'minPrice': '1999',
       'maxPrice': '3000',
       'name': '2000-3000元'
     }, {
-      'minPrice': '3000',
+      'minPrice': '2999',
       'maxPrice': '4000',
       'name': '3000-4000元'
     }, {
-      'minPrice': '4000',
+      'minPrice': '3999',
       'maxPrice': '99999',
       'name': '4000元以上'
     }]
