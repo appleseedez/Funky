@@ -8,5 +8,16 @@
       <img src="//img2.jsbn.com/static/footer-address.jpg@95q">
     </div>
   </div>
-  <div class="nav-map nav-map-1">渝ICP备15007161号-1</div>
+  <div id="timeDiv" class="nav-map nav-map-1"></div>
+  <div class="nav-map nav-map-1">增值电信业务经营许可证：渝ICP备15007161号-1</div>
+  <script type="text/javascript">
+    function show(){
+      var date = new Date(); //日期对象
+      var time = "©Copyright 2013-";
+      time += date.getFullYear();
+      time += " 版权所有 金色百年婚礼服务集团有限公司"
+      document.getElementById("timeDiv").innerHTML = time; //div的html是显示这个字符串
+    }
+    show();
+  </script>
 </div>
