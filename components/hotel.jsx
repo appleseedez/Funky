@@ -61,12 +61,10 @@ const ListItemHallList = React.createClass({
           _.map(this.props.banquetHallList.slice(0,2),(v,k)=>{
             return (
               <dd key={k}>
-                <a href={'/hall/'+v.id} target="_blank">
-                  <span>{v.name}</span>
-                  <span><b>{v.maxTableNum}</b><em>桌</em></span>
-                  <span>{v.height+'米'}</span>
-                  <span>{parseInt(v.pillerNum)>0?'有':'无'}</span>
-                </a>
+                <span>{v.name}</span>
+                <span><b>{v.maxTableNum}</b><em>桌</em></span>
+                <span>{v.height+'米'}</span>
+                <span>{parseInt(v.pillerNum)>0?'有':'无'}</span>
               </dd>
             )
           })
