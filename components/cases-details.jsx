@@ -109,6 +109,9 @@ const Price = React.createClass({
   }
 })
 
+/*
+<Price {...this.state.data} />
+*/
 const CasesDetails = React.createClass({
   render () {
     let imageListData = []
@@ -153,7 +156,6 @@ const CasesDetails = React.createClass({
               <div className='line-left' />
                 <BasicInfo {...this.state.data} />
                 <Concept {...this.state.data} />
-                <Price {...this.state.data} />
               </div>
           </div>
         </div>

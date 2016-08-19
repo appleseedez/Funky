@@ -34,6 +34,10 @@ const CasesCategory  = React.createClass({
   }
 })
 
+/*
+ <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']}  sorterKey={['minPrice','maxPrice']}
+ {...CasesConfig['PriceFilter']} />
+* */
 const Cases = React.createClass({
   render () {
     return (
@@ -46,8 +50,6 @@ const Cases = React.createClass({
           <CasesCategory {...CasesConfig['CasesCategory']} />
           <div className='J_FilterCtrl' >
             <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['caseStyleId']}  sorterKey={['styleId']} {...CasesConfig['StyleFilter']} />
-            <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']}  sorterKey={['minPrice','maxPrice']}
-              {...CasesConfig['PriceFilter']} />
           </div>
           <SchemeListItem {...CasesConfig['SchemeListItem']} params={_.merge(this.state.params,CasesConfig['SchemeListItem'].params)}/>
           <div  id="J_MoreButton">
