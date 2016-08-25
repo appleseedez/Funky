@@ -397,26 +397,28 @@ const Shot = React.createClass({
         <BestPringlesHot />
         <NewActivityHot />
 
-        <div className="layout-center-box">
-          <div className="title-box">
-            <div className="title">
-              <span className="text-english">PHOTOGRAPHER TEAM</span>
-              <span className="text-chinese">摄影师团队</span>
-            </div>
-          </div>
-          <div className="bannar-box">
-            <img src={ShotConfig['Banner'][1].imageUrl} />
-          </div>
-          <div className="title-box">
-            <div className="title">
-              <span className="text-english">STYLIST TEAM</span>
-              <span className="text-chinese">造型师团队</span>
-            </div>
-          </div>
-          <div className="bannar-box">
-            <img src={ShotConfig['Banner'][2].imageUrl} />
-          </div>
-        </div>
+        {
+          //<div className="layout-center-box">
+          //  <div className="title-box">
+          //    <div className="title">
+          //      <span className="text-english">PHOTOGRAPHER TEAM</span>
+          //      <span className="text-chinese">摄影师团队</span>
+          //    </div>
+          //  </div>
+          //  <div className="bannar-box">
+          //    <img src={ShotConfig['Banner'][1].imageUrl} />
+          //  </div>
+          //  <div className="title-box">
+          //    <div className="title">
+          //      <span className="text-english">STYLIST TEAM</span>
+          //      <span className="text-chinese">造型师团队</span>
+          //    </div>
+          //  </div>
+          //  <div className="bannar-box">
+          //    <img src={ShotConfig['Banner'][2].imageUrl} />
+          //  </div>
+          //</div>
+        }
       </div>
     )
   }
