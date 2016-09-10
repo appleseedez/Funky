@@ -156,6 +156,13 @@ const CasesDetails = React.createClass({
               <div className='line-left' />
                 <BasicInfo {...this.state.data} />
                 <Concept {...this.state.data} />
+                {
+                  this.props.dataParams.isLan
+                    ?
+                    <Price {...this.state.data} />
+                    :
+                    null
+                }
               </div>
           </div>
         </div>
@@ -185,7 +192,14 @@ const CasesDetails = React.createClass({
           }
         })
     }
-  }
+  },
+  getDefaultProps(){
+      return {
+        dataParams:{
+          isLan:false,
+        }
+      }
+    }
 })
 
 export { CasesDetails }

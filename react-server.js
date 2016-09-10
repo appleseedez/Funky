@@ -107,6 +107,9 @@ ReactServer.use(convert(function*(next) {
     // 判断是否芭菲官网跳转过来的
     if (this.request.host.indexOf('bafei.jsbn.front') !== -1) {
       this.isBafei = true;
+    } else if (this.request.host.indexOf('lan.jsbn.front') !== -1) {
+      // 内部员工访问
+      this.isLan = true;
     }
   }
 

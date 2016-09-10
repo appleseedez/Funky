@@ -49,6 +49,14 @@ const Cases = React.createClass({
           <Banner {...CasesConfig['Banner'][0]} />
           <CasesCategory {...CasesConfig['CasesCategory']} />
           <div className='J_FilterCtrl' >
+            {
+              this.props.dataParams.isLan
+                ?
+                <ListFilter title={'价位'} name={'name'} klass={'ico-1-js ico-1-1-js'} valueKey={['minPrice','maxPrice']}  sorterKey={['minPrice','maxPrice']}
+                  {...CasesConfig['PriceFilter']} />
+                :
+                null
+            }
             <ListFilter title={'风格'} name={'name'} klass={'ico-1-js ico-1-2-js'} valueKey={['caseStyleId']}  sorterKey={['styleId']} {...CasesConfig['StyleFilter']} />
           </div>
           <SchemeListItem {...CasesConfig['SchemeListItem']} params={_.merge(this.state.params,CasesConfig['SchemeListItem'].params)}/>
@@ -65,7 +73,17 @@ const Cases = React.createClass({
     }
   },
   componentDidMount() {
-    CasesConfig['StyleFilter']['setupFilterClick']('single',this)
+    //CasesConfig['StyleFilter']['setupFilterClick']('single',this)
+    if (this.props.dataParams.isLan) {
+      CasesConfig['StyleFilter']['setupFilterClick']('m',this)
+    }
+  },
+  getDefaultProps(){
+    return {
+      dataParams:{
+        isLan:false,
+      }
+    }
   }
 })
 

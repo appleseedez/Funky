@@ -207,6 +207,7 @@ siteRouter.get('/cases', function* index(next) {
     parentKey:'/scheme',
     params:{
       isBafei:this.isBafei,
+      isLan:this.isLan,
     },
   }
 
@@ -220,6 +221,7 @@ siteRouter.get('/cases/:id', function* index(next) {
     parentKey:'/scheme',
     params:_.merge({
       isBafei:this.isBafei,
+      isLan:this.isLan,
     }, this.params),
   }
 
