@@ -73,9 +73,10 @@ const Cases = React.createClass({
     }
   },
   componentDidMount() {
-    //CasesConfig['StyleFilter']['setupFilterClick']('single',this)
     if (this.props.dataParams.isLan) {
-      CasesConfig['StyleFilter']['setupFilterClick']('m',this)
+      CasesConfig['StyleFilter']['setupFilterClick']('multi',this)
+    } else {
+      CasesConfig['StyleFilter']['setupFilterClick']('single',this)
     }
   },
   getDefaultProps(){
