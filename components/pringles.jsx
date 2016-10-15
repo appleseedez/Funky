@@ -5,7 +5,7 @@ import { MediaSlider } from './common/media-slider.jsx'
 import { ShotListItem } from './common/shot-list-item.jsx'
 import { Banner } from './common/banner.jsx'
 import { PringlesConfig } from './config/pringles-config'
-import { MediaItem } from './common/media-item.jsx'
+import { MediaItem, EmImgProcessType } from './common/media-item.jsx'
 
 /**
 <Pringles>
@@ -90,6 +90,13 @@ const Episode = React.createClass({
 })
 
 const Pringles = React.createClass({
+
+  getInitialState: function() {
+    return {
+      data:[]
+    }
+  },
+
   render () {
     return (
       <div className='kpxs-view'>
@@ -99,20 +106,72 @@ const Pringles = React.createClass({
           </div>
         </div>
         <div className="layout-center-box">
-          <div className='mgt30'>
-            <Banner {...PringlesConfig['Banner'][0]}/>
+          {
+            //<div className='mgt30'>
+            //  <Banner {...PringlesConfig['Banner'][0]}/>
+            //</div>
+          }
+          <div className="global-title-box-2">
+            <div className="chinese-title">最新客片</div>
+            <div className="english-title">New Pringles</div>
+            <div className="moreBtn">
+            </div>
+          </div>
+          <ul className="list-recommend-new">
+            {
+              _.map(this.state.data, (v,k)=>{
+                return (
+                  <li key={k} className="item-box">
+                    <a className="img-box" href={'/pringles/'+v.id} target="_blank">
+                      <div className="layer-box"></div>
+                      <h2 className="layer-title">{v.name}</h2>
+                      <div className="hover-title">
+                        <i className="ico-love"></i>
+                        <h3></h3>
+                      </div>
+                      <MediaItem
+                        aspectRatio={PringlesConfig.PringlesRecommend.aspectRatio}
+                        processType={EmImgProcessType.emGD_S_S}
+                        height={PringlesConfig.PringlesRecommend.height}
+                        mediaUrl={v.coverUrlWeb}
+                        water={false} />
+                    </a>
+                  </li>
+                )
+              })
+            }
+          </ul>
+          <div className="global-title-box-2">
+            <div className="chinese-title">客片欣赏</div>
+            <div className="english-title">Pringles</div>
+            <div className="moreBtn">
+            </div>
           </div>
           <ShotListItem {...PringlesConfig['ShotListItem']} />
         </div>
         <div id="J_MoreButton">
-            <div className="more-btn"><span>{'点击查看更多'}</span></div>
+            <div className="more-btn"><span>点击查看更多</span></div>
         </div>
-        <div className='space-100-eav mgb30'></div>
-        <div className='main-body-eav'>
-            <Episode {...PringlesConfig['Episode']}/>
-        </div>
+        {
+          //<div className='space-100-eav mgb30'></div>
+          //<div className='main-body-eav'>
+          //<Episode {...PringlesConfig['Episode']}/>
+          //</div>
+        }
       </div>
     )
+  },
+
+  componentDidMount() {
+    let fetchUrl = PringlesConfig.PringlesRecommend.buildQueryUrl({}, PringlesConfig.PringlesRecommend.dataUrl)
+    console.log(fetchUrl)
+    fetch(fetchUrl)
+      .then(res => {return res.json()})
+      .then(j => {
+        if(j.success) {
+          this.setState({data:j.data})
+        }
+      })
   }
 })
 

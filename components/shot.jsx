@@ -118,6 +118,7 @@ const BestSampleHot = React.createClass({
   render () {
     return (
       <div className="layout-center-box">
+
         <div className="global-title-box">
           <div className="english-title">
             <span className="primary-title">SHARE</span>
@@ -206,6 +207,7 @@ const BestPringlesHot = React.createClass({
   render () {
     return (
       <div className="layout-center-box">
+
         <div className="global-title-box">
           <div className="english-title">
             <span className="primary-title">BEST</span>
@@ -213,7 +215,7 @@ const BestPringlesHot = React.createClass({
           </div>
           <div className="chinese-title">
             <span className="primary-title"></span>
-            <span className="secondary-title">最佳客片</span>
+            <span className="secondary-title">最新客片</span>
           </div>
           <div className="nav-label-box">
             <ul className="label-list">
@@ -387,13 +389,19 @@ const Shot = React.createClass({
           </div>
         </div>
 
-        <ShotImageHot />
+        {
+          //<ShotImageHot />
+        }
         <BestSampleHot />
-        <div className='bannar-all-box'>
-          <a href='/pringles' >
-            <Banner {...ShotConfig['Banner'][0]} />
-          </a>
-        </div>
+
+        {
+          //<div className='bannar-all-box'>
+          //  <a href='/pringles' >
+          //    <Banner {...ShotConfig['Banner'][0]} />
+          //  </a>
+          //</div>
+        }
+
         <BestPringlesHot />
         <NewActivityHot />
 

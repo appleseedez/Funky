@@ -138,7 +138,7 @@ const photoApi = {
     })
 
     // 只区有用的字段
-    this.model = this.model.pluck("pcDetailImages","wxDetailImages");
+    this.model = this.model.pluck("pcDetailImages","wxDetailImages", "name");
 
     yield next
   },

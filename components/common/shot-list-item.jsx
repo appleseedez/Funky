@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { MediaItem } from './media-item.jsx'
+import { MediaItem, EmImgProcessType } from './media-item.jsx'
 import { MediaLayer } from './media-layer.jsx'
 import { ListCount } from './list-count.jsx'
 import _ from 'lodash'
@@ -10,6 +10,9 @@ const ShotListItem = React.createClass({
   render () {
     let type = this.props.type
     let link = this.props.link || '/home'
+    let aspectRatio = this.props.aspectRatio || '2:3'
+    let height = this.props.height || 600
+    let processType = this.props.processType || EmImgProcessType.emGD_NONE
     //公共的list
     let list = (
       <ul className="list-recommend">
@@ -18,7 +21,7 @@ const ShotListItem = React.createClass({
               return (
                 <li className="item-box" key={k}>
                   <a className='img-box' href={link+'/'+v.id} target='_blank'>
-                    <MediaItem  aspectRatio={'2:3'} height={600} mediaUrl={v.coverUrlWeb} water={false} />
+                    <MediaItem  aspectRatio={aspectRatio} processType={processType} height={height} mediaUrl={v.coverUrlWeb} water={false} />
                     <div className="layer-box" />
                     <MediaLayer  {...v} type={type} />
                   </a>

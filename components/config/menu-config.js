@@ -125,15 +125,15 @@ const MenuConfig = {
       kClass:'item second-menu',
       remark:''
     },
-    {
-      cn:'微电影',
-      en:'MOVIE',
-      menu:'/movie',
-      link:'/movie',
-      target:false,
-      kClass:'item second-menu',
-      remark:''
-    }
+    //{
+    //  cn:'微电影',
+    //  en:'MOVIE',
+    //  menu:'/movie',
+    //  link:'/movie',
+    //  target:false,
+    //  kClass:'item second-menu',
+    //  remark:''
+    //}
   ],
   '/hotel':[
     {

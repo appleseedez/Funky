@@ -153,6 +153,16 @@ const VideoItem = React.createClass({
   }
 })
 
+const EmImgProcessType = {
+  emGD_NONE:0,
+  emGD_H_W:1,
+  emGD_W_H:2,
+  emGD_HW_L:3,
+  emGD_HW_S:4,
+  emGD_L_S:5,
+  emGD_S_S:6
+}
+
 const ImageItem = React.createClass({
   render () {
     /**
@@ -170,21 +180,98 @@ const ImageItem = React.createClass({
       fileExtend = this.props.mediaUrl.substring(this.props.mediaUrl.lastIndexOf('.')).toLowerCase();
     }
 
+    // 图片质量
+    let quality = this.props.quality || '95'
+
     let imageOption='';
     if (fileExtend == '.jpg' || fileExtend == '.jpeg') {
-      /**
-       水印: 如果配置了要显示水印才显示。
-       如果是100%这样的,就不带
-       **/
-      imageOption='@';
-      if (this.props.width !== '100%') {
-        imageOption = imageOption + this.props.width+'w_';
+      switch (this.props.processType) {
+        case EmImgProcessType.emGD_NONE:
+        {
+          /**
+           水印: 如果配置了要显示水印才显示。
+           如果是100%这样的,就不带
+           **/
+          if (this.props.width !== '100%') {
+            imageOption = imageOption + this.props.width+'w_';
+          }
+          if (this.props.height !== '100%') {
+            imageOption = imageOption + this.props.height+'h_';
+          }
+          imageOption = '@' + imageOption + quality + 'q';
+
+          break;
+        }
+        case EmImgProcessType.emGD_H_W:
+        {
+          // 固定高度，宽度自适应
+          if (height !== '100%') {
+            imageOption += '@0o_0l_' + height + 'h_' + quality + 'q.src'
+          } else {
+            imageOption += '@' + quality + 'q.src'
+          }
+          break;
+        }
+        case EmImgProcessType.emGD_W_H:
+        {
+          // 固定宽度，高度自适应
+          if (width !== '100%') {
+            imageOption += '@0o_0l_' + width + 'w_' + quality + 'q.src'
+          } else {
+            imageOption += '@' + quality + 'q.src'
+          }
+          break;
+        }
+        case EmImgProcessType.emGD_HW_L:
+        {
+          // 限定宽高，按长边缩放 0e_0o_0l_200h_200w_90q.src
+          if (height !== '100%' && width !== '100%') {
+            imageOption += '@0e_0o_0l_' + height + 'h_' + width + 'w_' + quality + 'q.src'
+          } else {
+            imageOption += '@' + quality + 'q.src'
+          }
+          break;
+        }
+        case EmImgProcessType.emGD_HW_S:
+        {
+          // 限定宽高，按短边缩放 1e_0o_0l_200h_200w_90q.src
+          if (height !== '100%' && width !== '100%') {
+            imageOption += '@1e_0o_0l_' + height + 'h_' + width + 'w_' + quality + 'q.src'
+          } else {
+            imageOption += '@' + quality + 'q.src'
+          }
+          break;
+        }
+        case EmImgProcessType.emGD_L_S:
+        {
+          // 按长边缩放，缩略填充 4e_0o_0l_200h_200w_90q.src
+          if (height !== '100%' && width !== '100%') {
+            imageOption += '@4e_0o_0l_' + height + 'h_' + width + 'w_' + quality + 'q.src'
+          } else {
+            imageOption += '@' + quality + 'q.src'
+          }
+          break;
+        }
+        case EmImgProcessType.emGD_S_S:
+        {
+          // 按短边缩放，居中裁剪 1e_1c_0o_0l_200h_200w_90q.src
+          if (height !== '100%' && width !== '100%') {
+            imageOption += '@1e_1c_0o_0l_' + height + 'h_' + width + 'w_' + quality + 'q.src'
+          } else {
+            imageOption += '@' + quality + 'q.src'
+          }
+          break;
+        }
+        default:
+        {
+          imageOption += '@' + quality + 'q.src'
+          break;
+        }
       }
-      if (this.props.height !== '100%') {
-        imageOption = imageOption + this.props.height+'h_';
+
+      if (this.props.water) {
+        imageOption += '|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
       }
-      imageOption = imageOption + '95q';
-      imageOption =  this.props.water? (imageOption+'|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'):imageOption
     }
 
     let mediaUrl = ''
@@ -264,14 +351,16 @@ const MediaItem = React.createClass({
     coverUrl:React.PropTypes.string,
     videoUrl:React.PropTypes.string,
     mediaUrl:React.PropTypes.string,
-    water:React.PropTypes.bool
+    water:React.PropTypes.bool,
+    processType:React.PropTypes.number
   },
   getDefaultProps(){
     return {
       mediaUrl:'',
-      aspectRatio:'2:3'
+      aspectRatio:'2:3',
+      processType:EmImgProcessType.emGD_NONE
     }
   }
 })
 
-export { MediaItem }
+export { MediaItem, EmImgProcessType }

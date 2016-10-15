@@ -4,7 +4,11 @@ import _ from 'lodash'
 const PringlesDetailsConfig  = {
   'PringlesDetails':_.merge({
     'dataUrl':'pringles/detail/:id'
-  },BaseConfig)
+  },BaseConfig),
+
+  'ShotListItem':_.merge({
+    'dataUrl':'pringles/pringles_view_list?pageSize=10&pageIndex=1',
+  },BaseConfig),
 }
 
 

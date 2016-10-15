@@ -16,9 +16,9 @@ const BaseConfig = {
         _.each(params,(v,k)=>{
           paramsUrl = paramsUrl.replace(':'+k,v)
         })
-
-        return BaseConfig.baseUrl + paramsUrl
     }
+
+    return BaseConfig.baseUrl + paramsUrl
   },
 
   buildQueryUrl:function(params,url){
