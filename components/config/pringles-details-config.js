@@ -7,7 +7,7 @@ const PringlesDetailsConfig  = {
   },BaseConfig),
 
   'ShotListItem':_.merge({
-    'dataUrl':'pringles/pringles_view_list?pageSize=10&pageIndex=1',
+    'dataUrl':'pringles/pringles_view_list?pageSize=20&pageIndex=1',
   },BaseConfig),
 }
 
