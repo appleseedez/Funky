@@ -21,11 +21,11 @@ const MenuConfig = {
       remark:''
     },
     {
-      cn:'金色旅拍',
-      en:'TRIP',
-      menu:'',
-      link:'http://trip.jsbn.com',
-      target:true,
+      cn:'婚纱礼服',
+      en:'DRESS',
+      menu:'/dress',
+      link:'/dress',
+      target:false,
       kClass:'item primary',
       remark:''
     },
@@ -59,11 +59,11 @@ const MenuConfig = {
       remark:''
     },
     {
-      cn:'金色旅拍',
-      en:'TRIP',
-      menu:'',
-      link:'http://trip.jsbn.com',
-      target:true,
+      cn:'婚纱礼服',
+      en:'DRESS',
+      menu:'/dress',
+      link:'/dress',
+      target:false,
       kClass:'item primary',
       remark:''
     },
@@ -123,6 +123,15 @@ const MenuConfig = {
       link:'/suite',
       target:false,
       kClass:'item second-menu',
+      remark:''
+    },
+    {
+      cn:'金色旅拍',
+      en:'TRIP',
+      menu:'',
+      link:'http://trip.jsbn.com',
+      target:true,
+      kClass:'item primary',
       remark:''
     },
     //{
@@ -229,15 +238,6 @@ const MenuConfig = {
       remark:''
     },
     {
-      cn:'婚纱礼服',
-      en:'DRESS',
-      menu:'/dress',
-      link:'/dress',
-      target:false,
-      kClass:'item second-menu',
-      remark:''
-    },
-    {
       cn:'婚礼用品',
       en:'SUPPLIES',
       menu:'/supply',
@@ -255,7 +255,18 @@ const MenuConfig = {
       kClass:'item second-menu',
       remark:''
     }
-  ]
+  ],
+  '/dress': [
+    {
+      cn:'全站首页',
+      en:'HOME',
+      menu:'/',
+      link:'/',
+      target:false,
+      kClass:'item second-menu',
+      remark:''
+    },
+  ],
 }
 
 export { MenuConfig }

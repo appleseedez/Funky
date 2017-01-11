@@ -298,7 +298,7 @@ siteRouter.get('/dress', function* index(next) {
   let p = {
     templateName:'dress',
     menuKey:'/dress',
-    parentKey:'/scheme',
+    parentKey:'/dress',
     params:{
       isBafei:this.isBafei,
     },
