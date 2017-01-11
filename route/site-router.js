@@ -311,7 +311,7 @@ siteRouter.get('/dress-details', function* index(next) {
   let p = {
     templateName:'dress-details',
     menuKey:'/dress',
-    parentKey:'/scheme',
+    parentKey:'/dress',
     params:_.merge({
       isBafei:this.isBafei,
     }, this.request.query),
