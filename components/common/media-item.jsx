@@ -62,34 +62,15 @@ const qTJSON = (vid,width,height,querystring)=>{
 
 const VideoItem = React.createClass({
   render () {
-    /**
-     如果是自动播放 加载mediaelement.js否则使用淘宝视频控件
-     **/
-    if (this.props.autoplay) {
-      return (
-        <video
-          width={this.props.width}
-          height={this.props.height}
-          poster={this.props.mediaUrl}
-          id={this.state.genID}
-          src={this.props.videoUrl}
-          type="video/mp4" />
-      )
-    } else if (-1 !== this.props.videoUrl.indexOf('taobao.com')) {
+    if (-1 !== this.props.videoUrl.indexOf('taobao.com')) {
       return (
         <div id={this.state.genID} style={{'width':this.props.width+'px','height':this.props.height+'px'}}>
           <h1>Loading TaobaoVideoJS...</h1>
         </div>
       )
-    }else {
+    } else {
       return (
-        <video
-          width={this.props.width}
-          height={this.props.height}
-          poster={this.props.mediaUrl}
-          id={this.state.genID}
-          src={this.props.videoUrl}
-          type="video/mp4" />
+        <div id={this.state.genID} style={ {width: this.props.width, height: this.props.height} } />
       )
     }
   },
@@ -100,29 +81,8 @@ const VideoItem = React.createClass({
     }
   },
 
-  loadAutoPlayVideo(vid){
-    return ()=>{ //为了把初始化操作放到线程上去。
-      MediaElement(vid, {success: (me)=> {
-        me.muted=true
-        me.loop = true
-        me.play()
-        me.addEventListener('ended',function(){
-          me.play()
-        })
-      }})
-    }
-  },
-
-  loadMeidaElementVideo(vid){
-    return ()=>{ //为了把初始化操作放到线程上去。
-      $('#'+vid).mediaelementplayer({
-        pauseOtherPlayers: true
-      })
-    }
-  },
-
   loadTaobaoVideo(vid,videoUrl,width,height,posterUrl){
-    return ()=>{
+    return () => {
       tb_player_object.embedPlayer(
         qTJSON(vid,width,height,videoUrl),
         { autoplay:"false",poster:posterUrl },
@@ -131,10 +91,7 @@ const VideoItem = React.createClass({
   },
 
   componentDidMount() {
-    if (this.props.autoplay) { // 自动播放的Media-element视频
-      setTimeout(this.loadAutoPlayVideo(this.state.genID),0)
-    } else {
-      if (-1 !== this.props.videoUrl.indexOf('taobao.com')) {
+    if (-1 !== this.props.videoUrl.indexOf('taobao.com')) {
         // taobao视频
         (2 === this.props.videoUrl.split('?').length) && setTimeout(this.loadTaobaoVideo(
           this.state.genID,
@@ -143,14 +100,44 @@ const VideoItem = React.createClass({
           this.props.height,
           this.props.mediaUrl
         ),0)
-      } else if (-1 !== this.props.videoUrl.indexOf('.mp4')) {
-        // 不自动播放的MediaElement视频
-        setTimeout(this.loadMeidaElementVideo(this.state.genID),0)
-      } else {
-        console.log('视频地址格式错误')
-      }
+    } else if (-1 !== this.props.videoUrl.indexOf('.mp4')) {
+      // 不自动播放的MediaElement视频
+      setTimeout(this.loadVideo(this.state.genID, this.props), 0)
+    } else {
+      console.log('视频地址格式错误')
     }
+  },
+
+  loadVideo(videoId, props) {
+    let { mediaUrl, videoUrl, aspectRatio, autoPlay, width, height } = props
+
+    let flashVars = {}
+    // 参考http://www.ckplayer.com/tool/help/29.htm
+    // 视频播放地址
+    flashVars.f = videoUrl
+    // 封面地址
+    flashVars.i = `${mediaUrl}@${width}w_${height}h_90q`
+    // 播放结束的动作 调用js函数(function playerstop(){})并且退出全屏
+    flashVars.e = 6
+    // 是否支持拖动 视频是否支持播放未下载的内容 1:按关键帧进行拖动
+    flashVars.h = 1
+    // 视频宽高比例
+    if (aspectRatio) {
+      flashVars.wh = aspectRatio
+    }
+    // 是否自动播放
+    if (autoPlay) {
+      flashVars.p = 1
+    }
+    // 视频调用配置方式 0:调用ckplayer.js
+    flashVars.c = 0
+
+    let params = { bgcolor:'#FFF', allowFullScreen:true, allowScriptAccess:'always', wmode:'transparent' }
+    let h5Video = [`${videoUrl}->video/mp4`]
+
+    CKobject.embed('/script/ckplayer/ckplayer.swf', videoId, videoId, '100%', '100%', true, flashVars, h5Video, params);
   }
+
 })
 
 const EmImgProcessType = {
