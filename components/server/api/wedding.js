@@ -84,7 +84,8 @@ const weddingApi = {
     // 只取有用的字段
     this.model = this.model.pluck(
       "pcDetailImages","name","description","totalCost","originalPrice","coverUrlWeb","personDescription",
-      "senceCost","hdpcCost","designConcept","theme","caseStyleName","color");
+      "senceCost","hdpcCost","designConcept","theme","caseStyleName","color",
+      "executerList","lightList","flowerList","transportList","arrangeList");
 
     yield next
   },

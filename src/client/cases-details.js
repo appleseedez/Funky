@@ -1,7 +1,7 @@
 /**
  * Created by chenjianjun on 16/3/15.
  */
-import { CasesDetails } from '../../components/cases-details.jsx'
+import { CasesDetails } from '../../components/cases-detail.jsx'
 import { Navigation } from '../../components/navigation.jsx'
 import 'es6-promise'
 import 'fetch-detector'

@@ -1,3 +1,37 @@
 <div><%- reactMarkup %></div>
-<script id='J_Matrix' data-params=<%= params %> data-current-menu-key=<%= currentMenuKey %> data-parent-menu-key=<%= parentMenuKey %>
-src=<%= '/script/modules/'+main+'.min.js?t=21' %> charset="utf-8"></script>
+<div id='J_Matrix'
+     data-params=<%= params %> data-current-menu-key=<%= currentMenuKey %> data-parent-menu-key=<%= parentMenuKey %> charset="utf-8">
+</div>
+
+<% if (main === 'cases-details') {%>
+    <script type="text/javascript" src="/script/lightGallery/js/lightgallery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/js/lg-autoplay.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/js/lg-fullscreen.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/js/lg-hash.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/js/lg-pager.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/js/lg-thumbnail.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/js/lg-video.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/js/lg-zoom.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/lib/picturefill.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/script/lightGallery/lib/jquery.mousewheel.min.js" charset="utf-8"></script>
+<%} else {%>
+    <!--[if gte IE 9]><!-->
+    <script src="/script/vendors/uikit/js/uikit.min.js" charset="utf-8"></script>
+    <script src="/script/vendors/uikit/js/core/modal.min.js" charset="utf-8"></script>
+    <script src="/script/vendors/uikit/js/components/lightbox.min.js" charset="utf-8"></script>
+    <!--<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="/script/html5shiv.min.js" charset="utf-8"></script>
+    <script src="/script/es5-shim.min.js" charset="utf-8"></script>
+    <script src="/script/es5-sham.min.js" charset="utf-8"></script>
+    <script src="/script/console-polyfill.js" charset="utf-8"></script>
+    <script src="/script/vendors/uikit/js/uikit-ie8.min.js" charset="utf-8"></script>
+    <script src="/script/vendors/uikit/js/core/modal.min.js" charset="utf-8"></script>
+    <script src="/script/vendors/uikit/js/components/lightbox-ie8.min.js" charset="utf-8"></script>
+    <![endif]-->
+
+    <script src="/script/vendors/slider.js" charset="utf-8"></script>
+    <script src="/script/vendors/jquery.tinyscrollbar.js" charset="utf-8"></script>
+<%}%>
+
+<script src=<%= '/script/modules/'+main+'.min.js?t=21' %> charset="utf-8" ></script>
