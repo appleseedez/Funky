@@ -34,7 +34,11 @@ ejsEngine(ReactServer, {
 
 process.env.NODE_ENV === 'development' && ReactServer.use(Logger()) // 只有在NODE_ENV为development才加载日志
 ReactServer.use(Favicon(__dirname + '/assets/images/favicon.png')) // favico
-ReactServer.use(StaticFile('./assets',{'maxage':3*60*1000})) // 其他静态资源：js/images/css
+if (process.env.NODE_ENV !== 'production') {
+  ReactServer.use(StaticFile('./assets',{'maxage':1})) // 其他静态资源：js/images/css
+} else {
+  ReactServer.use(StaticFile('./assets',{'maxage':3*60*1000})) // 其他静态资源：js/images/css
+}
 ReactServer.use(convert(bodyParser()));
 
 // 业务路由
