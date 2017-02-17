@@ -463,15 +463,11 @@ const CasesDetails = React.createClass({
             ?
             <PriceBox {...this.state.data} />
             :
-            <PriceInfo {...this.state.data} />
-        }
-        {
-          //// 巴菲过来的话显示价格
-          //isLan
-          //  ?
-          //  <PriceInfo {...this.state.data} />
-          //  :
-          //  null
+            isLan
+              ?
+              <PriceInfo {...this.state.data} />
+              :
+              null
         }
       </div>
     )
