@@ -333,13 +333,14 @@ exports.Instance = function() {
   // 一级资源,更新比较频繁的资源
   var tasks1 = [
     'Activity', 'Adv', 'Sample', 'Pringles', 'FollowPhoto', 'FollowVideo',
-    'PringlesSeason', 'FollowPhotoSeason', 'FollowVideoSeason',
-    'Cases3D', 'Suite', 'WeddingClass', 'Dress', 'Movie'
+    'PringlesSeason', 'FollowPhotoSeason', 'FollowVideoSeason', 'Suite',
+    'Dress', 'Movie'
   ];
 
   // 二级资源,更新不是很平凡的资源
   var tasks2 = [
-    'Hotel', 'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'Cases', 'F4Team', 'Car', 'Supplies'
+    'Hotel', 'F4Photographer', 'F4Camera', 'F4Dresser', 'F4Host', 'Cases',
+    'F4Team', 'Car', 'Supplies'
   ];
 
   // 三级资源,不经常更新的资源

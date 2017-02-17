@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import _ from 'lodash'
 
-import { MediaItem } from './common/media-item.jsx'
+import { MediaItem, EmImgProcessType } from './common/media-item.jsx'
 import { CasesDetailsConfig } from './config/cases-details-config'
 
 const BasicInfo = React.createClass({
@@ -67,9 +67,9 @@ const PriceInfo = React.createClass({
 
     if (this.props.totalCost) {
       return (
-        <div>
+        <div className="price-box">
           <div className="info-title">
-            <h1>价格</h1>
+            <h1>案例价格</h1>
           </div>
           <div className="theme-content">
             <div className="all-price">
@@ -105,42 +105,55 @@ const PriceInfo = React.createClass({
 
 const HeadBox = React.createClass({
   render () {
-    let { imageList=[], coverUrlWeb, name, description, caseStyleName='', color='' } = this.props
+    let { imageList=[], coverUrlWeb, name, description='', caseStyleName='', color='', caseType } = this.props
     if (imageList.length === 0) {
       return null
     }
-    if (imageList.length > 6) {
+    let imgLen = imageList.length
+    let showImgS = false
+    if (imgLen > 6) {
+      showImgS = true
       imageList = imageList.slice(0, 6)
     }
-
     let first = 0
     let last = imageList.length - 1
+
+    const sy = '|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
+    let dsp = description.length > 50 ? description.substr(0, 50)+'......' : description
+    const subHtml = `<h4>${name}</h4><p>${dsp}</p>`
+
     return (
       <div className="case-images">
         <div className="photo-box">
-          <div className="big-img-box" onClick={() => {this.showLightBox(first)}}>
-            <MediaItem aspectRatio='3:2' width={690} mediaUrl={coverUrlWeb} water={false} />
+          <div className="big-img-box" onClick={() => {this.showLightBox(first, sy, subHtml)}}>
+            <MediaItem aspectRatio='3:2' processType={EmImgProcessType.emGD_S_S} width={690} mediaUrl={coverUrlWeb} water={false} />
           </div>
           <ul className="small-img-box">
             {
               _.map(imageList, (v, k) => {
                 if (last === k) {
                   return (
-                    <li key={k} className="item last" onClick={() => {this.showLightBox(k)}}>
-                      <MediaItem aspectRatio='3:2' width={105} mediaUrl={v} water={false} />
-                      <span>图集{last+1}P</span>
+                    <li key={k} className="item last" onClick={() => {this.showLightBox(k, sy, subHtml)}}>
+                      <MediaItem aspectRatio='3:2' processType={EmImgProcessType.emGD_S_S} width={105} mediaUrl={v} water={false} />
+                      {
+                        showImgS
+                          ?
+                          <span>图集{imgLen}P</span>
+                          :
+                          null
+                      }
                     </li>
                   )
                 } else if (first === k) {
                   return (
-                    <li key={k} className="item item-current" onClick={() => {this.showLightBox(k)}}>
-                      <MediaItem aspectRatio='3:2' width={105} mediaUrl={v} water={false} />
+                    <li key={k} className="item item-current" onClick={() => {this.showLightBox(k, sy, subHtml)}}>
+                      <MediaItem aspectRatio='3:2' processType={EmImgProcessType.emGD_S_S} width={105} mediaUrl={v} water={false} />
                     </li>
                   )
                 } else {
                   return (
-                    <li key={k} className="item" onClick={() => {this.showLightBox(k)}}>
-                      <MediaItem aspectRatio='3:2' width={105} mediaUrl={v} water={false} />
+                    <li key={k} className="item" onClick={() => {this.showLightBox(k, sy, subHtml)}}>
+                      <MediaItem aspectRatio='3:2' processType={EmImgProcessType.emGD_S_S} width={105} mediaUrl={v} water={false} />
                     </li>
                   )
                 }
@@ -150,35 +163,57 @@ const HeadBox = React.createClass({
           <div id="lightGallery"></div>
         </div>
         <div className="info-box">
-          <h1 className="title">{name}</h1>
-          <span className="content">{description}</span>
-          <ul className="style-label">
+          <div className="col-center">
+            <h1 className="title">{name}</h1>
+            <span className="content">{description}</span>
+          </div>
+
+          <div className="bottom-label">
+            <ul className="label-box style">
+              <li className="title">风格:</li>
+              {
+                _.map(caseStyleName.split(','), (v,k) => {
+                  if (v === '') {
+                    return null
+                  }
+                  return <li key={k}>{v}</li>
+                })
+              }
+            </ul>
+            <ul className="label-box color">
+              <li className="title">色系:</li>
+              {
+                _.map(color.split(','), (v,k) => {
+                  if (v === '') {
+                    return null
+                  }
+                  return <li key={k}>{v}</li>
+                })
+              }
+            </ul>
             {
-              _.map(caseStyleName.split(','), (v,k) => {
-                if (v === '') {
-                  return null
-                }
-                return <li key={k}>{v}</li>
-              })
+              caseType
+                ?
+                <ul className="label-box type">
+                  <li className="title">类型:</li>
+                  {
+                    caseType === 1
+                      ?
+                      <li>套系</li>
+                      :
+                      <li>定制</li>
+                  }
+                </ul>
+                :
+                null
             }
-            {
-              _.map(color.split(','), (v,k) => {
-                if (v === '') {
-                  return null
-                }
-                return <li key={k}>{v}</li>
-              })
-            }
-          </ul>
+          </div>
         </div>
       </div>
     )
   },
-  showLightBox(index = 0) {
-    const { imageList, name } = this.props
-    const sy = '|watermark=1&object=c2h1aXlpbi5wbmc&t=80&p=5&y=10&x=10'
-    const subHtml = `<h4>${name}</h4>`
-
+  showLightBox(index, sy, subHtml) {
+    let { imageList=[] } = this.props
     $('#lightGallery').lightGallery({
       download: false,
       index: index,
@@ -186,11 +221,11 @@ const HeadBox = React.createClass({
       auto: true,
       pause: 4000,
       dynamic: true,
-      dynamicEl: _.map(imageList, (v,k)=>{
+      dynamicEl: _.map(imageList, (v,k) => {
         return {
           src: `${v}@95q${sy}`,
-          responsive: `${v}@375w_95q${sy} 375, ${v}@480w_95q${sy} 480, ${v}@800w_95q${sy} 800`,
-          thumb: `${v}@120w_95q${sy}`,
+          responsive: `${v}@4e_0o_0l_375w_95q.src${sy} 375, ${v}@4e_0o_0l_480w_95q.src${sy} 480, ${v}@4e_0o_0l_800w_95q.src${sy} 800`,
+          thumb: `${v}@1e_1c_0o_0l_120w_95q.src${sy}`,
           iframe: false,
           subHtml: subHtml,
         }
@@ -298,7 +333,7 @@ const PriceList = React.createClass({
 const PriceBox = React.createClass({
   render () {
     const {
-      totalPrice = 0,
+      totalPrice,
       executerPrice,
       executerList='[]',
       lightPrice,
@@ -418,7 +453,8 @@ const PriceBox = React.createClass({
 const CasesDetails = React.createClass({
   render () {
     const { pcDetailImages='[]', totalPrice=0 } = this.state.data
-    let imageList = JSON.parse(pcDetailImages)
+    const { isLan=false } = this.props.dataParams
+    let imageList = JSON.parse(pcDetailImages)||[]
     return (
       <div className='alxq-view'>
         <HeadBox {...this.state.data} imageList={imageList} />
@@ -431,13 +467,12 @@ const CasesDetails = React.createClass({
         }
         {
           //// 巴菲过来的话显示价格
-          //this.props.dataParams.isLan
+          //isLan
           //  ?
           //  <PriceInfo {...this.state.data} />
           //  :
           //  null
         }
-
       </div>
     )
   },

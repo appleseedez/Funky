@@ -85,7 +85,7 @@ const weddingApi = {
     this.model = this.model.pluck(
       "pcDetailImages","name","description","totalCost","originalPrice","coverUrlWeb","personDescription",
       "senceCost","hdpcCost","designConcept","theme","caseStyleName","color",
-      "executerList","lightList","flowerList","transportList","arrangeList",
+      "executerList","lightList","flowerList","transportList","arrangeList","caseType",
       "executerPrice", "arrangePrice", "lightPrice", "flowerPrice", "transportPrice", "totalPrice");
 
     yield next
