@@ -360,9 +360,27 @@ const PriceBox = React.createClass({
             <PriceList isOpen={true}
                        sumTotal={executerPrice}
                        listData={JSON.parse(executerList)}
-                       title="执行人员明细费用"
+                       title="执行人员"
                        fields={[
                    {name:'项目名称', key:'name'},
+                   {name:'数量', key:'number'},
+                   {name:'单位', key:'unit'},
+                   {name:'单价(元)', key:'univalent'},
+                   {name:'合计', key:'total'},
+                   ]}/>
+            :
+            null
+        }
+        {
+          arrangeList.length > 0
+            ?
+            <PriceList isOpen={true}
+                       sumTotal={arrangePrice}
+                       listData={JSON.parse(arrangeList)}
+                       title="现场布置"
+                       fields={[
+                   {name:'项目名称', key:'name'},
+                   {name:'区域',key: 'areaName'},
                    {name:'数量', key:'number'},
                    {name:'单位', key:'unit'},
                    {name:'单价(元)', key:'univalent'},
@@ -377,7 +395,7 @@ const PriceBox = React.createClass({
             <PriceList isOpen={true}
                        sumTotal={lightPrice}
                        listData={JSON.parse(lightList)}
-                       title="外单灯光舞美(灯光、T台、TRUSS架类)明细费用"
+                       title="灯光舞美"
                        fields={[
                    {name:'项目名称', key:'name'},
                    {name:'规格',key: 'spec'},
@@ -395,7 +413,7 @@ const PriceBox = React.createClass({
             <PriceList isOpen={true}
                        sumTotal={flowerPrice}
                        listData={JSON.parse(flowerList)}
-                       title="花车花艺明细费用"
+                       title="花车花艺"
                        fields={[
                    {name:'项目名称', key:'name'},
                    {name:'规格',key: 'spec'},
@@ -413,27 +431,9 @@ const PriceBox = React.createClass({
             <PriceList isOpen={true}
                        sumTotal={transportPrice}
                        listData={JSON.parse(transportList)}
-                       title="运输明细费用"
+                       title="运输费用"
                        fields={[
                    {name:'项目名称', key:'name'},
-                   {name:'数量', key:'number'},
-                   {name:'单位', key:'unit'},
-                   {name:'单价(元)', key:'univalent'},
-                   {name:'合计', key:'total'},
-                   ]}/>
-            :
-            null
-        }
-        {
-          arrangeList.length > 0
-            ?
-            <PriceList isOpen={true}
-                       sumTotal={arrangePrice}
-                       listData={JSON.parse(arrangeList)}
-                       title="场景布置明细费用"
-                       fields={[
-                   {name:'项目名称', key:'name'},
-                   {name:'区域',key: 'areaName'},
                    {name:'数量', key:'number'},
                    {name:'单位', key:'unit'},
                    {name:'单价(元)', key:'univalent'},
