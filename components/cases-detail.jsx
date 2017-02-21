@@ -326,6 +326,127 @@ const PriceList = React.createClass({
   }
 })
 
+
+const ArrangePriceList = React.createClass({
+  getInitialState() {
+    return {
+      isOpen:this.props.isOpen||false
+    }
+  },
+  optFold() {
+    this.setState({isOpen:!this.state.isOpen})
+  },
+
+  getAreaPrice(arrangeList) {
+    let arrangeArea = {}
+    _.each(arrangeList, (v) => {
+      if (arrangeArea[v.areaName]) {
+        arrangeArea[v.areaName].listData.push(v)
+        arrangeArea[v.areaName].sumTotal += v.total
+      } else {
+        arrangeArea[v.areaName] = {
+          listData: [],
+          sumTotal: 0,
+        }
+      }
+    })
+
+    return arrangeArea
+  },
+  render() {
+    const { title, fields = [], listData = [], sumTotal } = this.props
+    let fieldsLen = fields.length
+    let arrangePriceList = this.getAreaPrice(listData)
+    let style = {}
+    if (!this.state.isOpen) {
+      style.display = 'none'
+    }
+    return (
+      <div className="table">
+        <div className="title-box">
+          <span className="icon"></span>
+          <span className="title">{title}</span>
+          <div className="right-btn-box" onClick={()=>{this.optFold()}}>
+            {
+              this.state.isOpen
+                ?
+                <button>收起 <i className="icon unfold"></i></button>
+                :
+                <button>展开 <i className="icon"></i></button>
+            }
+
+          </div>
+        </div>
+        <table style={style}>
+          <thead>
+          <tr>
+            {
+              _.map(fields, (v, k) => {
+                return (
+                  <th key={k}>{v.name}</th>
+                )
+              })
+            }
+          </tr>
+          </thead>
+          <tbody>
+          {
+            _.map(arrangePriceList, (lv, lk) => {
+              let len = lv.listData.length
+              let isFirst = true
+              return _.map(lv.listData, (v, k) => {
+                return (
+                  <tr key={k}>
+                    {
+                      _.map(fields, (vv, kk) => {
+                        if (isFirst) {
+                          isFirst = false
+                          return (
+                            <td key={kk} rowSpan={len}>{v[vv.key]}</td>
+                          )
+                        } else if (kk === 0) {
+                          return null
+                        }
+
+                        return (
+                          <td key={kk}>{v[vv.key]}</td>
+                        )
+                      })
+                    }
+                  </tr>
+                )
+              })
+            })
+          }
+          </tbody>
+          <tfoot>
+          <tr className="sum-row">
+            {
+              _.map(fields, (v, k) => {
+                if (k === 0) {
+                  return (
+                    <td key={k}>合计</td>
+                  )
+                } else if (k === fieldsLen -1) {
+                  return (
+                    <td key={k}>{sumTotal}元</td>
+                  )
+                } else {
+                  return (
+                    <td key={k}></td>
+                  )
+                }
+              })
+            }
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    )
+  }
+})
+
+
 /*
  field = [{name:'', key:''}]
  title, fields = [], listData = [], sumTotal
@@ -362,30 +483,30 @@ const PriceBox = React.createClass({
                        listData={JSON.parse(executerList)}
                        title="执行人员"
                        fields={[
-                   {name:'项目名称', key:'name'},
-                   {name:'数量', key:'number'},
-                   {name:'单位', key:'unit'},
-                   {name:'单价(元)', key:'univalent'},
-                   {name:'合计', key:'total'},
-                   ]}/>
+                       {name:'项目名称', key:'name'},
+                       {name:'数量', key:'number'},
+                       {name:'单位', key:'unit'},
+                       {name:'单价(元)', key:'univalent'},
+                       {name:'合计', key:'total'},
+                       ]}/>
             :
             null
         }
         {
           arrangeList.length > 0
             ?
-            <PriceList isOpen={true}
-                       sumTotal={arrangePrice}
-                       listData={JSON.parse(arrangeList)}
-                       title="现场布置"
-                       fields={[
-                   {name:'项目名称', key:'name'},
-                   {name:'区域',key: 'areaName'},
-                   {name:'数量', key:'number'},
-                   {name:'单位', key:'unit'},
-                   {name:'单价(元)', key:'univalent'},
-                   {name:'合计', key:'total'},
-                   ]}/>
+            <ArrangePriceList isOpen={true}
+                              sumTotal={arrangePrice}
+                              listData={JSON.parse(arrangeList)}
+                              title="现场布置"
+                              fields={[
+                               {name:'区域',key: 'areaName'},
+                               {name:'项目名称', key:'name'},
+                               {name:'数量', key:'number'},
+                               {name:'单位', key:'unit'},
+                               {name:'单价(元)', key:'univalent'},
+                               {name:'合计', key:'total'},
+                               ]}/>
             :
             null
         }
@@ -397,13 +518,13 @@ const PriceBox = React.createClass({
                        listData={JSON.parse(lightList)}
                        title="灯光舞美"
                        fields={[
-                   {name:'项目名称', key:'name'},
-                   {name:'规格',key: 'spec'},
-                   {name:'数量', key:'number'},
-                   {name:'单位', key:'unit'},
-                   {name:'单价(元)', key:'univalent'},
-                   {name:'合计', key:'total'},
-                   ]}/>
+                       {name:'项目名称', key:'name'},
+                       {name:'规格',key: 'spec'},
+                       {name:'数量', key:'number'},
+                       {name:'单位', key:'unit'},
+                       {name:'单价(元)', key:'univalent'},
+                       {name:'合计', key:'total'},
+                       ]}/>
             :
             null
         }
@@ -415,13 +536,13 @@ const PriceBox = React.createClass({
                        listData={JSON.parse(flowerList)}
                        title="花车花艺"
                        fields={[
-                   {name:'项目名称', key:'name'},
-                   {name:'规格',key: 'spec'},
-                   {name:'数量', key:'number'},
-                   {name:'单位', key:'unit'},
-                   {name:'单价(元)', key:'univalent'},
-                   {name:'合计', key:'total'},
-                   ]}/>
+                       {name:'项目名称', key:'name'},
+                       {name:'规格',key: 'spec'},
+                       {name:'数量', key:'number'},
+                       {name:'单位', key:'unit'},
+                       {name:'单价(元)', key:'univalent'},
+                       {name:'合计', key:'total'},
+                       ]}/>
             :
             null
         }
@@ -433,12 +554,12 @@ const PriceBox = React.createClass({
                        listData={JSON.parse(transportList)}
                        title="运输费用"
                        fields={[
-                   {name:'项目名称', key:'name'},
-                   {name:'数量', key:'number'},
-                   {name:'单位', key:'unit'},
-                   {name:'单价(元)', key:'univalent'},
-                   {name:'合计', key:'total'},
-                   ]}/>
+                       {name:'项目名称', key:'name'},
+                       {name:'数量', key:'number'},
+                       {name:'单位', key:'unit'},
+                       {name:'单价(元)', key:'univalent'},
+                       {name:'合计', key:'total'},
+                       ]}/>
             :
             null
         }

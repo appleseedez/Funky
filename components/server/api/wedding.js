@@ -200,7 +200,7 @@ const weddingApi = {
     this.model = this.model.orderBy(r.desc('weight'))
     this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
-    // 只取有用的字段
+    // 只取有用的字段 , "pcDetailImages"
     this.model = this.model.pluck("id","coverUrlWeb","name");
 
     yield next

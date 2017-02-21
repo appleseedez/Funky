@@ -59,7 +59,7 @@ const FollowPhotoDetails = React.createClass({
     let imageListData = []
     imageListData = JSON.parse(this.state.data.pcDetailImages || '[]')
     return (
-      <div className='alxq-view'>
+      <div className='gpxq-view'>
         <div className='layout-center-box margin-top-box' id='slider_case_detail'>
           <div className='photo-show-box'>
             <div className='big-img-box'>
