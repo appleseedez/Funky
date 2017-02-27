@@ -645,7 +645,7 @@ const HotelBaseInfo = React.createClass({
           <div className="site-see-btn" ref={(ref)=>this.site=ref} onClick={this.showSite}>预约看场地</div>
           <div className="phone-number">
             <span className="hint">联系商家：</span>
-            <span className="text">400-015-9999</span>
+            <span className="text">400-805-9289</span>
           </div>
         </div>
       </div>
