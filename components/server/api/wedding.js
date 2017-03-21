@@ -68,7 +68,7 @@ const weddingApi = {
     this.model = this.model.skip(pageIndex * pageSize).limit(pageSize)
 
     // 只取有用的字段
-    this.model = this.model.pluck("id","coverUrlWeb","name");
+    this.model = this.model.pluck("id","coverUrlWeb","name","totalPrice");
 
     yield next
   },
