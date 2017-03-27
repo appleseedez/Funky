@@ -272,13 +272,12 @@ const StaffList = React.createClass({
     }
   },
   componentWillReceiveProps(nextProps) {
-    BaseConfig['fetchFunc'](this,nextProps,true)(this,nextProps)
+    BaseConfig['fetchFunc'](this,nextProps,false)(this,nextProps)
   },
   componentDidMount() {
-    BaseConfig['fetchFunc'](this,null,true)(this)
+    BaseConfig['fetchFunc'](this,null,false)(this)
   }
 })
-
 
 const F4Tab = React.createClass({
   render () {

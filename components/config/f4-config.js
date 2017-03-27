@@ -48,8 +48,12 @@ const F4Config  = {
   'PriceFilter':_.merge({
     'conditions':[{
       'minPrice': '0',
+      'maxPrice': '1000',
+      'name': '1000元以下'
+    }, {
+      'minPrice': '999',
       'maxPrice': '1500',
-      'name': '1500元以下'
+      'name': '1000-1500元'
     }, {
       'minPrice': '1499',
       'maxPrice': '2000',
@@ -60,11 +64,14 @@ const F4Config  = {
       'name': '2000-2500元'
     }, {
       'minPrice': '2499',
+      'maxPrice': '3000',
+      'name': '2500-3000元'
+    }, {
+      'minPrice': '2999',
       'maxPrice': '99999',
-      'name': '2500元以上'
+      'name': '3000元以上'
     }]
   },BaseConfig)
 }
-
 
 export { F4Config }
